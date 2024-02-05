@@ -1,0 +1,569 @@
+*{
+    
+}
+.advantages__title, .services__title, .about-salon__title, .reviews__title{
+    font-family: Rubik Mono One;
+    font-size: 5rem;
+    font-weight: lighter;
+    text-align: center;
+}
+.main_caption{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: right;
+    background-color: #C3C9CD;
+    background-size: 150vw 100vh;
+    background-image: url(Resources/background.gif);
+    overflow: hidden;
+}
+.main_caption__backgr{
+    height: 100%;
+    width: 100%;
+    background-color: #ffffffa7;
+    z-index: 1;
+    position: absolute;
+}
+.main_caption .afr{
+    position: absolute;
+    right: 10%;
+    top: 2%;
+    height: 110vh;
+    z-index: 1;
+    -webkit-filter: drop-shadow(10px 10px 10px #544f4f);
+    filter: drop-shadow(10px 10px 10px #544f4f); 
+}
+.parallax__body{
+    position: absolute;
+    top:-10%;
+    left:-10%;
+    width: 120%;
+    height: 120%;
+}
+hr{
+    background-color:#161b1d;
+    height: 1px;
+    margin: 3% 0 1%;
+}
+.frame-title{
+    border:3px solid;
+    padding: 5%;
+    width: 80vw;
+    height:50%;
+    position: absolute;
+    z-index: 1;
+    top:15%;
+    left:5%;
+}
+.main_caption__text{    
+    position: absolute;
+    top: 24%;
+    left:10%;
+    z-index: 2;
+    padding: 5%;
+    font-size:0.65vw;
+}
+.main_caption p{
+    margin-bottom: 3%;
+    width:100%;
+    text-align: center;
+    margin: 0 auto 2%;
+    font-size:2.5em;
+    
+}
+.main_caption__title{ 
+    font-size:18em;
+    letter-spacing: 0px;
+    font-family: 'playfair display sc',sans-serif;
+    color: #161b1d;
+    font-weight: lighter;
+    margin-top: -5%;
+    
+}
+.record{
+    width:200px;
+    height: 50px;
+    margin: 60px auto;
+    display: block;
+    background: none;
+    font-size: 2em;
+    cursor: pointer;
+}
+.content{
+    width:auto;
+    margin:auto;
+}
+
+.marquee {
+    position: relative;
+    overflow: hidden;
+    --offset: 20vw;
+    --move-initial: calc(-25% + var(--offset));
+    --move-final: calc(-50% + var(--offset));
+    background-color: var(--third-color);
+  }
+  
+  .marquee__inner {
+    width: fit-content;
+    display: flex;
+    position: relative;
+    transform: translate3d(var(--move-initial), 0, 0);
+    animation: marquee 10s linear infinite;
+    animation-play-state: running;
+  }
+  
+  .marquee__inner span {
+    font-size: 2em;
+    text-transform: uppercase;
+    width: max-content;
+    padding:2vw;
+  }
+  
+  .marquee:hover .marquee__inner {
+    animation-play-state: paused;
+  }
+  
+  @keyframes marquee {
+    0% {
+      transform: translate3d(var(--move-initial), 0, 0);
+    }
+  
+    100% {
+      transform: translate3d(var(--move-final), 0, 0);
+    }
+  }
+  
+.advantages{
+    padding:5% 0%;
+}
+.advantages__content{
+    width:80%;
+    margin: auto;
+    font-size: 2em;
+    display:flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.advantage{
+    width: 460px;
+    display: flex;
+    align-items: center;
+    padding: 4% 0;
+}
+.advantage img{
+    width: 50px;
+    padding-right:2% ;
+}
+.discount{
+    background-image: url(Resources/flowers.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size:100vw ;
+    height: 75vh;
+    position: relative;
+}
+.discount__rectangle{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color: rgba(195, 201, 205, 0.5);
+}
+.discount__more{
+    z-index: 1;
+    top:3%;
+    right:50px;
+    position: absolute;
+    font-size: 1.7em;
+    margin: 0 10px 10px 10px;
+    transition: all 0.5s ease;
+    color: rgb(var(--first-color-rgb));
+}
+.discount__more:hover{
+    right:40px;
+    transition: all 0.5s ease;
+}
+.discount__content{
+    width: 44%;
+    height:70%;
+    margin: auto 3%;
+    position: relative;
+    font-size: 2em;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(var(--second-color-rgb), 0.5);
+}
+.discount-container{
+    width: 80%;
+    padding:2%;
+    background-color: rgba(var(--second-color-rgb), 0.5);
+    box-shadow: 1px 1px 10px rgba(var(--second-color-rgb), 0.5);
+}
+.discount__amount{
+    font-size: 4em;
+    font-family: Rubik Mono One;
+    letter-spacing: -10px;
+}
+.discount__text1{
+    margin: 0% 3% 3% 3%;
+    font-family: Playfair Display SC;
+    font-size: 1.5em;
+  
+}
+.discount__text2{
+    font-size: 0.9em;
+    margin: 2%;
+}
+.authorization_btn{
+    width:200px;
+    height: 50px;
+    margin: 10px auto;
+    position: relative;
+    font-size: 0.8em;
+    background:none;
+}
+
+.possibilities{
+    border-radius: 0px;
+    padding: 1% 2%;
+    width: 60%;
+    height: 75%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: rgba(var(--second-color-rgb), 0.5);
+    box-shadow: 1px 1px 10px rgba(var(--second-color-rgb), 0.5);
+}
+.possibilities-title{
+    font-family: Playfair Display SC;
+    font-size: 1.4em;
+}
+.pos{
+    display: flex;
+    align-items: center;
+}
+.arrow {
+    position: relative;
+    width: 100px;
+    height: 10px;
+    margin: 10px;
+}
+.arrow span {
+    position: relative;
+    top: 20px;    
+    height: 2px;
+    background-color: rgb(var(--first-color-rgb));
+    display: block;
+}
+.arrow span::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    top: -3.9px;
+    right: -2.5px;
+    background-color: rgb(var(--first-color-rgb));
+    transform: rotate(25deg);
+}
+.arrow span::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    top: 4px;
+    right: -2.5px;
+    background-color:rgb(var(--first-color-rgb));
+    transform: rotate(-25deg);
+}
+.arrow:hover {
+    width: 100px;
+}
+.services{
+    padding: 3% 10%;
+    position: relative;
+}
+.services__list{
+    display:flex;
+    font-size: 2em;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-evenly;
+    margin: 0px 0 100px 0;
+}
+.service{
+    margin: 50px 0px;
+    position: relative;
+    height: 280px;
+
+}
+.service img{
+    width: 250px;
+    margin: 30px 40px 0;
+    transition: all 0.5s ease;
+    box-shadow: 0 80px 0 var(--third-color);
+}
+.service__description{
+    width: 200px;
+    margin: auto;
+    text-align: center;
+    transition: all 0.5s ease;
+    
+} 
+.service:hover img{
+    position: relative;
+    margin: 27px 32.5px 5px;
+    width: 265px;
+    transition: all 0.5s ease;
+    box-shadow: 0px 0px 20px #766670;
+}
+.service:hover .service__description{
+    font-size: 1.91rem;
+    transition: all 0.5s ease;
+}
+
+.about-salon{
+    position: relative;
+    background-color: var(--fourth-color);
+    padding: 1%;
+}
+.about-salon .container{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.about-salon__title{ 
+    justify-content: center;
+    padding: 0 0 4% 0;
+}
+.about-salon__description{
+    width: 45%;
+    padding: 0 30px;
+    font-size: 2em;
+    text-align: justify;
+}
+.about-salon__description p{
+    text-indent: 5%;
+}
+.about-salon__image{
+    width: 45%;
+    height: auto;
+    margin: 0 0 0 50px;
+}
+.reviews{
+ padding: 5% 0 10% 0;
+}
+.reviews .container{
+    width: 90%;
+    margin: auto;
+}
+.reviews__title{
+    text-align: center;
+    background-color: var(--third-color);
+    margin-bottom: 2%;
+}
+.reviews__content{
+    display: flex;
+}
+.review{
+    margin: 2%;
+    padding: 2%;
+    width: 30%;
+    box-shadow: 50px 50px 0px var(--fourth-color);
+    position: relative;
+    font-size: 1.6em;
+    border-top: rgb(var(--first-color-rgb)) solid 2px;
+    border-left: rgb(var(--first-color-rgb)) solid 2px;
+}
+.review__text{
+    padding-bottom: 6%;
+}
+.review__author{
+    position: absolute;
+    right: 5%;
+    bottom: 2%;
+}
+@media screen and (max-width:1350px) {
+    .about-salon .container{
+        width: 100%;
+    }
+    .reviews__content{
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+    
+}
+@media screen and (max-width:1200px) {
+    .main_caption__text{
+        bottom: 10%;
+        top: auto;
+    }
+    
+}
+@media screen and (max-width:1230px) {
+    .about-salon__description, .about-salon__image{
+        width: 80%;
+        margin:auto;
+        
+    }
+    .about-salon__image{
+        width:80vw;
+    }
+}
+@media screen and (max-width:1400px) {
+   
+}
+@media screen and (max-width:1000px) {
+    .main_caption{
+       
+    }
+    .main_caption__text{
+        width: auto;
+        font-size: 1em;
+    }
+    .main_caption__title{
+        letter-spacing: -1px;
+        font-size: 17vw;
+    }
+    .record{
+        width: 60%;
+        position: relative;
+        bottom: 0;
+        margin: 10% auto 0 auto;
+    }
+    hr{
+        margin: 6% 0;
+    }
+    .main_caption .afr{
+        height: 80%;
+        top:10%;
+        right: 5%;
+    }
+    
+    marquee span{
+        font-size: 2.5em;
+    }
+    .advantages{
+        padding: 4%;
+    }
+    .advantages__content{
+        width: 90%;
+        margin: 2% auto;
+    }
+    .advantage{
+        width:90%
+    }
+    .advantage img{
+        width: 10%;
+        padding-right:6% ;
+    }
+    .discount__content{
+        width: 90%;
+    }
+}
+@media screen and (orientation:portrait) {
+    .advantages__title, .services__title, .about-salon__title, .reviews__title{
+        font-size: 4rem;
+    }
+    .main_caption{
+        
+    }
+    .advantages{
+        font-size: 0.9em;
+    }
+    .main_caption .afr{
+        height: 80%;
+        width: auto;
+        top:5%;
+        overflow: hidden;
+    }
+    .main_caption__text{
+        width: 80%;
+        height: 100vh;
+        top: auto;
+        bottom:10vh;
+        text-align: left;
+        padding: 0%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+       
+    }
+    .main_caption__text p{
+        text-align: left;
+        margin: 0;
+        font-size: 2em;
+    }
+    hr{
+        margin: 0;
+    }
+    .record{
+        margin: 8% 0;
+        width: 100%;
+        height:7vh;
+
+    }
+    .discount{
+    background-size:100vw 100vh;
+    height: 60vh;
+    font-size: 1vh;
+    font-weight: bold;
+    }
+    .discount__content{
+        height:80%;
+        font-size: 2em;
+    }
+    .discount__more{
+        display:none;
+    }
+    .authorization_btn{
+        height:15%;
+        width: 80%;
+        border:4px solid;
+        font-size: 1.2em;
+    }
+    .service{
+        height:80%;
+        width:80%;
+        margin: 30px 0 30px;
+        }
+    .service img{
+        width: 90%;
+        height: 90%;
+        margin: 4% 4% 0;
+        box-shadow: 0 80px 0 var(--third-color);
+    }
+    .service__description{
+        width: 90%;
+        font-size: 2.2rem;
+    } 
+    .service:hover img{
+        position: relative;
+        margin: 0 4% 0px;
+        width: 94%;
+        transition: all 0.5s ease;
+        box-shadow: 0px 0px 20px #766670;
+    }
+    .service:hover .service__description{
+        font-size: 2.1rem;
+        transition: all 0.5s ease;
+    }
+    .about-salon__description{
+        font-size: 1.7em;
+    }
+    .review{
+        font-size: 1.6em;
+        margin: 2% 0 8% 0;
+        width: 80%;
+        box-shadow: 10px 10px 0px var(--fourth-color);
+    }
+}

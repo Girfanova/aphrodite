@@ -1,0 +1,1 @@
+<?php session_start(); $_SESSION['auth']=false; $_SESSION['user_role']=1; header("Location: /"); ?>
