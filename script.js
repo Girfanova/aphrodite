@@ -204,9 +204,9 @@ function clear_bgr_menu() {
     for (let menu_list_a of menu_list)
         menu_list_a.style.color = "black";
     logo.src = "Resources/логотип11-черный.png";
-    auth_circle.style.background='none';
+    if (auth_circle) {auth_circle.style.background='none';
     auth_circle.style.color='black';
-    auth_circle.style.border='3px solid';
+    auth_circle.style.border='3px solid';}
     if (authorization) authorization.src = "Resources/авторизация-black.png";
     document.querySelector('.menu_sub-list').style.background = "rgba(0, 0, 0, 0)";
     if (menu_burg) {
@@ -221,9 +221,9 @@ function black_bgr_menu() {
         menu_list_a.style.color = "white";
     logo.src = "Resources/логотип11.png";
     if (authorization) authorization.src = "Resources/авторизация.png";
-    auth_circle.style.background='none';
+    if (auth_circle) {auth_circle.style.background='none';
     auth_circle.style.color='white';
-    auth_circle.style.border='3px solid';
+    auth_circle.style.border='3px solid';}
     document.querySelector('.menu_sub-list').style.background = "black";
     if (menu_burg) {
         menu_burg.classList.add('white-menu-burg');
@@ -374,7 +374,7 @@ var done_table = document.getElementById('done-table');
 var canc_table = document.getElementById('canceled-table');
 
 
-rec_label.addEventListener("click", function () {
+if (rec_label) rec_label.addEventListener("click", function () {
     if (!rec_label.classList.contains('label-checked')) {
         rec_label.classList.toggle('label-checked');
         done_label.classList.remove('label-checked');
@@ -384,7 +384,7 @@ rec_label.addEventListener("click", function () {
         rec_table.style.display = "block";
     }
 })
-done_label.addEventListener("click", function () {
+if (done_label) done_label.addEventListener("click", function () {
     if (!done_label.classList.contains('label-checked')) {
         done_label.classList.toggle('label-checked');
         rec_label.classList.remove('label-checked');
@@ -394,7 +394,7 @@ done_label.addEventListener("click", function () {
         done_table.style.display = "block";
     }
 })
-canc_label.addEventListener("click", function () {
+if (canc_label) canc_label.addEventListener("click", function () {
     if (!canc_label.classList.contains('label-checked')) {
         canc_label.classList.toggle('label-checked');
         rec_label.classList.remove('label-checked');
@@ -405,6 +405,93 @@ canc_label.addEventListener("click", function () {
     }
 })
 
+//
+var portfolio_label = document.getElementById('portfolio-table-label');
+var service_label = document.getElementById('service-table-label');
+var promotions_label = document.getElementById('promotions-table-label');
+var contacts_label = document.getElementById('contacts-table-label');
+var portfolio_table = document.getElementById('portfolio-table');
+var service_table = document.getElementById('service-table');
+var promotions_table = document.getElementById('promotions-table');
+var contacts_table = document.getElementById('contacts-table');
+
+
+if (portfolio_label) portfolio_label.addEventListener("click", function () {
+    if (!portfolio_label.classList.contains('label-checked')) {
+        portfolio_label.classList.toggle('label-checked');
+        service_label.classList.remove('label-checked');
+        promotions_label.classList.remove('label-checked');
+        contacts_label.classList.remove('label-checked');
+        promotions_table.style.display = "none";
+        service_table.style.display = "none";
+        contacts_table.style.display = "none";
+        portfolio_table.style.display = "block";
+    }
+})
+if (service_label) service_label.addEventListener("click", function () {
+    if (!service_label.classList.contains('label-checked')) {
+        service_label.classList.toggle('label-checked');
+        portfolio_label.classList.remove('label-checked');
+        promotions_label.classList.remove('label-checked');
+        contacts_label.classList.remove('label-checked');
+        promotions_table.style.display = "none";
+        portfolio_table.style.display = "none";
+        contacts_table.style.display = "none";
+        service_table.style.display = "block";
+    }
+})
+if (promotions_label) promotions_label.addEventListener("click", function () {
+    if (!promotions_label.classList.contains('label-checked')) {
+        promotions_label.classList.toggle('label-checked');
+        portfolio_label.classList.remove('label-checked');
+        service_label.classList.remove('label-checked');
+        contacts_label.classList.remove('label-checked');
+        promotions_table.style.display = "block";
+        service_table.style.display = "none";
+        contacts_table.style.display = "none";
+        portfolio_table.style.display = "none";
+    }
+})
+if (contacts_label) contacts_label.addEventListener("click", function () {
+    if (!contacts_label.classList.contains('label-checked')) {
+        contacts_label.classList.toggle('label-checked');
+        portfolio_label.classList.remove('label-checked');
+        service_label.classList.remove('label-checked');
+        promotions_label.classList.remove('label-checked');
+        promotions_table.style.display = "none";
+        service_table.style.display = "none";
+        contacts_table.style.display = "block";
+        portfolio_table.style.display = "none";
+    }
+})
+
+
+
+//переключение между вкладками
+/*const showTab = (elTabBtn) => {
+    const elTab = elTabBtn.closest('.tab');
+    if (elTabBtn.classList.contains('tab-btn-active')) {
+      return;
+    }
+    const targetId = elTabBtn.dataset.targetId;
+    const elTabPane = elTab.querySelector(`.tab-pane[data-id="${targetId}"]`);
+    if (elTabPane) {
+      const elTabBtnActive = elTab.querySelector('.tab-btn-active');
+      elTabBtnActive.classList.remove('tab-btn-active');
+      const elTabPaneShow = elTab.querySelector('.tab-pane-show');
+      elTabPaneShow.classList.remove('tab-pane-show');
+      elTabBtn.classList.add('tab-btn-active');
+      elTabPane.classList.add('tab-pane-show');
+    }
+  }
+  
+  document.addEventListener('click', (e) => {
+    if (e.target && !e.target.closest('.tab-btn')) {
+      return;
+    }
+    const elTabBtn = e.target.closest('.tab-btn');
+    showTab(elTabBtn);
+  });*/
 
 
 

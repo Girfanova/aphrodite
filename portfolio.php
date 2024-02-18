@@ -14,16 +14,15 @@
         <div class="content-page">
         <div class="gallery">
          <?php
-            $gallery_photo_arr = scandir ('Resources/Gallery');
+            $gallery_photo_arr = scandir ('Resources/portfolio');
             foreach ($gallery_photo_arr as $gallery_photo){
                 if ($gallery_photo_arr[0] == $gallery_photo) continue;
                 if ($gallery_photo_arr[1] == $gallery_photo) continue;
-                echo "<img class='gallery-photo' src='Resources/Gallery/$gallery_photo'><img>";
+                echo "<img class='gallery-photo' src='Resources/portfolio/$gallery_photo'><img>";
             }
          ?>
          </div>   
         </div>
         <?php require_once("footer.php")?>
-         <script src="script.js"></script>
     </body>
 </html>

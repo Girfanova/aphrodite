@@ -36,6 +36,5 @@
         ?>
         </div>
         <?php require_once("footer.php")?>
-         <script src="script.js"></script>
     </body>
 </html>
