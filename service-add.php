@@ -1,4 +1,18 @@
-<style>
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Афродита</title>
+    <link rel="stylesheet" href="style-header-footer.css" type="text/css">
+    <link rel="stylesheet" href="style-pages.css" type="text/css">
+</head>
+
+<body>
+    <?php require_once("header.php") ?>
+    <?php require_once("auth.php") ?>
+    <style>
     .popup-edit-service-container {
         position: absolute;
         top: 0;
@@ -21,6 +35,7 @@ mysqli_select_db($link, "aphrodite") or die("Ошибка подключения
 ?>
 <div class="popup-edit-service-container">
     <div class="popup-edit-service">
+    <a href="admin-panel.php"><img src='Resources\back-btn.png'></a>
         <p class="popup-edit-service_title">Добавление услуги</p>
         <form class='form-edit-service' onsubmit='return checktruevalueEdit();' action="save-add-service.php"
             method="post">
@@ -52,7 +67,30 @@ mysqli_select_db($link, "aphrodite") or die("Ошибка подключения
                 <div class="input-message" for="" id=""></div><br>
             </div>
 
+            <div class="label">Длительность</div>
+            <div class="input-box">
+                <input type="tel" id="duration" name="duration" class="input" > мин.<br>
+                <div class="input-message" for="" id=""></div><br>
+            </div>
+            <div class="label">Можно записаться?</div>
+            <div class="input-box">
+                <div>
+                    <input type="radio" id="rec1" name="is_recording" value="1" checked  />
+                    <label for="rec1">Да</label>
+                </div>
+
+                <div>
+                    <input type="radio" id="rec0" name="is_recording" value="0" />
+                    <label for="rec0">Нет</label>
+                </div>
+
+            </div>
+
             <input type="submit" value="Сохранить" class="btn form-submit-btn">
         </form>
     </div>
 </div>
+<?php require_once("footer.php") ?>
+</body>
+
+</html>

@@ -1,32 +1,36 @@
-<style>
-    .popup-edit-service-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        background-color: var(--third-color);
-    }
+<!DOCTYPE html>
+<html lang="ru">
 
-    .popup-edit-service {
-        position: relative;
-        margin: auto;
-    }
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Афродита</title>
+    <link rel="stylesheet" href="style-header-footer.css" type="text/css">
+    <link rel="stylesheet" href="style-pages.css" type="text/css">
+</head>
+
+<body>
+    <?php require_once("header.php") ?>
+    <?php require_once("auth.php") ?>
+    <style>
+    
 </style>
 <?php
 $link = mysqli_connect("localhost", "root", "") or die("Невозможно подключиться к серверу");
 mysqli_select_db($link, "aphrodite") or die("Ошибка подключения к базе данных");
 $service_id = $_GET['service_id'];
-$services = mysqli_query($link, 'SELECT category_id, service, price, category_name FROM services, categories where services.id=' . $service_id);
+$services = mysqli_query($link, 'SELECT category_id, service, price, category_name, duration_in_min, is_recording FROM services, categories where services.id=' . $service_id);
 while ($row = mysqli_fetch_array($services)) {
     $service_name = $row['service'];
     $service_price = $row['price'];
     $service_category_id = $row['category_id'];
+    $service_duration = $row['duration_in_min'];
+    $service_recording = $row['is_recording'];
 }
 ?>
 <div class="popup-edit-service-container">
     <div class="popup-edit-service">
+        <a href="admin-panel.php"><img src='Resources\back-btn.png'></a>
         <p class="popup-edit-service_title">Редактирование услуги</p>
         <form class='form-edit-service' onsubmit='return checktruevalueEdit();' action="save-edit-service.php"
             method="post">
@@ -61,8 +65,32 @@ while ($row = mysqli_fetch_array($services)) {
                     required><br>
                 <div class="input-message" for="" id=""></div><br>
             </div>
-            <input style='visibility:hidden;' type="text" id='service_id' name='service_id' value="<?php echo $service_id; ?>">
+            <div class="label">Длительность</div>
+            <div class="input-box">
+                <input type="tel" id="duration" name="duration" class="input" value="<?php echo $service_duration; ?>"
+                <?php if ($service_recording){echo'required';};?>> мин.<br>
+                <div class="input-message" for="" id=""></div><br>
+            </div>
+            <div class="label">Можно записаться?</div>
+            <div class="input-box">
+                <div>
+                    <input type="radio" id="rec1" name="is_recording" value="1" <?php if ($service_recording){echo'checked';};?>  />
+                    <label for="rec1">Да</label>
+                </div>
+
+                <div>
+                    <input type="radio" id="rec0" name="is_recording" value="0"  <?php if (!$service_recording){echo'checked';};?>/>
+                    <label for="rec0">Нет</label>
+                </div>
+
+            </div>
+            <input style='visibility:hidden;' type="text" id='service_id' name='service_id'
+                value="<?php echo $service_id; ?>">
             <input type="submit" value="Сохранить" class="btn form-submit-btn">
         </form>
     </div>
 </div>
+<?php require_once("footer.php") ?>
+</body>
+
+</html>

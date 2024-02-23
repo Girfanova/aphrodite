@@ -1,6 +1,6 @@
 <?php
 
-$services = mysqli_query($link, 'SELECT services.id, category_id, service, price, category_name FROM services, categories where categories.id = category_id');
+$services = mysqli_query($link, 'SELECT services.id, category_id, service, price, category_name, duration_in_min, is_recording FROM services, categories where categories.id = category_id');
 $count = mysqli_query($link, 'SELECT category_id, COUNT(*) as count FROM   `services` GROUP  BY `category_id`');
 
 $services_data = [];
@@ -10,7 +10,9 @@ while ($data = mysqli_fetch_array($services)) {
 		'category_id' => $data['category_id'],
 		'service' => $data['service'],
 		'price' => $data['price'],
-		'category_name' => $data['category_name']
+		'category_name' => $data['category_name'],
+		'duration'=> $data['duration_in_min'],
+		'is_recording'=> $data['is_recording'],
 	];
 }
 ?>
@@ -26,8 +28,10 @@ echo "<table border=1 width=100%>
 		<th>Категория</th>
 		<th>Название</th>
 		<th width=10%>Цена</th>
-		<th width=12% text-align='center'>Редактировать</th>
-		<th width=8% text-align='center'>Удалить</th>
+		<th width=6%>Запись</th>
+		<th width=10% >Длительность</th>
+		<th width=10% text-align='center'>Редактировать</th>
+		<th width=6% text-align='center'>Удалить</th>
 		<tr>
 		";
 
@@ -44,7 +48,11 @@ while ($data_count = mysqli_fetch_array($count)) {
 			}
 			echo "
 					<td>" . $service['service'] . "</td>
-					<td>" . $service['price'] . " руб.</td>
+					<td>" . $service['price'] . " руб.</td>";
+					if ($service['is_recording']) {echo "<td>Есть</td><td>" . $service['duration'] . " мин</td>";}
+					else {echo "<td>Нет</td	><td>-</td	>";}
+			echo"	
+					
 					<td text-align='center'><a href='service-edit.php?service_id=".$service['id']."'><img style='display:block; margin:auto;' src='Resources\\edit.png' title='Редактировать' width=30px></a></td>
 					<td text-align='center'><a href='service-delete.php?service_id=".$service['id']."'><img style='display:block; margin:auto;' src='Resources\delete.png' title='Удалить' width=30px></a></td>
 					</tr>";

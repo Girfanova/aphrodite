@@ -7,24 +7,38 @@
     <title>Афродита</title>
     <link rel="stylesheet" href="style-main-page.css" type="text/css">
     <link rel="stylesheet" href="style-header-footer.css" type="text/css">
+    <link rel="stylesheet" href="css/simple-adaptive-slider.css" type="text/css">
+    
 </head>
-
+<style>
+    .itcss__item{
+        background-size:cover; 
+    }
+    .discount-text-container{
+        width: 100%;
+        height: 100%;
+        display:flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        background-color: rgba(255,255,255,0.5);
+    }
+</style>
 <body>
-     <?php require_once("header.php")?>
-     <?php require_once("auth.php")?>
+    <?php require_once("header.php") ?>
+    <?php require_once("auth.php") ?>
     <div class="content">
         <div class="main_caption parallax">
             <div class="main_caption__backgr"></div>
             <div class="frame-title"></div>
             <div class="parallax__body">
-               
+
                 <div class="main_caption__text parallax-item">
-                    
-                   <p>Салон красоты в Уфе</p>
+
+                    <p>Салон красоты в Уфе</p>
                     <h1 class="main_caption__title">Афродита</h1>
                     <p>За красотой - к нам!</p>
-                    
-               <!--     <button class="record btn">Записаться</button>  -->
+
+                    <!--     <button class="record btn">Записаться</button>  -->
                 </div>
                 <img class="afr parallax-item" src="Resources/afr.png" alt="афродита">
             </div>
@@ -52,7 +66,7 @@
             </div>
         </div>
         <script>
-            
+
         </script>
         <div class="advantages">
             <h2 class="advantages__title">Почему мы?</h2>
@@ -80,27 +94,54 @@
             </div>
         </div>
         <div class="discount">
-           <!-- <a class="discount__more" href="promotions.php">Все акции<span class="arrow"><span></span></span></a> -->
+            <!-- <a class="discount__more" href="promotions.php">Все акции<span class="arrow"><span></span></span></a> -->
+            
             <div class="discount__rectangle">
                 <div class="discount__content">
-                    <div class="discount-container">
-                    <div class="discount__amount">-10%</div>
-                    <div class="discount__text1">Скидка на первое посещение!</div>
-                    <div class="discount__text2">Авторизуйтесь, чтобы воспользоваться предложением</div>
-                    <?php 
-                        session_start();
-                        if ($_SESSION['auth'] == true) echo "<button class='authorization_btn' disabled >Вы уже авторизованы</button>";
-                        else echo " <button class='authorization_btn btn'>Авторизоваться</button>";
-                    ?>
-                   
+                <div class="itcss" style='height:100%;'>
+                <div class="itcss__wrapper" style='height:100%;'>
+                    <div class="itcss__items" style='height:100%;'>
+                        <?php
+                             $link =  mysqli_connect("localhost", "root", "") or die("Невозможно подключиться к серверу");
+                             mysqli_select_db($link,"aphrodite") or die("Ошибка подключения к базе данных");
+                             $promotions = mysqli_query($link,"SELECT * FROM promotions");
+                             while ($row = mysqli_fetch_assoc($promotions)) {
+                                $path="Resources/promotions/".$row['picture'];
+                                echo "<div style='background-image:url(".$path."); ' class='itcss__item'>
+                                <div class='discount-text-container'>
+                                <div class='discount__text1'>".$row['title']."</div>
+                                <div class='discount__text2'>".$row['description']."</div>
+                                </div>
+                            </div>";
+                             }
+                        ?>
+                    </div>
                 </div>
+                <!-- Стрелки для перехода к предыдущему и следующему слайду -->
+                <a class="itcss__control itcss__control_prev" href="#" role="button" data-slide="prev"></a>
+                <a class="itcss__control itcss__control_next" href="#" role="button" data-slide="next"></a>
+            </div>
+                    <!-- <div class="discount-container">
+                        <div class="discount__amount">-10%</div>
+                        <div class="discount__text1">Скидка на первое посещение!</div>
+                        <div class="discount__text2">Авторизуйтесь, чтобы воспользоваться предложением</div>
+                        <?php
+                        // session_start();
+                        // if ($_SESSION['auth'] == true)
+                        //     echo "<button class='authorization_btn' disabled >Вы уже авторизованы</button>";
+                        // else
+                        //     echo " <button class='authorization_btn btn'>Авторизоваться</button>";
+                        ?>
+
+                    </div> -->
                 </div>
                 <div class="discount__content">
                     <div class="possibilities">
                         <div class="possibilities-title">После авторизации вам будут доступны:</div>
                         <div class='pos'><img src='Resources/add.png'><span class="pos1">Онлайн-запись</span></div>
                         <div class='pos'><img src='Resources/account.png'><span class="pos2">Личный кабинет</span></div>
-                        <div class='pos'><img src='Resources/history.png'><span class="pos3">История посещений</span></div>
+                        <div class='pos'><img src='Resources/history.png'><span class="pos3">История посещений</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -109,7 +150,8 @@
             <h2 class="services__title">Наши услуги</h2>
             <div class="services__list">
                 <div class="service">
-                    <a href="hairdressing.php"><img src="Resources/парикмахерские_услуги.jpg" alt="парикмахерские услуги"></a>
+                    <a href="hairdressing.php"><img src="Resources/парикмахерские_услуги.jpg"
+                            alt="парикмахерские услуги"></a>
                     <div class="service__description">Парикмахерские услуги</div>
                 </div>
                 <div class="service">
@@ -117,7 +159,8 @@
                     <div class="service__description">Ногтевой сервис</div>
                 </div>
                 <div class="service">
-                    <a href="eyelashes-and-eyebrows.php"> <img src="Resources/брови-ресницы.jpg" alt="брови-ресницы"></a>
+                    <a href="eyelashes-and-eyebrows.php"> <img src="Resources/брови-ресницы.jpg"
+                            alt="брови-ресницы"></a>
                     <div class="service__description">Ресницы и брови</div>
                 </div>
                 <div class="service">
@@ -130,7 +173,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="about-salon">
             <div class="container">
                 <div class="about-salon__description">
@@ -148,7 +191,7 @@
                 <img src="Resources/о-нас.png" class="about-salon__image" alt="о нас">
             </div>
         </div>
-       
+
         <div class="reviews">
             <h2 class="reviews__title">Что о нас говорят</h2>
             <div class="container">
@@ -183,5 +226,19 @@
         </div>
     </div>
     <?php require_once("footer.php") ?>
+    <script src='js/simple-adaptive-slider.js'></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+  // инициализация слайдера
+  new ItcSimpleSlider('.itcss', {
+    loop: true,
+    autoplay: true,
+    interval: 5000,
+    swipe: true,
+  });
+});
+  </script>
+  
 </body>
+
 </html>

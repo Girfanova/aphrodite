@@ -348,7 +348,7 @@ function checkTypeTime() {
     time_text = document.getElementById('record-times').value;
     var notValid = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/.test(time_text);
     if (notValid) {
-        alert("Успеная запись");
+        alert("Успешная запись");
 
         return true;
     } else {
