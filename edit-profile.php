@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
     <head>
-        <meta charset = "utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Афродита</title>
-        <link rel="stylesheet" href="style-header-footer.css" type="text/css">
+    <?php require_once("head.php")?>
         <link rel="stylesheet" href="style-pages.css" type="text/css">
     </head>
     <body>
@@ -68,7 +65,7 @@
                 <span class='lk-title'>Редактирование профиля</span>
             <?php 
                 session_start();
-                $link =  mysqli_connect("localhost", "root", "") or die("Невозможно подключиться к серверу");
+                require_once("connect_db.php");
                 mysqli_select_db($link,"aphrodite") or die("Ошибка подключения к базе данных");
                 $user = mysqli_query($link,"SELECT users.id, surname, name,  phone FROM users  WHERE users.id = " . $_SESSION["user_id"]);
                 while ($stroka = mysqli_fetch_array($user)) {

@@ -2,10 +2,7 @@
 <html lang="ru">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Афродита</title>
-    <link rel="stylesheet" href="style-header-footer.css" type="text/css">
+<?php require_once("head.php")?>
     <link rel="stylesheet" href="style-pages.css" type="text/css">
 </head>
 
@@ -16,8 +13,7 @@
     
 </style>
 <?php
-$link = mysqli_connect("localhost", "root", "") or die("Невозможно подключиться к серверу");
-mysqli_select_db($link, "aphrodite") or die("Ошибка подключения к базе данных");
+require_once("connect_db.php");
 $promotion_id = $_GET['promotion_id'];
 $promotions = mysqli_query($link, 'SELECT * FROM promotions where id=' . $promotion_id);
 while ($row = mysqli_fetch_array($promotions)) {

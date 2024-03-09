@@ -16,8 +16,7 @@ display: none;
 </style>
 <?php 
                 session_start();
-                $link =  mysqli_connect("localhost", "root", "") or die("Невозможно подключиться к серверу");
-                mysqli_select_db($link,"aphrodite") or die("Ошибка подключения к базе данных");
+                require_once("connect_db.php");
                 $schedule = mysqli_query($link,"SELECT date_schedule, time_schedule, master_id,  is_busy FROM schedule  WHERE master_id = '30'");
                 $date_t = mysqli_query($link,"SELECT distinct date_schedule FROM schedule");
                 while ($stroka = mysqli_fetch_array($schedule)) {

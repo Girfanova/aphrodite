@@ -1,7 +1,6 @@
 <?php
 session_start();
-$link = mysqli_connect("localhost", "root", "") or die("Невозможно подключиться к серверу");
-mysqli_select_db($link, "aphrodite") or die("Ошибка подключения к базе данных");
+require_once("connect_db.php");
 if (!empty($_POST['date-record']) and !empty($_POST['record-time']) and !empty($_POST['service_id']) and !empty($_POST['master_id'])) {
     $id_user = $_SESSION['user_id'];
     $date = $_POST['date-record'];

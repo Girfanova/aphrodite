@@ -1,7 +1,6 @@
 <?php
     session_start();
-    $link =  mysqli_connect("localhost", "root", "") or die("Невозможно подключиться к серверу");
-    mysqli_select_db($link,"aphrodite") or die("Ошибка подключения к базе данных");
+    require_once("connect_db.php");
     if (!empty($_POST['category_name']) and !empty($_POST['service_name']) and !empty($_POST['price']) ){
        $price = $_POST['price'];
        $category_name = $_POST['category_name'];

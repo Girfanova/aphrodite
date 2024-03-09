@@ -1,6 +1,7 @@
 .content-page{
     min-height: 60%;
     padding: 0 ;
+    margin: 6vh 0 0 0;
     font-family: 'Source Sans 3', sans-serif;
 }
 .gallery{
@@ -107,12 +108,14 @@ li span:first-child {
 .about-us{
     display: flex;
     margin: auto;
-    padding: 12vh 0 8vh;
+    padding: 0 0 8vh;
 }
 .about-us__title{
-    font-size: 3em;
+    font-size: 5em;
+    margin: auto;
+    width:max-content;
     font-family: 'rubik mono one';
-    padding: 4% 0;
+    padding: 5% 0 1% 0;
     text-decoration: underline var(--third-color) 4px;
 }
 .slider{
@@ -159,8 +162,9 @@ li span:first-child {
 }
 .about-us__text{
     font-size: 2em;
-    padding: 5%;
-    margin: 0 0 0 4% ;
+    padding: 2%;
+    width: 40%;
+    /* margin: 0 0 0 4% ; */
     
 }
 .first-word{
@@ -260,7 +264,7 @@ li span:first-child {
 /*Стили ЛК*/
 .lk{
     font-size:2em;
-    padding:10vh 7% 3% 7%;
+    padding:12vh 7% 3% 7%;
     display:flex;
     flex-direction:column;
 }
@@ -387,6 +391,9 @@ flex-wrap: wrap;
 .functional-button img{
     margin: 0 4%;
 }
+#portfolio-form{
+   padding: 1%;
+}
 .portfolio-photo{
     position: relative;
     display: inline-block;
@@ -480,4 +487,7 @@ a.master{
     border: 1px solid;
     text-align: center;
     padding: 1%;
+}
+.lk-role{
+    font-size: 0.9em;
 }

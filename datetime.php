@@ -1,7 +1,6 @@
 <?php
 if (isset($_POST['date-record'])) {
-    $link = mysqli_connect("localhost", "root", "") or die("Невозможно подключиться к серверу");
-    mysqli_select_db($link, "aphrodite") or die("Ошибка подключения к базе данных");
+    require_once("connect_db.php");
     $date = $_POST['date-record'];
     $times = mysqli_query($link, 'SELECT time_record, time_end_record FROM records where date_record=' . $date);
     if (!empty($tmes)) {

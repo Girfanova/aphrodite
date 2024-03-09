@@ -31,7 +31,7 @@
             <?php
                 session_start();
                 if ($_SESSION["auth"]==true) {
-                    $link =  mysqli_connect("localhost", "root", "") or die("Невозможно подключиться к серверу");
+                    require_once("connect_db.php");
                     mysqli_select_db($link,"aphrodite") or die("Ошибка подключения к базе данных");
                     $query = "SELECT name FROM users WHERE id = ".$_SESSION['user_id'];
                     $result = mysqli_query($link, $query);

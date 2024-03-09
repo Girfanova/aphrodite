@@ -2,10 +2,7 @@
 <html lang="ru">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Афродита</title>
-    <link rel="stylesheet" href="style-header-footer.css" type="text/css">
+<?php require_once("head.php")?>
     <link rel="stylesheet" href="style-pages.css" type="text/css">
 </head>
 
@@ -52,8 +49,8 @@
             <p class='record-title'>Запись на услугу</p>
             <?php
             session_start();
-            $link = mysqli_connect("localhost", "root", "") or die("Невозможно подключиться к серверу");
-            mysqli_select_db($link, "aphrodite") or die("Ошибка подключения к базе данных");
+            require_once("connect_db.php");
+           // mysqli_select_db($link, "aphrodite") or die("Ошибка подключения к базе данных");
             $user = mysqli_query($link, "SELECT users.id, surname, name,  phone FROM users  WHERE users.id = " . $_SESSION["user_id"]);
             while ($stroka = mysqli_fetch_array($user)) {
                 $id = $_GET["id"];
@@ -132,8 +129,7 @@
     <script>
         <?php
         $today = date('Y-m-d');
-        $link = mysqli_connect("localhost", "root", "") or die("Невозможно подключиться к серверу");
-        mysqli_select_db($link, "aphrodite") or die("Ошибка подключения к базе данных");
+        require_once("connect_db.php");
         //$time_for_this_date = mysqli_query($link, "SELECT date_schedule, time_schedule, is_busy FROM schedule where master_id='$master_id' and date_schedule BETWEEN '" . date('Y-m-d', strtotime("+1 days")) . "' and '" . date('Y-m-d', strtotime('+14 days')) . "'");
         
         // while ($stroka = mysqli_fetch_array($time_for_this_date)) {
@@ -164,7 +160,7 @@
             //     data: $(this).serialize(),
             //     success: function (response) {
             //         var jsonData = JSON.parse(response);
-
+            //          record-times.            
 
             //     }
             // });

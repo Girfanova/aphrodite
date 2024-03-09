@@ -2,10 +2,7 @@
 <html lang="ru">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Афродита</title>
-    <link rel="stylesheet" href="style-header-footer.css" type="text/css">
+<?php require_once("head.php")?>
     <link rel="stylesheet" href="style-pages.css" type="text/css">
 </head>
 
@@ -19,30 +16,25 @@
     <div class="lk">
         <?php
         session_start();
-        $link = mysqli_connect("localhost", "root", "") or die("Невозможно подключиться к серверу");
-        mysqli_select_db($link, "aphrodite") or die("Ошибка подключения к базе данных");
+        require_once("connect_db.php");
         $user = mysqli_query($link, "SELECT users.id, surname, name, role_name, role_id, phone FROM users, roles WHERE users.id = " . $_SESSION["user_id"] . " and role_id=roles.id");
         echo "<div class='lk-profile'>";
         echo "<H1 class='lk-title'>Профиль</H1>";
         while ($stroka = mysqli_fetch_array($user)) {
             echo "<div class='profile-table'>";
             echo "<div class='profile-circle'>" . mb_substr($stroka['name'], 0, 1) . "</div>";
-            echo "<div><div><b> {$stroka['surname']} {$stroka['name']}</b></div><div>Телефон: {$stroka['phone']}</div></div>";
+            echo "<div>
+                    <div><b> {$stroka['surname']} {$stroka['name']}</b></div>
+                    <div>Телефон: {$stroka['phone']}</div>
+                    <div class='lk-role'><b> {$stroka['role_name']}</b></div>
+                </div>";
 
             echo "<div><div><a class='btn profile-btn' href='edit-profile.php'>Редактировать</a></div   ><div><a class='profile-btn btn' href='exit.php'>Выйти</a></div></div>";
 
             echo "</div>";
         }
         echo "</div>";
-        if ($_SESSION["user_role"] == 10) {
-            echo '<div class="functional-container">';
-                    //echo '<a class="functional-button"><img src="Resources/schedule.png">График работы</a>';
-                    echo '<a href="admin-panel.php" class="functional-button"><img src="Resources/admin.png">Панель управления</a>
-                    <a href="records-list.php" class="functional-button"><img src="Resources/record.png">Учет посещений</a>
-                    <a width=100% class="functional-button" href="masters.php"><img src="Resources/master.png">Мастера</a>
-                    </div>
-                    ';
-        } elseif ($_SESSION["user_role"] == 1) {
+        if ($_SESSION["user_role"] == 1) {
             $records_not_done = mysqli_query($link, "select distinct
                         records.id,
                         service as Услуга, 
@@ -136,6 +128,12 @@
                 echo "<tr><td colspan=5>Еще нет записей</td></tr>";
             echo '</table>
                             </div>';
+        }
+        elseif ($_SESSION['user_role']==3) {
+            echo '<a href="records-list.php" class="functional-button"><img src="Resources/record.png">Учет посещений</a>
+            <a width=100% class="functional-button" href="masters.php"><img src="Resources/master.png">Мастера</a>
+            </div>
+            ';
         }
         ?>
     </div>

@@ -139,21 +139,44 @@ hr{
 }
 .advantages__content{
     width:80%;
-    margin: auto;
+    margin: 2% auto;
     font-size: 2em;
     display:flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     flex-wrap: wrap;
 }
 .advantage{
-    width: 460px;
+    max-width: 27%;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    padding: 4% 0;
+    margin: 1%;
+    padding: 2%;
+    position: relative;
+    /* flex-wrap: wrap; */
+}
+.advantage-text{
+    padding-top: 15%;
+    margin-top: 10%;
+    border-radius: 10px;
+    border:rgb(var(--first-color-rgb)) 3px solid;
+}
+.advantage-title{
+    font-weight: bold;
+    text-align: center;
+}
+.advantage-description{
+    font-size:0.8em;
+    text-align: center;
 }
 .advantage img{
     width: 50px;
-    padding-right:2% ;
+    /* padding-right:2%; */
+    margin: auto;
+    position: absolute;
+    border-radius: 100%;
+    border:rgb(var(--first-color-rgb)) 3px solid;
+    background-color: rgba(var(--second-color-rgb));
 }
 .discount{
     background-image: url(Resources/flowers.jpg);
@@ -345,6 +368,54 @@ hr{
     justify-content: center;
     padding: 0 0 4% 0;
 }
+.about-salon__image-container{
+    position: relative;
+    margin: 0 0 0 50px;
+    width: 45%;
+}
+.greek-top{
+    background-image: url(Resources/greek.svg);
+    background-repeat: repeat-x;
+    width: 74%;
+    height: 4%;
+    position: absolute;
+    margin:3% 8%;
+}
+.greek-left{
+    background-image: url(Resources/greek.svg);
+    background-repeat: repeat-x;
+    transform: rotate(90deg);
+    height: 4%;
+    width: 101%;
+    position: absolute;
+    margin:3% 6%;
+    right: 33.23%;
+    top: 45.5%;
+}
+.greek-right{
+    background-image: url(Resources/greek.svg);
+    background-repeat: repeat-x;
+    transform: rotate(90deg);
+    height: 4%;
+    width: 101%;
+    position: absolute;
+    margin:3% 6%;
+    left: 23.23%;
+    top: 45.5%;
+}
+.greek-bottom{
+    background-image: url(Resources/greek.svg);
+    background-repeat: repeat-x;
+    width: 74%;
+    height: 4%;
+    position: absolute;
+    margin:3% 8%;
+    bottom: 0;
+}
+.about-salon__image{
+    width: 70%;
+    margin: 5% 10%;
+}
 .about-salon__description{
     width: 45%;
     padding: 0 30px;
@@ -354,11 +425,7 @@ hr{
 .about-salon__description p{
     text-indent: 5%;
 }
-.about-salon__image{
-    width: 45%;
-    height: auto;
-    margin: 0 0 0 50px;
-}
+
 .reviews{
  padding: 5% 0 10% 0;
 }

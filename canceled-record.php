@@ -1,6 +1,5 @@
 <?php
-
-	$link =  mysqli_connect("localhost", "root", "") or die("Невозможно подключиться к серверу");
+	require_once("connect_db.php");
 	mysqli_select_db($link,"aphrodite") or die("Ошибка подключения к базе данных");
     $zapros="UPDATE records SET canceled=1 Where id=".$_GET['id'];
     mysqli_query($link,$zapros);

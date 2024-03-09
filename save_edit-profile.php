@@ -1,7 +1,6 @@
 <?php
     session_start();
-    $link =  mysqli_connect("localhost", "root", "") or die("Невозможно подключиться к серверу");
-    mysqli_select_db($link,"aphrodite") or die("Ошибка подключения к базе данных");
+    require_once("connect_db.php");
     if (!empty($_POST['surname_edit']) and !empty($_POST['name_edit'])){
         $id_user = $_SESSION['user_id'];
         $surname = $_POST['surname_edit'];

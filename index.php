@@ -2,27 +2,26 @@
 <html lang="ru">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Афродита</title>
+<?php require_once("head.php")?>
     <link rel="stylesheet" href="style-main-page.css" type="text/css">
-    <link rel="stylesheet" href="style-header-footer.css" type="text/css">
     <link rel="stylesheet" href="css/simple-adaptive-slider.css" type="text/css">
-    
+
 </head>
 <style>
-    .itcss__item{
-        background-size:cover; 
+    .itcss__item {
+        background-size: cover;
     }
-    .discount-text-container{
+
+    .discount-text-container {
         width: 100%;
         height: 100%;
-        display:flex;
+        display: flex;
         flex-flow: column wrap;
         justify-content: center;
-        background-color: rgba(255,255,255,0.5);
+        background-color: rgba(255, 255, 255, 0.5);
     }
 </style>
+
 <body>
     <?php require_once("header.php") ?>
     <?php require_once("auth.php") ?>
@@ -45,23 +44,21 @@
         </div>
         <div class="marquee">
             <div class="marquee__inner">
-                <span>стрижка</span>
+                <!-- <span><a href='hairdressing.php'>стрижка</a></span> -->
                 <span>укладка</span>
                 <span>окрашивание</span>
                 <span>маникюр</span>
                 <span>педикюр</span>
                 <span>уход за лицом</span>
                 <span>оформление бровей и ресниц</span>
-                <span>пирсинг</span>
                 <span>депиляция</span>
-                <span>стрижка</span>
+                <!-- <span><a href='hairdressing.php'>стрижка</a></span> -->
                 <span>укладка</span>
                 <span>окрашивание</span>
                 <span>маникюр</span>
                 <span>педикюр</span>
                 <span>уход за лицом</span>
                 <span>оформление бровей и ресниц</span>
-                <span>пирсинг</span>
                 <span>депиляция</span>
             </div>
         </div>
@@ -72,55 +69,75 @@
             <h2 class="advantages__title">Почему мы?</h2>
             <div class="advantages__content">
                 <div class="advantage">
-                    <img src="Resources/adv1.png" alt="преимущество1">
-                    <div>Уютная гостеприимная атмосфера.</div>
+                    <img src="Resources/coffee.svg" alt="преимущество1">
+                    <div class='advantage-text'>
+                        <div class='advantage-title'>Уютная гостеприимная атмосфера</div>
+                        <div class='advantage-description'>Встречает вас с чашечкой кофе.</div>
+                    </div>
                 </div>
                 <div class="advantage">
-                    <img src="Resources/adv2.png" alt="преимущество2">
-                    <div>Обработка инструментов и поверхностей производится в соответствии с требованиями СанПиН.</div>
+                    <img src="Resources/full-time.svg" alt="преимущество5">
+                    <div class='advantage-text'>
+                    <div class='advantage-title'>Удобный режим работы с 9:00 до 21:00</div>
+                    <div class='advantage-description'>Открыты всегда, закрываемся лишь на 3 дня в году</div>
+                </div>
                 </div>
                 <div class="advantage">
-                    <img src="Resources/adv3.png" alt="преимущество3">
-                    <div>Мы постоянно работаем над сервисом, чтобы превзойти ваши ожидания.</div>
+                    <img src="Resources/location.svg" alt="преимущество3">
+                    <div class='advantage-text'>
+                    <div class='advantage-title'>Удобное расположение</div>
+                    <div class='advantage-description'>К нам легко добраться, остановки общественного транспорта в
+                        шаговой доступности.</div>
+                </div>
                 </div>
                 <div class="advantage">
-                    <img src="Resources/adv4.png" alt="преимущество4">
-                    <div>У нас работают надежные специалисты.</div>
+                    <img src="Resources/sanitaizer.svg" alt="преимущество2">
+                    <div class='advantage-text'>
+                    <div class='advantage-title'>Соответствие всем требованиям санитарно-эпидемиологических норм</div>
+                    <div class='advantage-description'>Большое внимание уделяется обработке инструментов, поверхностей и
+                        воздуха. Мастера регулярно
+                        проходят медосмотр и сдают санминимум.</div>
+                </div>
                 </div>
                 <div class="advantage">
-                    <img src="Resources/adv5.png" alt="преимущество5">
-                    <div>Удобный режим работы с 9:00 до 21:00.</div>
+                    <img src="Resources/reliability.svg" alt="преимущество4">
+                    <div class='advantage-text'>
+                    <div class='advantage-title'>У нас работают надежные специалисты</div>
+                    <div class='advantage-description'>Наши мастера с большим стажем работы, владеющие самыми
+                        разнообразными современными техниками в
+                        парикмахерском искусстве, косметологии и области маникюра.</div>
+                </div>
                 </div>
             </div>
+
         </div>
         <div class="discount">
             <!-- <a class="discount__more" href="promotions.php">Все акции<span class="arrow"><span></span></span></a> -->
-            
+
             <div class="discount__rectangle">
                 <div class="discount__content">
-                <div class="itcss" style='height:100%;'>
-                <div class="itcss__wrapper" style='height:100%;'>
-                    <div class="itcss__items" style='height:100%;'>
-                        <?php
-                             $link =  mysqli_connect("localhost", "root", "") or die("Невозможно подключиться к серверу");
-                             mysqli_select_db($link,"aphrodite") or die("Ошибка подключения к базе данных");
-                             $promotions = mysqli_query($link,"SELECT * FROM promotions");
-                             while ($row = mysqli_fetch_assoc($promotions)) {
-                                $path="Resources/promotions/".$row['picture'];
-                                echo "<div style='background-image:url(".$path."); ' class='itcss__item'>
+                    <div class="itcss" style='height:100%;'>
+                        <div class="itcss__wrapper" style='height:100%;'>
+                            <div class="itcss__items" style='height:100%;'>
+                                <?php
+                                require_once("connect_db.php");
+                                $promotions = mysqli_query($link, "SELECT * FROM promotions");
+                                while ($row = mysqli_fetch_assoc($promotions)) {
+                                    $path = "Resources/promotions/" . $row['picture'];
+                                    echo "<div style='background-image:url(" . $path . "); ' class='itcss__item'>
                                 <div class='discount-text-container'>
-                                <div class='discount__text1'>".$row['title']."</div>
-                                <div class='discount__text2'>".$row['description']."</div>
+                                <div class='discount__text1'>" . $row['title'] . "</div>
+                                <div class='discount__text2'>" . $row['description'] . "</div>
                                 </div>
                             </div>";
-                             }
-                        ?>
+                                }
+                                ?>
+                            </div>
+                        </div>
+                        <!-- Стрелки для перехода к предыдущему и следующему слайду -->
+                        <a class="itcss__control itcss__control_prev" href="#" role="button" data-slide="prev"></a>
+                        <a class="itcss__control itcss__control_next" href="#" role="button" data-slide="next"></a>
                     </div>
-                </div>
-                <!-- Стрелки для перехода к предыдущему и следующему слайду -->
-                <a class="itcss__control itcss__control_prev" href="#" role="button" data-slide="prev"></a>
-                <a class="itcss__control itcss__control_next" href="#" role="button" data-slide="next"></a>
-            </div>
                     <!-- <div class="discount-container">
                         <div class="discount__amount">-10%</div>
                         <div class="discount__text1">Скидка на первое посещение!</div>
@@ -188,7 +205,13 @@
                         Для нас по-настоящему важно, чтобы клиенты не сомневались в нашей компетентности, поэтому мы
                         предлагаем только лучшее.</p>
                 </div>
-                <img src="Resources/о-нас.png" class="about-salon__image" alt="о нас">
+                <div class='about-salon__image-container'>
+                    <div class='greek-top'></div>
+                    <div class='greek-left'></div>
+                    <div class='greek-bottom'></div>
+                    <div class='greek-right'></div>
+                    <img src="Resources/slider1.jpg" class="about-salon__image" alt="о нас">
+                </div>
             </div>
         </div>
 
@@ -228,17 +251,17 @@
     <?php require_once("footer.php") ?>
     <script src='js/simple-adaptive-slider.js'></script>
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-  // инициализация слайдера
-  new ItcSimpleSlider('.itcss', {
-    loop: true,
-    autoplay: true,
-    interval: 5000,
-    swipe: true,
-  });
-});
-  </script>
-  
+        document.addEventListener('DOMContentLoaded', () => {
+            // инициализация слайдера
+            new ItcSimpleSlider('.itcss', {
+                loop: true,
+                autoplay: true,
+                interval: 5000,
+                swipe: true,
+            });
+        });
+    </script>
+
 </body>
 
 </html>

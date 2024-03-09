@@ -2,10 +2,7 @@
 <html lang="ru">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Афродита</title>
-    <link rel="stylesheet" href="style-header-footer.css" type="text/css">
+<?php require_once("head.php")?>
     <link rel="stylesheet" href="style-pages.css" type="text/css">
 </head>
 
@@ -19,8 +16,7 @@
     <div class="lk">
         <?php
         session_start();
-        $link = mysqli_connect("localhost", "root", "") or die("Невозможно подключиться к серверу");
-        mysqli_select_db($link, "aphrodite") or die("Ошибка подключения к базе данных");
+        require_once("connect_db.php");
         $user = mysqli_query($link, "SELECT users.id, surname, name, role_name, role_id, phone FROM users, roles WHERE users.id = " . $_SESSION["user_id"] . " and role_id=roles.id");
         $portfoio = mysqli_query($link, "SELECT portfolio.id, path_big, path_small  FROM portfolio");
         echo "<div class='lk-profile'>";

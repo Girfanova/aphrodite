@@ -2,10 +2,7 @@
 <html lang="ru">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Афродита</title>
-    <link rel="stylesheet" href="style-header-footer.css" type="text/css">
+<?php require_once("head.php")?>
     <link rel="stylesheet" href="style-pages.css" type="text/css">
 </head>
 
@@ -28,11 +25,7 @@
         margin: auto;
     }
 </style>
-<?php
-$link = mysqli_connect("localhost", "root", "") or die("Невозможно подключиться к серверу");
-mysqli_select_db($link, "aphrodite") or die("Ошибка подключения к базе данных");
 
-?>
 <div class="popup-edit-service-container">
     <div class="popup-edit-service">
     <a href="admin-panel.php"><img src='Resources\back-btn.png'></a>
@@ -44,6 +37,7 @@ mysqli_select_db($link, "aphrodite") or die("Ошибка подключения
             <div class="input-box">
                 <select class='input' name="category_name" id="category_name" cfm_check="Y" required>
                     <?php
+                    require_once("connect_db.php");
                     $categories = mysqli_query($link, 'SELECT id, category_name FROM `categories`');
                     while ($category = mysqli_fetch_array($categories)) {
                         echo "<option>" . $category['category_name'] . "</option>";
