@@ -9,7 +9,6 @@
 
 <body>
     <?php require_once ("header.php") ?>
-    <?php require_once ("auth.php") ?>
     <div class="lk">
         <?php
         session_start();
