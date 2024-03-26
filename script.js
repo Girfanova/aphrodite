@@ -260,7 +260,7 @@ else {
 
 //Проверка полей входа
 var password_log = document.getElementById("password_log");
-password_log.addEventListener('input', passwordCheckcount_log);
+if (password_log) password_log.addEventListener('input', passwordCheckcount_log);
 function passwordCheckcount_log() {
     if (password_log.value.length < 8) {
         password_log.style.borderColor = "red";
@@ -331,8 +331,8 @@ function passwordCheckcount() {
         return true;
     }
 }
-password_reg.addEventListener('input', passwordCheckcount);
-password_reg2.addEventListener('input', passwordCheck);
+if (password_reg) password_reg.addEventListener('input', passwordCheckcount);
+if (password_reg2) password_reg2.addEventListener('input', passwordCheck);
 
 var auth_btn = document.getElementById("auth-btn");
 function checktruevalue() {
