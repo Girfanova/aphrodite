@@ -10,15 +10,31 @@
 <style>
     .itcss__item {
         background-size: cover;
+        /* border-radius: 30px; */
+        margin: 0 0.5%; 
+        flex: 0 0 99%;
     }
-
+    .itcss__items{
+        width: 100%;
+    }
+    .itcss{
+        max-width:100%;
+    }
+    .itcss__wrapper{
+        background-color: rgba(0,0,0,0);
+        overflow: visible;
+    }
     .discount-text-container {
         width: 100%;
         height: 100%;
         display: flex;
         flex-flow: column wrap;
         justify-content: center;
+        /* background-color: rgba(215, 201, 192, 0.5); */
         background-color: rgba(255, 255, 255, 0.5);
+        align-items: center;
+        /* border-radius: 30px; */
+        text-align: center;
     }
 </style>
 
@@ -39,12 +55,12 @@
 
                     <!--     <button class="record btn">Записаться</button>  -->
                 </div>
-                <img class="afr parallax-item" src="Resources/afr.png" alt="афродита">
+                <img class="afr parallax-item" src="Resources/afr1.png" alt="афродита">
             </div>
         </div>
         <div class="marquee">
             <div class="marquee__inner">
-                <!-- <span><a href='hairdressing.php'>стрижка</a></span> -->
+                <span>стрижка</span>
                 <span>укладка</span>
                 <span>окрашивание</span>
                 <span>маникюр</span>
@@ -52,7 +68,7 @@
                 <span>уход за лицом</span>
                 <span>оформление бровей и ресниц</span>
                 <span>депиляция</span>
-                <!-- <span><a href='hairdressing.php'>стрижка</a></span> -->
+                <span>стрижка</span>
                 <span>укладка</span>
                 <span>окрашивание</span>
                 <span>маникюр</span>
@@ -72,22 +88,21 @@
                     <img src="Resources/coffee.svg" alt="преимущество1">
                     <div class='advantage-text'>
                         <div class='advantage-title'>Уютная гостеприимная атмосфера</div>
-                        <div class='advantage-description'>Встречает вас с чашечкой кофе.</div>
+                        <div class='advantage-description'>У нас вы можете легко расслабиться и наслаждаться преображением.</div>
                     </div>
                 </div>
                 <div class="advantage">
                     <img src="Resources/full-time.svg" alt="преимущество5">
                     <div class='advantage-text'>
-                    <div class='advantage-title'>Удобный режим работы с 9:00 до 21:00</div>
-                    <div class='advantage-description'>Открыты всегда, закрываемся лишь на 3 дня в году</div>
+                    <div class='advantage-title'>Открыты 362 дня в году</div>
+                    <div class='advantage-description'>Закрываемся лишь на 3 дня в новогодние праздники.<br>Время работы - с 9:00 до 21:00</div>
                 </div>
                 </div>
                 <div class="advantage">
                     <img src="Resources/location.svg" alt="преимущество3">
                     <div class='advantage-text'>
                     <div class='advantage-title'>Удобное расположение</div>
-                    <div class='advantage-description'>К нам легко добраться, остановки общественного транспорта в
-                        шаговой доступности.</div>
+                    <div class='advantage-description'>Находимся рядом с остановками общественного транспорта, чтобы вам было удобно добираться до нас.</div>
                 </div>
                 </div>
                 <div class="advantage">
@@ -115,7 +130,7 @@
             <!-- <a class="discount__more" href="promotions.php">Все акции<span class="arrow"><span></span></span></a> -->
 
             <div class="discount__rectangle">
-                <div class="discount__content">
+                <!-- <div class="discount__content"> -->
                     <div class="itcss" style='height:100%;'>
                         <div class="itcss__wrapper" style='height:100%;'>
                             <div class="itcss__items" style='height:100%;'>
@@ -123,7 +138,8 @@
                                 require_once("connect_db.php");
                                 $promotions = mysqli_query($link, "SELECT * FROM promotions");
                                 while ($row = mysqli_fetch_assoc($promotions)) {
-                                    $path = "Resources/promotions/" . $row['picture'];
+                                    $path = "Resources/promotions/" . $row['picture']."";
+                                    // echo "<script>console.log($path);</script>";
                                     echo "<div style='background-image:url(" . $path . "); ' class='itcss__item'>
                                 <div class='discount-text-container'>
                                 <div class='discount__text1'>" . $row['title'] . "</div>
@@ -151,8 +167,8 @@
                         ?>
 
                     </div> -->
-                </div>
-                <div class="discount__content">
+                <!-- </div> -->
+                <!-- <div class="discount__content">
                     <div class="possibilities">
                         <div class="possibilities-title">После авторизации вам будут доступны:</div>
                         <div class='pos'><img src='Resources/add.png'><span class="pos1">Онлайн-запись</span></div>
@@ -160,42 +176,55 @@
                         <div class='pos'><img src='Resources/history.png'><span class="pos3">История посещений</span>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="services">
             <h2 class="services__title">Наши услуги</h2>
             <div class="services__list">
                 <div class="service">
-                    <a href="hairdressing.php"><img src="Resources/парикмахерские_услуги.jpg"
+                    <a href="hairdressing.php"><img src="Resources/hair.jpg"
                             alt="парикмахерские услуги"></a>
                     <div class="service__description">Парикмахерские услуги</div>
                 </div>
                 <div class="service">
-                    <a href="nail-service.php"><img src="Resources/ногтевой_сервис.jpg" alt="ногтевой сервис"></a>
+                    <a href="nail-service.php"><img src="Resources/nail.jpg" alt="ногтевой сервис"></a>
                     <div class="service__description">Ногтевой сервис</div>
                 </div>
                 <div class="service">
-                    <a href="eyelashes-and-eyebrows.php"> <img src="Resources/брови-ресницы.jpg"
+                    <a href="eyelashes-and-eyebrows.php"> <img src="Resources/brow.jpg"
                             alt="брови-ресницы"></a>
                     <div class="service__description">Ресницы и брови</div>
                 </div>
                 <div class="service">
-                    <a href="cosmetology.php"> <img src="Resources/массаж.jpg" alt="косметология"></a>
+                    <a href="cosmetology.php"> <img src="Resources/mask.jpg" alt="косметология"></a>
                     <div class="service__description">Косметология</div>
                 </div>
                 <div class="service">
-                    <a href="depilation-waxing.php"> <img src="Resources/депиляция.jpg" alt="депиляция/воск"></a>
+                    <a href="depilation-waxing.php"> <img src="Resources/depilation.jpg" alt="депиляция/воск"></a>
                     <div class="service__description">Депиляция/воск</div>
                 </div>
             </div>
         </div>
 
-        <div class="about-salon">
-            <div class="container">
+        <!-- <div class="about-salon"> -->
+            <!-- <h2 class="about-salon__title">Наша цель</h2> -->
+            <!-- <div class='greek-top'></div> -->
+            <!-- <div class='greek-bottom'></div> -->
+            <!-- <div class="container">
+                <div class='about-salon__image-container'> -->
+                    <!-- <div class='greek-left'></div> -->
+                    <!-- <div class='greek-right'></div> -->
+
+                    <!-- <img src="Resources/aphrodite-photo.jpg" class="about-salon__image" alt="о нас">
+                </div>
                 <div class="about-salon__description">
-                    <h2 class="about-salon__title">Наша цель</h2>
-                    <p>Наш салон красоты - это целый мир, в котором Вы можете провести время с комфортом в дали от
+                    <p>
+                        <span class="first-letter">Наша цель</span> - дарить красоту и придавать уверенность своим клиентам. У нас каждый сможет почувствовать себя богиней. 
+                        <br><br>Приходите и убедитесь в этом сами!
+                    </p> -->
+
+                    <!-- <p>Наш салон красоты - это целый мир, в котором Вы можете провести время с комфортом в дали от
                         повседневной деятельности.
                         В этом Вам помогут наш обходительный и вежливый персонал, располагающая обстановка и
                         расслабляющая, мелодичная музыка.
@@ -203,17 +232,11 @@
                         Мы ценим каждого нашего клиента. Основная цель нашей работы - это безостановочное стремление к
                         идеалу. Вашему идеалу.
                         Для нас по-настоящему важно, чтобы клиенты не сомневались в нашей компетентности, поэтому мы
-                        предлагаем только лучшее.</p>
+                        предлагаем только лучшее.</p> -->
+                    <!-- </div>
+                    
                 </div>
-                <div class='about-salon__image-container'>
-                    <div class='greek-top'></div>
-                    <div class='greek-left'></div>
-                    <div class='greek-bottom'></div>
-                    <div class='greek-right'></div>
-                    <img src="Resources/slider1.jpg" class="about-salon__image" alt="о нас">
-                </div>
-            </div>
-        </div>
+            </div> -->
 
         <div class="reviews">
             <h2 class="reviews__title">Что о нас говорят</h2>

@@ -1,32 +1,33 @@
 <?php
-session_start();
-require_once("connect_db.php");
- mysqli_select_db($link,"aphrodite") or die("Ошибка подключения к базе данных");
 
- if (!empty(!empty($_POST['phone_log']) and !empty($_POST['password_log']))){
+require_once ("connect_db.php");
+
+if (!empty (!empty ($_POST['phone_log']) and !empty ($_POST['password_log']))) {
     $phone = $_POST['phone_log'];
     $password = $_POST['password_log'];
-
-    $query = "SELECT * FROM users WHERE phone = '$phone' and password = '$password'";
+    $query = "SELECT * FROM users WHERE phone = '$phone'";
     $result = mysqli_query($link, $query);
-    $user =  mysqli_fetch_array($result);
-
-    if (!empty($user)){
-        echo "Авторизация прошла";
-        $_SESSION["auth"] = 'true';
-        $_SESSION["user_role"] = $user['role_id'];
-        $_SESSION["user_id"] = $user['id'];
-        $_SESSION["user_name"] = $user['name'];
-        if ($_SESSION['user_role']==10)
-            header('Location:admin.php');
-        else 
-            header('Location:lk.php');
+    $user = mysqli_fetch_array($result);
+    $get_password = $user['password'];
+    $p = password_hash($password, PASSWORD_ARGON2I);
+    echo $p . "<br>";
+    if (!empty ($user)) {
+        if (password_verify($password, $get_password)) {
+            echo "Успешная авторизация";
+            session_start();
+            $_SESSION["auth"] = 'true';
+            $_SESSION["user_role"] = $user['role_id'];
+            $_SESSION["user_id"] = $user['id'];
+            $_SESSION["user_name"] = $user['name'];
+            if ($_SESSION['user_role'] == 10)
+                header('Location:admin.php');
+            else
+                header('Location:lk.php');
+        } else
+            echo "Неверный пароль";
+    } else {
+        echo "Неверный логин";
     }
-    else {
-        echo "<script>
-        alert('Неверный логин или пароль');
-        document.location.href = '/';
-         </script>";
-    }
- }
+}
+mysqli_close($link);
 ?>

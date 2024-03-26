@@ -4,34 +4,35 @@
                 <iframe class="map" id="map"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d575.3354922252689!2d56.07967746334676!3d54.77395549999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x43d9384745f701c5%3A0x588f801b147a90ab!2z0YPQuy4g0K7RgNC40Y8g0JPQsNCz0LDRgNC40L3QsCwgNjAsINCj0YTQsCwg0KDQtdGB0L8uINCR0LDRiNC60L7RgNGC0L7RgdGC0LDQvSwgNDUwMTA1!5e0!3m2!1sru!2sru!4v1687283595052!5m2!1sru!2sru"
                     allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    <center>Изображение обложки сайта от <a href="https://ru.freepik.com/free-photo/aesthetic-background-of-greek-bust_59773060.htm#query=%D0%B0%D1%84%D1%80%D0%BE%D0%B4%D0%B8%D1%82%D0%B0&position=7&from_view=search&track=ais">&nbspFreepik</a></center>
-            </div>
-            <div class="leftbar">
-                <div class="switch_address">
-                    <div class="switch_address__title">Наши студии</div>
-                    <button id="address1" onclick="address1_show();" class="switch_address_btn checked btn">г. Уфа, Юрия Гагарина, 60</button>
-                    <button id="address2" onclick="address2_show();" class="switch_address_btn btn">г. Уфа, Юрия Гагарина,26/2</button>
                 </div>
-                <div class="leftsubbar">
-                    <div class="leftsubbar_title">Телефон:</div>
-                    <p id='address1_num'><a href="tel:+73472210431">+7 (347) 221‒04‒31</a><br>
-                    <a href="tel:+79871349284">+7 (987) 134‒92‒84</a>
+                <div class="leftbar">
+                    <div class="switch_address">
+                        <div class="switch_address__title">Наши студии</div>
+                        <button id="address1" onclick="address1_show();" class="switch_address_btn checked btn">г. Уфа, Юрия Гагарина, 60</button>
+                        <button id="address2" onclick="address2_show();" class="switch_address_btn btn">г. Уфа, Юрия Гагарина, 26/2</button>
+                    </div>
+                    <div class="leftsubbar">
+                        <div class="leftsubbar_title">Телефон:</div>
+                        <p id='address1_num'><a href="tel:+73472210431">+7 (347) 221‒04‒31</a><br>
+                        <a href="tel:+79871349284">+7 (987) 134‒92‒84</a>
                     </p>
-                   
+                    
                     <p id='address2_num' style="display:none;"><a href="tel:+73472367013">+7 (347) 236‒70‒13</a><br>
                     <a href="tel:+79178055979">+7 (917) 805‒59‒79</a>
-
-                    </p>
-                   
-                </div>
-                <div class="leftsubbar">
-                    <div class="leftsubbar_title">Режим работы:</div>
-                    <p>с 9:00 до 21:00</p>
-                </div>
-
+                    
+                </p>
+                
             </div>
+            <div class="leftsubbar">
+                <div class="leftsubbar_title">Режим работы:</div>
+                <p>с 9:00 до 21:00</p>
+            </div>
+            
         </div>
+    </div>
+    <!-- <center><p style='margin:2% 0 0 0;'>Изображение обложки сайта от <a href="https://ru.freepik.com/free-photo/aesthetic-background-of-greek-bust_59773060.htm#query=%D0%B0%D1%84%D1%80%D0%BE%D0%B4%D0%B8%D1%82%D0%B0&position=7&from_view=search&track=ais">&nbspFreepik</a></p></center> -->
+        
     </footer>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.maskedinput.js"></script>
-    <script src="script.js"></script>
+    <script language="JavaScript" type="text/javascript" src="js/jquery.min.js"></script>
+    <script language="JavaScript" type="text/javascript" src="js/jquery.maskedinput.js"></script>
+    <script language="JavaScript" type="text/javascript" src="script.js"></script>

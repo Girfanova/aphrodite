@@ -47,7 +47,7 @@ var address1_num = document.getElementById('address1_num');
 var address2_num = document.getElementById('address2_num');
 function address1_show() {
     if (!address1.classList.contains('checked')) {
-        map.src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d575.3354922252689!2d56.07967746334676!3d54.77395549999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x43d9384745f701c5%3A0x588f801b147a90ab!2z0YPQuy4g0K7RgNC40Y8g0JPQsNCz0LDRgNC40L3QsCwgNjAsINCj0YTQsCwg0KDQtdGB0L8uINCR0LDRiNC60L7RgNGC0L7RgdGC0LDQvSwgNDUwMTA1!5e0!3m2!1sru!2sru!4v1687283595052!5m2!1sru!2sru";
+        map.src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d575.3354922252689!2d56.07967746334676!3d54.77395549999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x43d9384745f701c5%3A0x588f801b147a90ab!2z0YPQuy4g0K7RgNC40Y8g0JPQsNCz0LDRgNC40L3QsCwgNjAsINCj0YTQsCwg0KDQtdGB0L8uINCR0LDRiNC60L7RgNGC0L7RgdGC0LDQvSwgNDUwMTA1!5e0!3m2!1sru!2sru!4v1687283595052!5m2!1sru!2sru";
         address2.classList.remove('checked');
         address1.classList.toggle('checked');
         address1_num.style.display = 'inline';
@@ -56,7 +56,7 @@ function address1_show() {
 }
 function address2_show() {
     if (!address2.classList.contains('checked')) {
-        map.src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9207.515978860847!2d56.04980389497779!3d54.764514234808736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x43d9384b5394a4bf%3A0x4116b0d37046a6af!2z0JDRhNGA0L7QtNC40YLQsA!5e0!3m2!1sru!2sru!4v1687459893694!5m2!1sru!2sru";
+        map.src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9207.515978860847!2d56.04980389497779!3d54.764514234808736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x43d9384b5394a4bf%3A0x4116b0d37046a6af!2z0JDRhNGA0L7QtNC40YLQsA!5e0!3m2!1sru!2sru!4v1687459893694!5m2!1sru!2sru";
         address1.classList.remove('checked');
         address2.classList.toggle('checked');
         address2_num.style.display = 'inline';
@@ -76,17 +76,18 @@ menu_burg.addEventListener('click', function () {
         menu_burg.classList.remove('active');
         authorization_btn.classList.remove('active');
         if (window.scrollY < window.screen.height / 3) {
-            header.style.background = "rgba(0, 0, 0, 0.558)";
-            document.querySelector('.menu_sub-list').style.background = "rgba(0, 0, 0, 0.558)";
+            // header.style.background = "rgba(0, 0, 0, 0.558)";
+            header.classList.add('header-active');
+            header.classList.remove('header-not-active');
+            // document.querySelector('.menu_sub-list').style.background = "rgba(0, 0, 0, 0.558)";
         }
         document.body.style.overflow = "visible";
     }
     else {
-        
-        document.querySelector('.menu_sub-list').style.background = "black";
+        // document.querySelector('.menu_sub-list').style.background = "black";
         menu.classList.toggle('active');
         menu_burg.classList.toggle('active');
-        authorization_btn.classList.toggle('active');
+        if (authorization_btn) authorization_btn.classList.toggle('active');
         document.body.style.overflow = "hidden";
     }
 })
@@ -203,28 +204,33 @@ function clear_bgr_menu() {
     header.classList.remove('header');
     for (let menu_list_a of menu_list)
         menu_list_a.style.color = "black";
-    logo.src = "Resources/логотип11-черный.png";
-    if (auth_circle) {auth_circle.style.background='none';
-    auth_circle.style.color='black';
-    auth_circle.style.border='3px solid';}
+    // logo.src = "Resources/логотип11-черный.png";
+    logo.style.filter = "invert(0)";
+    if (auth_circle) {
+        auth_circle.style.background = 'none';
+        auth_circle.style.color = 'black';
+        auth_circle.style.border = '3px solid';
+    }
     if (authorization) authorization.src = "Resources/авторизация-black.png";
-    document.querySelector('.menu_sub-list').style.background = "rgba(0, 0, 0, 0)";
+    // document.querySelector('.menu_sub-list').style.background = "rgba(0, 0, 0, 0)";
     if (menu_burg) {
         menu_burg.classList.add('black-menu-burg');
         menu_burg.classList.remove('white-menu-burg');
-        }
+    }
 }
 function black_bgr_menu() {
     header.classList.add('header-active');
     header.classList.remove('header-not-active');
     for (let menu_list_a of menu_list)
         menu_list_a.style.color = "white";
-    logo.src = "Resources/логотип11.png";
+    // logo.src = "Resources/логотип11.png";
+    logo.style.filter = "invert(1)";
     if (authorization) authorization.src = "Resources/авторизация.png";
-    if (auth_circle) {auth_circle.style.background='none';
-    auth_circle.style.color='white';
-    auth_circle.style.border='3px solid';}
-    document.querySelector('.menu_sub-list').style.background = "black";
+    if (auth_circle) {
+        auth_circle.style.background = 'none';
+        auth_circle.style.color = 'white';
+        auth_circle.style.border = '3px solid';
+    }
     if (menu_burg) {
         menu_burg.classList.add('white-menu-burg');
         menu_burg.classList.remove('black-menu-burg');
@@ -235,14 +241,15 @@ if (document.location.pathname == '/') {
         if (scrollY > window.screen.height / 5) {
             black_bgr_menu();
         } else {
-            clear_bgr_menu();
+            clear_bgr_menu(); 
         }
     })
 
     header.addEventListener("mouseover", black_bgr_menu);
     header.addEventListener("mouseout", function () {
-        if (scrollY < window.screen.height / 5)
+        if ((scrollY < window.screen.height / 5) & (!menu.classList.contains('active')))
             clear_bgr_menu();
+        
     });
 }
 else {
@@ -344,19 +351,7 @@ function checktruevalueEdit() {
     else { alert("Проверьте введенные данные"); return false; }
 }
 
-function checkTypeTime() {
-    time_text = document.getElementById('record-times').value;
-    var notValid = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/.test(time_text);
-    if (notValid) {
-        alert("Успешная запись");
 
-        return true;
-    } else {
-        alert(time_text);
-        return false;
-    }
-
-}
 function checkRecordForm() {
 
 }
@@ -409,11 +404,11 @@ if (canc_label) canc_label.addEventListener("click", function () {
 var portfolio_label = document.getElementById('portfolio-table-label');
 var service_label = document.getElementById('service-table-label');
 var promotions_label = document.getElementById('promotions-table-label');
-var contacts_label = document.getElementById('contacts-table-label');
+var contacts_label = document.getElementById('users-table-label');
 var portfolio_table = document.getElementById('portfolio-table');
 var service_table = document.getElementById('service-table');
 var promotions_table = document.getElementById('promotions-table');
-var contacts_table = document.getElementById('contacts-table');
+var contacts_table = document.getElementById('users-table');
 
 
 if (portfolio_label) portfolio_label.addEventListener("click", function () {
@@ -456,17 +451,174 @@ if (contacts_label) contacts_label.addEventListener("click", function () {
     if (!contacts_label.classList.contains('label-checked')) {
         contacts_label.classList.toggle('label-checked');
         portfolio_label.classList.remove('label-checked');
-        service_label.classList.remove('label-checked');
         promotions_label.classList.remove('label-checked');
-        promotions_table.style.display = "none";
-        service_table.style.display = "none";
+        service_label.classList.remove('label-checked');
+        contacts_label.classList.remove('label-checked');
         contacts_table.style.display = "block";
+        service_table.style.display = "none";
+        promotions_table.style.display = "none";
         portfolio_table.style.display = "none";
     }
 })
 
+$('#form-add-service').on("submit", function () {
+    var dataForm = $(this).serialize();
+    $.ajax({
+        url: 'save-add-service.php',        
+        method: 'post',             
+        async: false,
+        dataType: 'html',         
+        data: dataForm,     
+        success: function (data) {   
+            alert(data); 
+            var popup_service_edit = document.querySelector(".popup-service-add");
+            popup_service_edit.classList.remove("popup_open");
+            document.body.style.overflow = "visible";
+            $('#popup').html = '';
+        }
+    });
+    $.ajax({
+        url: "admin-service.php",
+        cache: false,
+        async: false,
+        success: function (html) {
+            $("#service-table").html(html);
+        }
+    });
+    return false;
+})
+function add_promotion(){
+    var formData = new FormData();
+    var file = $("#promotion_picture")[0].files[0];
+    if (file != undefined) {
+        var type = file.name.split('.')[1];
+        if (!type.match(/(png)|(jpeg)|(jpg)|(gif)$/i)) {
+            alert('Неверный тип файла - ' + file.name + '.\nЗагрузите png, jpeg, jpg, или gif.');
+            return false;
+        }
+        else {
+            formData.append("promotion_picture", file);
+        }
+    }
+    formData.append("promotion_title", $('#promotion_title').val());
+    formData.append("promotion_id", $('#promotion_id').val());
+    formData.append("promotion_description", $('#promotion_description').val());
+    formData.forEach(function (value, key) {
+        console.log('key = ' + key + ', value = ' + value);
+    }); 
+
+    $.ajax({
+        url: 'save-add-promotion.php',
+        type: 'POST',
+        contentType: false,
+        processData: false,
+        async: false,
+        dataType: 'html',
+        data: formData,
+        success: function () {
+            var popup_service_edit = document.querySelector(".popup-promotion-add");
+            popup_service_edit.classList.remove("popup_open");
+            document.body.style.overflow = "visible";
+            $('#popup').html = '';
+        }
+    });
+    $.ajax({
+        url: "admin-promotions.php",
+        cache: false,
+        async: false,
+        success: function (html) {
+            $("#promotions-table").html(html);
+        }
+    });
+    return false;
+}
+$('#form-add-promotion').on("submit", function () {
+    
+});
+
+$('#form-make-record').on("submit", function () {
+    time_text = document.getElementById('record-times').value;
+    var Valid = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/.test(time_text);
+    console.log(time_text);
+    if (Valid) {
+        var dataForm = $(this).serialize();
+        $.ajax({
+            url: "save-new-record.php",
+            async: false,
+            data: dataForm,
+            method: 'post',
+            success: function () {
+                alert("Успешная запись");
+                location.href = 'records-list.php';
+            }
+        });
+        return true;
+    } else {
+        alert(time_text);
+        return false;
+    }
 
 
+});
+function onEntry(entry){
+    entry.forEach(change => {
+        if (change.isIntersecting){
+            change.target.classList.add('about-salon-show');
+        }
+        else {
+            change.target.classList.remove('about-salon-show')
+        }
+    })
+}
+var options = {threshold: [0.2]};
+var observer =  new  IntersectionObserver (onEntry, options);
+var elements = document.querySelectorAll('.about-salon');
+for (let elem of elements){
+    observer.observe(elem);
+} 
+
+
+
+
+// else {
+//     formData.append("promotion_title", $('#promotion_title').val());
+//     formData.append("promotion_id", $('#promotion_id').val());
+//     formData.append("promotion_description", $('#promotion_description').val());
+//     formData.forEach(function (value, key) {
+//         console.log('key = ' + key + ', value = ' + value);
+//     });
+
+//     $.ajax({
+//         url: 'save-add-promotion.php',
+//         type: 'POST',
+//         contentType: false,
+//         processData: false,
+//         async: false,
+//         dataType: 'html',
+//         data: formData,
+//         success: function (data) {
+//             console.log(data);
+//         }
+//     });
+
+//     return false;
+// }
+
+//(Если не соответствует тип)
+
+//Иначе
+
+// var dataForm = $(this).serialize()
+// $.ajax({
+//     url: 'save-add-promotion.php',         /* Куда отправить запрос */
+//     method: 'post',             /* Метод запроса (post или get) */
+//     async: false,
+//     dataType: 'html',          /* Тип данных в ответе (xml, json, script, html). */
+//     data:dataForm,     /* Данные передаваемые в массиве */
+//     success: function (data) {   /* функция которая будет выполнена после успешного запроса.  */
+//         alert(data); /* В переменной data содержится ответ от index.php. */
+//     }
+// });
 //переключение между вкладками
 /*const showTab = (elTabBtn) => {
     const elTab = elTabBtn.closest('.tab');

@@ -1,9 +1,10 @@
 <?php
- require_once("connect_db.php");
- mysqli_query($link,"DELETE FROM portfolio WHERE name= '". $_GET['name_image']."'") or die(mysqli_error($link));
+require_once ("connect_db.php");
+$name = mysqli_fetch_row(mysqli_query($link,'SELECT name from portfolio where id='.$_GET['id_image']));
+mysqli_query($link, "DELETE FROM portfolio WHERE id= '" . $_GET['id_image'] . "'") or die (mysqli_error($link));
+unlink('Resources/portfolio/' . $name[0]);
 
- unlink('Resources/portfolio/'.$_GET['name_image']);
 //  echo "<script>
-            
-//  document.location.href = 'admin-panel.php';
+
+//  document.location.href = 'admin-panel.php'; 
 //  </script>";

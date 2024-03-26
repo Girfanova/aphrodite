@@ -1,4 +1,4 @@
-<header class="header" id="header">
+<?php session_start(); ?><header class="header" id="header">
         <div class="container ">
             <div class="logo"><a href="/"> <img src="Resources/логотип11-черный.png" id="logo" alt="логотип"></a></div>
             <nav id="menu">
@@ -19,8 +19,6 @@
                     
                 </ul>
                 <?php
-
-                session_start();
                 if ($_SESSION["auth"]==true) 
                 echo "<button onclick=\"window.location.href = 'lk.php'\" class='header_lk_btn btn'>Личный кабинет</button>";
                 else echo '<button class="header_authorization_btn btn popup_autor">Войти/Авторизоваться</button>';
@@ -29,7 +27,6 @@
             </nav>
             <div id="menu-burg" class='black-menu-burg'><span></span></div>
             <?php
-                session_start();
                 if ($_SESSION["auth"]==true) {
                     require_once("connect_db.php");
                     mysqli_select_db($link,"aphrodite") or die("Ошибка подключения к базе данных");

@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once("connect_db.php");
+var_dump($_POST);
+var_dump($_FILES);
 if (!empty($_POST['promotion_title']) and !empty($_POST['promotion_description'])) {
     $id = $_POST['promotion_id'];
     $title = $_POST['promotion_title'];
@@ -8,16 +10,11 @@ if (!empty($_POST['promotion_title']) and !empty($_POST['promotion_description']
     if ($_FILES['promotion_picture']['name']) {
         $picture = $_FILES['promotion_picture']['name'];
     }
-    
-    $promotions = mysqli_query($link, "SELECT * from promotions where id=" . $_POST['promotion_id']);
-    $row = mysqli_fetch_array($promotions);
-    if ($row["picture"] != NULL) {
-        unlink('Resources/promotions/' . $row['picture']);
-    }
-    if ($picture) {
+
+
+    if (isset($picture)) {
         function check_upload($file)
         {
-
             $getMime = explode('.', $file['name']);
             $mime = strtolower(end($getMime));
             $types = array('jpg', 'gif', 'jpeg', 'png');
@@ -27,7 +24,6 @@ if (!empty($_POST['promotion_title']) and !empty($_POST['promotion_description']
                     'alert("Недопустимый тип файла");' .
                     'window.location.href=""' .
                     '</script>';
-
             return true;
         }
 
@@ -38,6 +34,11 @@ if (!empty($_POST['promotion_title']) and !empty($_POST['promotion_description']
         }
 
         if (isset($_FILES['promotion_picture'])) {
+            $promotions = mysqli_query($link, "SELECT * from promotions where id=" . $_POST['promotion_id']);
+            $row = mysqli_fetch_array($promotions);
+            if ($row["picture"] != NULL) {
+                unlink('Resources/promotions/' . $row['picture']);
+            }
             $image = $_FILES['promotion_picture'];
             $check = check_upload($image);
             if ($check === true) {
@@ -47,7 +48,7 @@ if (!empty($_POST['promotion_title']) and !empty($_POST['promotion_description']
                 $mime = strtolower(end($getMime)); //тип фала
                 $name = reset($getMime); //имя файла
                 $query = "UPDATE promotions set title='$title', description= '$description', picture= '$picture'  where id=$id";
-    mysqli_query($link, $query) or die(mysqli_error($link));
+                mysqli_query($link, $query) or die(mysqli_error($link));
                 echo '<script language = "javascript">' .
                     'alert("Файл загружен");' .
                     'window.location.href="admin-panel.php"' .

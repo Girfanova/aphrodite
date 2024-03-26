@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once("connect_db.php");
+var_dump($_POST);
 if (!empty($_POST['date-record']) and !empty($_POST['record-time']) and !empty($_POST['service_id']) and !empty($_POST['master_id'])) {
     $id_user = $_SESSION['user_id'];
     $date = $_POST['date-record'];
@@ -17,13 +18,4 @@ if (!empty($_POST['date-record']) and !empty($_POST['record-time']) and !empty($
     $query = "INSERT INTO records SET user_id = '$id_user', master_id = '$master', service_id = '$service', date_record = '$date', time_record = '$time', time_end_record = '$newTime'";
     mysqli_query($link, $query);
 
-
-    echo "<script>
-            
-            document.location.href = 'lk.php';
-            </script>";
-
-} else
-    echo "<script>
-    alert('Пустые поля');
-    </script>";
+} 
