@@ -36,25 +36,7 @@
                     required><br>
                 <div class="input-message" for="" id=""></div><br>
             </div>
-            <div class="label">Длительность</div>
-            <div class="input-box">
-                <input type="tel" id="duration" name="duration" class="input" value=""
-                > мин.<br>
-                <div class="input-message" for="" id=""></div><br>
-            </div>
-            <div class="label">Можно записаться?</div>
-            <div class="input-box">
-                <div>
-                    <input type="radio" id="rec1" name="is_recording" value="1" />
-                    <label for="rec1">Да</label>
-                </div>
-
-                <div>
-                    <input type="radio" id="rec0" name="is_recording" value="0" />
-                    <label for="rec0">Нет</label>
-                </div>
-
-            </div>
+            
            
             <input type="submit" value="Сохранить" class="btn form-submit-btn">
         </form>

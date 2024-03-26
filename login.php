@@ -2,7 +2,7 @@
 
 require_once ("connect_db.php");
 
-if (!empty (!empty ($_POST['phone_log']) and !empty ($_POST['password_log']))) {
+if (!empty ($_POST['phone_log']) and !empty ($_POST['password_log'])) {
     $phone = $_POST['phone_log'];
     $password = $_POST['password_log'];
     $query = "SELECT * FROM users WHERE phone = '$phone'";
@@ -10,24 +10,19 @@ if (!empty (!empty ($_POST['phone_log']) and !empty ($_POST['password_log']))) {
     $user = mysqli_fetch_array($result);
     $get_password = $user['password'];
     $p = password_hash($password, PASSWORD_ARGON2I);
-    echo $p . "<br>";
     if (!empty ($user)) {
         if (password_verify($password, $get_password)) {
             echo "Успешная авторизация";
             session_start();
             $_SESSION["auth"] = 'true';
-            $_SESSION["user_role"] = $user['role_id'];
-            $_SESSION["user_id"] = $user['id'];
-            $_SESSION["user_name"] = $user['name'];
-            if ($_SESSION['user_role'] == 10)
                 header('Location:admin.php');
-            else
-                header('Location:lk.php');
         } else
             echo "Неверный пароль";
+            header('Location:admin.php');
     } else {
         echo "Неверный логин";
+        header('Location:admin.php');
     }
 }
+else echo"пусто";
 mysqli_close($link);
-?>

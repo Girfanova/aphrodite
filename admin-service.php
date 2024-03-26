@@ -26,8 +26,6 @@ echo "<table border=1 width=100%>
 		<th>Кате&shyгория</th>
 		<th>Наз&shyвание</th>
 		<th>Цена</th>
-		<th>За&shyпись</th>
-		<th>Дли&shyтель&shyность</th>
 		<th>Ре&shyдак&shyтиро&shyвать</th>
 		<th>Уда&shyлить</th>
 		</tr>
@@ -47,12 +45,7 @@ while ($data_count = mysqli_fetch_array($count)) {
 			echo "
 					<td style=' word-break: break-all;'>" . $service['service'] . "</td>
 					<td>" . $service['price'] . " руб.</td>";
-			if ($service['is_recording']) {
-				echo "<td>Есть</td><td>" . $service['duration'] . " мин</td>";
-			} else {
-				echo "<td>Нет</td	><td>-</td	>";
-			}
-			//	echo"	<td text-align='center'><a href='service-edit.php?service_id=".$service['id']."'><img style='display:block; margin:auto;' src='Resources/edit.png' title='Редактировать' width=30px></a></td>
+			
 			echo "<td text-align='center'><img onclick=service_edit(" . $service['id'] . "); style='display:block; margin:auto;' src='Resources/edit.png' title='Редактировать' width=30px></td>
 					<td text-align='center'><img onclick=service_delete(" . $service['id'] . "," .$service['category_id']."); style='display:block; margin:auto;' src='Resources\delete.png' title='Удалить' width=30px></td>
 					</tr>";

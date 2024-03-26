@@ -603,11 +603,11 @@ li span img {
 .profile-btn {
     text-align: center;
     background-color: rgb(var(--second-color-rgb));
-    padding: 3%;
+    padding: 1%;
     margin: 1%;
     display: block;
     font-size: 0.9em;
-    width: 100%;
+    /* width: 100%; */
 
 }
 
