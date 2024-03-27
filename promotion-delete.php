@@ -6,7 +6,4 @@ if ($row['picture']) {
     unlink('Resources/promotions/'.$row['picture']);
 }
 mysqli_query($link, "DELETE FROM promotions WHERE id= '" . $_GET['promotion_id'] . "'") or die(mysqli_error($link));
-// echo "<script>
-            
-//  document.location.href = 'admin-panel.php';
-//  </script>";
+mysqli_close($link);

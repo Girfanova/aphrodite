@@ -17,7 +17,7 @@
         $portfoio = mysqli_query($link, "SELECT portfolio.id, path_big, path_small  FROM portfolio");
         echo "<div class='lk-profile'>";
         echo "<H1 class='lk-title'>Административная панель</H1>";
-        echo "<a class='profile-btn btn' href='exit.php' >Выйти</a>";
+        if ($_SESSION["auth"] == true) echo "<a class='profile-btn btn' href='exit.php' >Выйти</a>";
         echo "</div>";
         echo "<div id='popup' class='admin-popup'></div>";
         if ($_SESSION["auth"] == true) {

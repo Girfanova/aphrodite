@@ -1,11 +1,11 @@
 <?php
 session_start();
-require_once("connect_db.php");
 if (!empty($_POST['promotion_description']) and !empty($_POST['promotion_title'])) {
     $title = $_POST['promotion_title'];
     $description = $_POST['promotion_description'];
     $picture = $_FILES['promotion_picture']['name'];
-
+    
+    require_once("connect_db.php");
     $query = "INSERT INTO promotions SET title = '$title', description = '$description', picture = '$picture'";
     mysqli_query($link, $query);
     if ($picture) {
@@ -55,7 +55,7 @@ if (!empty($_POST['promotion_description']) and !empty($_POST['promotion_title']
 
         }
     }
-
+    mysqli_close($link);
     echo "<script>
 
     document.location.href = 'admin-panel.php';

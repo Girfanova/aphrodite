@@ -2,7 +2,6 @@
 require_once("connect_db.php");
 if (isset($_GET["id"])) {
     $portfolio_id = $_GET['id'];
-    // echo $portfolio_id;
     $portfolio = mysqli_query($link, 'SELECT * FROM portfolio where id=' . $portfolio_id);
     while ($row = mysqli_fetch_array($portfolio)) {
         $portfolio_description = $row['description'];
@@ -48,38 +47,22 @@ if (isset($_GET["id"])) {
 </div>
 <script>
     $('#form-edit-portfolio').on("submit", function () {
-        var formData = new FormData();
-        var file = $("#portfolio_picture")[0].files[0];
-        if (file != undefined) {
-            var type = file.name.split('.')[1];
-            if (!type.match(/(png)|(jpeg)|(jpg)|(gif)$/i)) {
-                alert('Неверный тип файла - ' + file.name + '.\nЗагрузите png, jpeg, jpg, или gif.');
-                return false;
-            }
-            else {
-                formData.append("portfolio_picture", file);
-            }
-        };
-        formData.append("portfolio_id", $('#portfolio_id').val());
-        formData.append("portfolio_description", $('#portfolio_description').val());
-        formData.forEach(function (value, key) {
-            console.log('key = ' + key + ', value = ' + value);
-        });
-
+        var desc = document.getElementById('portfolio_description').value;
+        var id = document.getElementById('portfolio_id').value;
+        console.log(desc+' '+id);
         $.ajax({
             url: 'save-edit-portfolio.php',
             type: 'POST',
-            contentType: false,
-            processData: false,
             async: false,
             dataType: 'html',
-            data: formData,
-            success: function () {
+            data: {portfolio_description : desc, id : id},
+            success: function (html) {
                 var popup_service_edit = document.querySelector(".popup-portfolio-edit");
                 var close_serv = document.getElementById("close-portfolio-edit-btn");
                 popup_service_edit.classList.remove("popup_open");
                 document.body.style.overflow = "visible";
                 $('#popup').html("");
+                alert(html);
             }
         });
         $.ajax({
@@ -93,38 +76,38 @@ if (isset($_GET["id"])) {
 
         return false;
 
-        // else {
-        //     formData.append("promotion_title", $('#promotion_title').val());
-        //     formData.append("promotion_id", $('#promotion_id').val());
-        //     formData.append("promotion_description", $('#promotion_description').val());
-        //     formData.forEach(function (value, key) {
-        //         console.log('key = ' + key + ', value = ' + value);
-        //     });
-
-        //     $.ajax({
-        //         url: 'save-edit-promotion.php',
-        //         type: 'POST',
-        //         contentType: false,
-        //         processData: false,
-        //         async: false,
-        //         dataType: 'html',
-        //         data: formData,
-        //         success: function (data) {
-        //             console.log(data);
-        //         }
-        //     });
-        //     $.ajax({
-        //         url: "admin-promotions.php",
-        //         cache: false,
-        //         async: false,
-        //         success: function (html) {
-        //             $("#promotions-table").html(html);
-        //         }
-        //     });
-
-        //     return false;
-        // }
-
+        
     });
+    
+// else {
+//     formData.append("promotion_title", $('#promotion_title').val());
+//     formData.append("promotion_id", $('#promotion_id').val());
+//     formData.append("promotion_description", $('#promotion_description').val());
+//     formData.forEach(function (value, key) {
+//         console.log('key = ' + key + ', value = ' + value);
+//     });
 
+//     $.ajax({
+//         url: 'save-edit-promotion.php',
+//         type: 'POST',
+//         contentType: false,
+//         processData: false,
+//         async: false,
+//         dataType: 'html',
+//         data: formData,
+//         success: function (data) {
+//             console.log(data);
+//         }
+//     });
+//     $.ajax({
+//         url: "admin-promotions.php",
+//         cache: false,
+//         async: false,
+//         success: function (html) {
+//             $("#promotions-table").html(html);
+//         }
+//     });
+
+//     return false;
+// }
 </script>

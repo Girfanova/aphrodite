@@ -13,7 +13,7 @@
 require_once("connect_db.php");
 
 $files = scandir('Resources/portfolio/'); //список файлов в small/
-$portfolio = mysqli_query($link, 'SELECT * FROM portfolio');
+$portfolio = mysqli_query($link, 'SELECT * FROM portfolio order by id desc');
 
 while ($data = mysqli_fetch_array($portfolio)) {
 	$name = $data['name'];

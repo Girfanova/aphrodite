@@ -7,11 +7,7 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.min.css">
     
 </head>
-<style>
 
-    
-
-</style>
 <body>
     <?php require_once("header.php") ?>
 
@@ -19,7 +15,7 @@
         <div class="gallery">
             <?php
             require_once("connect_db.php");
-            $photos = mysqli_query($link,'SELECT * from portfolio');
+            $photos = mysqli_query($link,'SELECT * from portfolio order by id desc');
             while ($photo = mysqli_fetch_array($photos)) {
                 $photo_name= $photo['name'];
                 $photo_desc= $photo['description'];
