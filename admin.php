@@ -96,16 +96,20 @@
         }
         function change_role(elem, id) {
             value = elem.value;
+            console.log(value+' '+id);
             $.ajax({
                 url: "change-role.php",
+                method:'POST',
                 cache: false,
                 data: { id: id, role_id: value },
-                success: function () {
+                success: function (ht) {
+                    console.log(ht);
                     alert('Роль пользователя изменена');
                     $.ajax({
                         url: "users-list.php",
                         cache: false,
                         success: function (php) {
+                            
                             $("#user-list").html(php);
                         }
                     });

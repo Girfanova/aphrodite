@@ -34,3 +34,4 @@
             }
             if(mysqli_num_rows($users)==0) echo '<td colspan=3>Нет пользователей</td>';
             echo '</table></center>';
+            mysqli_close($link);
