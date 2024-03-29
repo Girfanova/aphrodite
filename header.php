@@ -19,7 +19,8 @@
                     
                 </ul>
                 <?php
-                if ($_SESSION["auth"]==true) 
+                
+                if (isset($_SESSION["auth"])) 
                 echo "<button onclick=\"window.location.href = 'lk.php'\" class='header_lk_btn btn'>Личный кабинет</button>";
                 else echo '<button class="header_authorization_btn btn popup_autor">Войти/Авторизоваться</button>';
                 ?>
@@ -27,7 +28,7 @@
             </nav>
             <div id="menu-burg" class='black-menu-burg'><span></span></div>
             <?php
-                if ($_SESSION["auth"]==true) {
+                if (isset($_SESSION["auth"])) {
                     require_once("connect_db.php");
                     mysqli_select_db($link,"aphrodite") or die("Ошибка подключения к базе данных");
                     $query = "SELECT name FROM users WHERE id = ".$_SESSION['user_id'];

@@ -13,8 +13,6 @@
             echo "<tr>";
             echo "<td> {$stroka['surname']} {$stroka['name']}</td>";
             echo "<td> {$stroka['phone']}</td>";
-            // echo "<td> {$stroka['role_name']} </td>";
-            // echo "<td><a href='delete-user.php?id=".$stroka['id']."'>Удалить</a></td>";
             echo "<td>
                 <select id='select_user_role".$stroka['id']."' style='width:100%' onchange='change_role(this,{$stroka['id']});'>";
                    if ($stroka['role_id']=='1') echo "<option value=0>{$stroka['role_name']}</option>
@@ -28,8 +26,6 @@
                     <option value='2'>Сделать мастером</option>";
             echo    "</select>
             </td>";
-            // if ($stroka['role_id'] == '10') echo "<td><a href='edit-user.php?id=".$stroka['id']."&role_id=".$stroka['role_id']."'>Сделать его пользователем</a></td>";
-            // else echo "<td><a href='edit-user.php?id=".$stroka['id']."&role_id=".$stroka['role_id']."'>Сделать его администратором</a></td>";
             echo "</tr>";
             }
             if(mysqli_num_rows($users)==0) echo '<td colspan=3>Нет пользователей</td>';
