@@ -17,6 +17,7 @@ while ($data = mysqli_fetch_array($services)) {
 		'is_recording' => $data['is_recording'],
 	];
 }
+
 ?>
 
 <div class='add-service-btn' onclick='service_add();'>Добавить услугу</div>

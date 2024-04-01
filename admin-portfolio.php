@@ -32,13 +32,7 @@ while ($data = mysqli_fetch_array($portfolio)) {
 ?>
 </table>
 <script>
-	// window.Arr = [];
-	// window.el = '$';
-	// window.LengthImg = 0;
-	// window.VirableLoading = 0;
-	//This Virables Is Globals (Объявляем переменные)
-	//Download Pictures (Загрузка изображений)
-	//Create Object FormData (Создание объекта типа form)
+	
 	function add_photo() {
 		var formData = new FormData();
 		//Если выбранные изображение больше 10
@@ -82,25 +76,7 @@ while ($data = mysqli_fetch_array($portfolio)) {
 				<td><img onclick=portfolio_delete('" . $name . "'); src='Resources/delete.png' title='Удалить' class='portfolio-photo-delete'></td>
 		</tr>`);
 							}
-							// alert('Файлы загружены')
-							// function(data) { 
-							// 	if(data['state'] == "success") {
-							// 		VirableLoading++;
-							// 		$('.loading').css("display", "none");
-							// 		//Cycle
-							// 		for(var i = 0; i < data['lengthArr'] + 1; i++) {
-							// 			//Loading More Photos
-							// 			Arr[LengthImg + i] =  data['srcPart'][i];
-							// 			//If the cycle is ended
-							// 			if(i == data['lengthArr']) {
-							// 				//Length Photos
-							// 				LengthImg += data['lengthArr'] + 1;
-							// 				//How Much Pictures Downloaded
-							// 				$('#DownloadedPics').val("Загружено (" + LengthImg + ")");
-							// 			} 
-							// 		}
-							// 	}
-							// }
+							
 						});
 						$.ajax({
 			url: "admin-portfolio.php",
@@ -117,32 +93,7 @@ while ($data = mysqli_fetch_array($portfolio)) {
 	
 }
 
-	// function add_photo() {
-	// 	var $input = $("#uploadimage");
-	// 	var fd = new FormData;
-
-	// 	fd.append('img', $input.prop('files')[0]);
-
-	// 	$.ajax({
-	// 		url: 'upload-images.php',
-	// 		data: fd,
-	// 		async:false,
-	// 		processData: false,
-	// 		contentType: false,
-	// 		type: 'POST',
-	// 		success: function (data) {
-	// 			alert(data);
-	// 		}
-	// 	});
-		
-	// 	$.ajax({
-	// 		url: "admin-portfolio.php",
-	// 		cache: false,
-	// 		success: function (php) {
-	// 			$("#portfolio-table").html(php);
-	// 		}
-	// 	});
-	// }
+	
 
 	function portfolio_edit(id) {
 		console.log(id);

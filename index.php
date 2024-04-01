@@ -147,6 +147,7 @@
                                 </div>
                             </div>";
                                 }
+                                mysqli_close($link);
                                 ?>
                             </div>
                         </div>

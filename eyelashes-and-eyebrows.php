@@ -18,12 +18,15 @@
                 <ul class="service-category">
                  <?php   
                     require_once("connect_db.php");
-                    mysqli_select_db($link,"aphrodite") or die("Ошибка подключения к базе данных");
                     $service = mysqli_query($link,"SELECT services.id, service, price, category_id, category_name FROM services, categories WHERE category_id=4 and category_id=categories.id");
                      
                      while ($stroka = mysqli_fetch_array($service)) {
-                         echo "<li class='service'><span>".$stroka['service']."</span><span>".$stroka['price']." руб. <a href='make-record.php?id=".$stroka['id']."'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
-                     }
+                        if (isset($_SESSION['auth']))
+                        echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. <a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
+                    else
+                        echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. <a href='#' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
+               }
+                     mysqli_close($link);
                 ?>
                    
                 </ul>

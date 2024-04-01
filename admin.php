@@ -33,9 +33,12 @@
         // echo "</div>";
         $user = mysqli_query($link, "SELECT users.id, surname, name, role_name, role_id, phone FROM users, roles WHERE users.id = " . $_SESSION["user_id"] . " and role_id=roles.id");
         $portfoio = mysqli_query($link, "SELECT *  FROM portfolio");
+        
         echo "<div class='lk-profile'>";
-        echo "<H1 class='lk-title'>Административная панель</H1>";
+        echo "<H1 class='lk-title' style='padding-right:50%;'>Административная панель</H1>";
         echo "<div id='popup' class='admin-popup'></div>";
+        if ($_SESSION['user_role']== 10)
+        echo "<a class='profile-btn btn' href='exit.php' >Выйти</a>";
         echo "</div>";
         if ($_SESSION["user_role"] == 10) {
 

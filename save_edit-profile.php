@@ -32,5 +32,5 @@
             </script>";
             }
     }
-
+    mysqli_close($link);
  ?>

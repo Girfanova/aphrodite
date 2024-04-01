@@ -32,6 +32,7 @@
                 echo "<option value=".$row['id']." class='master'>" . $row['name'] . " " . $row['surname']."</option>";
                     
             }
+            mysqli_close($link);
             ?>
 
             </select>

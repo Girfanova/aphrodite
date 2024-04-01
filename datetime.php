@@ -13,7 +13,7 @@ if (isset($_POST['date-record'])) {
             $start_of_day = date($stroka["start_of_work"]);
             $end_of_day = date($stroka["end_of_work"]);
         }
-
+        mysqli_close($link);
 
     }
 

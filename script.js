@@ -241,7 +241,7 @@ if (document.location.pathname == '/') {
         if (scrollY > window.screen.height / 5) {
             black_bgr_menu();
         } else {
-            clear_bgr_menu(); 
+            clear_bgr_menu();
         }
     })
 
@@ -249,7 +249,7 @@ if (document.location.pathname == '/') {
     header.addEventListener("mouseout", function () {
         if ((scrollY < window.screen.height / 5) & (!menu.classList.contains('active')))
             clear_bgr_menu();
-        
+
     });
 }
 else {
@@ -335,13 +335,48 @@ password_reg.addEventListener('input', passwordCheckcount);
 password_reg2.addEventListener('input', passwordCheck);
 
 var auth_btn = document.getElementById("auth-btn");
-function checktruevalue() {
-    if ((checkInputText(document.getElementById('surname')) && checkInputText(document.getElementById('name')) && passwordCheck() && passwordCheckcount())) {
 
-        return true;
+//обработка регистрации
+document.getElementById('popup-form-reg').addEventListener('submit', function (event) {
+    var surname = document.getElementById('surname').value;
+    var name = document.getElementById('name').value;
+    var password = password_reg.value;
+    var phone = document.getElementById('phone_reg').value;
+    if (checkInputText(document.getElementById('surname')) && checkInputText(document.getElementById('name')) && passwordCheck() && passwordCheckcount() && /^\+7\(\d{3}\)\d{3}-\d{2}-\d{2}$/.test(phone)) {
+        event.preventDefault();
+        $.ajax({
+            url: "registration.php",
+            method: "post",
+            data: { surname: surname, name: name, password_reg: password, phone_reg: phone },
+            success: function (res) {
+                alert(res);
+                location.href = 'lk.php';
+            }
+
+        });
+        return false;
     }
     else { alert("Проверьте введенные данные"); return false; }
-}
+})
+//обработка входа
+document.getElementById('popup-form-log').addEventListener('submit', function (event) {
+    var password = document.getElementById('password_log').value;
+    var phone = document.getElementById('phone_log').value;
+    if (/^\+7\(\d{3}\)\d{3}-\d{2}-\d{2}$/.test(phone)) {
+        event.preventDefault();
+        $.ajax({
+            url: "login.php",
+            method: "post",
+            data: { password_log: password, phone_log: phone },
+            success: function (res) {
+                alert(res);
+                location.href = 'lk.php';
+            }
+        });
+        return false;
+    }
+    else { alert("Проверьте введенные данные"); return false; }
+})
 
 
 function checktruevalueEdit() {
@@ -351,6 +386,51 @@ function checktruevalueEdit() {
     else { alert("Проверьте введенные данные"); return false; }
 }
 
+if (document.getElementById('form-change-password')) document.getElementById('form-change-password').addEventListener('submit', function (event) {
+    var old_password = document.getElementById('old-password');
+    var new_password = document.getElementById('new-password');
+    var new_password1 = document.getElementById('new-password1');
+    old_password.style.color = 'black';
+    new_password.style.color = 'black';
+    new_password1.style.color = 'black';
+    event.preventDefault();
+    if (old_password.value == new_password.value) alert('Старый пароль не может совпадать с новым');
+    else {
+        $.ajax({
+            url: "check-true-password.php",
+            method: "post",
+            async: false,
+            data: { password: old_password.value },
+            success: function (res) {
+                if (res == false) { alert("Старый пароль неверный"); old_password.style.color = 'red' };
+                if (res == true) {
+                    if (new_password.value == new_password1.value) {
+                        ajaxChangePassword(new_password.value);
+                    }
+                    else {
+                        alert('Пароли не совпадают');
+                        new_password.style.color = 'red';
+                        new_password1.style.color = 'red';
+                    }
+
+                }
+            }
+        });
+        function ajaxChangePassword(password) {
+            $.ajax({
+                url: "change-password.php",
+                method: "post",
+                async: false,
+                data: { password: password },
+                success: function (result) {
+                    alert(result);
+                    location.href = 'edit-profile.php';
+                }
+            })
+        }
+    }
+    return false;
+})
 
 function checkRecordForm() {
 
@@ -360,6 +440,9 @@ $("#phone_feedback").mask("+7(999)999-99-99", { autoclear: false });
 $("#tel").mask("+7(999)999-99-99", { autoclear: false });
 $("#phone_reg").mask("+7(999)999-99-99", { autoclear: false });
 $("#phone_log").mask("+7(999)999-99-99", { autoclear: false });
+
+//обработка запроса на вход
+
 
 var rec_label = document.getElementById('record-table-label');
 var done_label = document.getElementById('done-table-label');
@@ -376,7 +459,7 @@ if (rec_label) rec_label.addEventListener("click", function () {
         canc_label.classList.remove('label-checked');
         done_table.style.display = "none";
         canc_table.style.display = "none";
-        rec_table.style.display = "block";
+        rec_table.style.display = "table";
     }
 })
 if (done_label) done_label.addEventListener("click", function () {
@@ -386,7 +469,7 @@ if (done_label) done_label.addEventListener("click", function () {
         canc_label.classList.remove('label-checked');
         rec_table.style.display = "none";
         canc_table.style.display = "none";
-        done_table.style.display = "block";
+        done_table.style.display = "table";
     }
 })
 if (canc_label) canc_label.addEventListener("click", function () {
@@ -396,7 +479,7 @@ if (canc_label) canc_label.addEventListener("click", function () {
         done_label.classList.remove('label-checked');
         rec_table.style.display = "none";
         done_table.style.display = "none";
-        canc_table.style.display = "block";
+        canc_table.style.display = "table";
     }
 })
 
@@ -464,13 +547,13 @@ if (contacts_label) contacts_label.addEventListener("click", function () {
 $('#form-add-service').on("submit", function () {
     var dataForm = $(this).serialize();
     $.ajax({
-        url: 'save-add-service.php',        
-        method: 'post',             
+        url: 'save-add-service.php',
+        method: 'post',
         async: false,
-        dataType: 'html',         
-        data: dataForm,     
-        success: function (data) {   
-            alert(data); 
+        dataType: 'html',
+        data: dataForm,
+        success: function (data) {
+            alert(data);
             var popup_service_edit = document.querySelector(".popup-service-add");
             popup_service_edit.classList.remove("popup_open");
             document.body.style.overflow = "visible";
@@ -487,7 +570,7 @@ $('#form-add-service').on("submit", function () {
     });
     return false;
 })
-function add_promotion(){
+function add_promotion() {
     var formData = new FormData();
     var file = $("#promotion_picture")[0].files[0];
     if (file != undefined) {
@@ -505,7 +588,7 @@ function add_promotion(){
     formData.append("promotion_description", $('#promotion_description').val());
     formData.forEach(function (value, key) {
         console.log('key = ' + key + ', value = ' + value);
-    }); 
+    });
 
     $.ajax({
         url: 'save-add-promotion.php',
@@ -533,7 +616,7 @@ function add_promotion(){
     return false;
 }
 $('#form-add-promotion').on("submit", function () {
-    
+
 });
 
 $('#form-make-record').on("submit", function () {
@@ -549,7 +632,7 @@ $('#form-make-record').on("submit", function () {
             method: 'post',
             success: function () {
                 alert("Успешная запись");
-                location.href = 'records-list.php';
+                location.href = 'lk.php';
             }
         });
         return true;
@@ -560,9 +643,9 @@ $('#form-make-record').on("submit", function () {
 
 
 });
-function onEntry(entry){
+function onEntry(entry) {
     entry.forEach(change => {
-        if (change.isIntersecting){
+        if (change.isIntersecting) {
             change.target.classList.add('about-salon-show');
         }
         else {
@@ -570,13 +653,18 @@ function onEntry(entry){
         }
     })
 }
-var options = {threshold: [0.2]};
-var observer =  new  IntersectionObserver (onEntry, options);
+var options = { threshold: [0.2] };
+var observer = new IntersectionObserver(onEntry, options);
 var elements = document.querySelectorAll('.about-salon');
-for (let elem of elements){
+for (let elem of elements) {
     observer.observe(elem);
-} 
+}
 
+//открыть авторизацию
+function openPopup() {
+    popup.classList.toggle("popup_open");
+    document.body.style.overflow = "hidden";
+}
 
 
 

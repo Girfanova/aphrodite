@@ -524,6 +524,7 @@ li span img {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .admin-menu {
@@ -564,7 +565,7 @@ li span img {
 }
 
 .table-visible {
-    display: block;
+    display: table;
 }
 
 .label-checked {

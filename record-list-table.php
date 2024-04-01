@@ -52,5 +52,6 @@ while ($stroka = mysqli_fetch_array($records)) {
         echo '<td>-</td>';
     echo "</tr>";
 }
+mysqli_close($link);
 if (mysqli_num_rows($records) == 0)
 echo "<tr><td colspan=8>Еще нет записей</td></tr>";

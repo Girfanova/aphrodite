@@ -19,3 +19,4 @@ if (!empty($_POST['date-record']) and !empty($_POST['record-time']) and !empty($
     mysqli_query($link, $query);
 
 } 
+mysqli_close($link);

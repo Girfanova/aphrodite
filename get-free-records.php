@@ -45,6 +45,7 @@ if (isset($free_master)) {
     }
 } else
     echo "<option>Нет записи</option>";
+    mysqli_close($link);
 
 
 

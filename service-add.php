@@ -42,6 +42,7 @@
                     while ($category = mysqli_fetch_array($categories)) {
                         echo "<option>" . $category['category_name'] . "</option>";
                     }
+                    mysqli_close($link);
                     ?>
 
                 </select><br>

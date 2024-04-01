@@ -55,7 +55,7 @@ if (!empty($_POST['promotion_description']) and !empty($_POST['promotion_title']
 
         }
     }
-
+    mysqli_close($link);
     echo "<script>
 
     document.location.href = 'admin-panel.php';

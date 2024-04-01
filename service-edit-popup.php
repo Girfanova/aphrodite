@@ -31,6 +31,7 @@ if (isset ($_GET["service_id"])) {
                             else
                                 echo "<option>" . $category['category_name'] . "</option>";
                         }
+                        mysqli_close($link);
                         ?>
 
                     </select><br>
@@ -86,6 +87,7 @@ if (isset ($_GET["service_id"])) {
         </div>
     </div>
 </div>
+<?php mysqli_close($link);?>
 <script>
     $('#form-edit-service').on("submit", function () {
         var dataForm = $(this).serialize()

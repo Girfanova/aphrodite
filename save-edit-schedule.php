@@ -31,6 +31,7 @@ while ($k <= 6) {
     $k++;
 }
 echo 'График обновлен';
+mysqli_close($link);
 //    while ($row = mysqli_fetch_array($category_id)){
 //     $cat_id = $row["id"];
 //    };

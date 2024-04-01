@@ -20,8 +20,10 @@
                 </ul>
                 <?php
                 
-                if (isset($_SESSION["auth"])) 
-                echo "<button onclick=\"window.location.href = 'lk.php'\" class='header_lk_btn btn'>Личный кабинет</button>";
+                if (isset($_SESSION["auth"])) {
+                if ($_SESSION['user_role'] == 10) echo "<button onclick=\"window.location.href = 'admin.php'\" class='header_lk_btn btn'>Админ-панель</button>";
+                else echo "<button onclick=\"window.location.href = 'lk.php'\" class='header_lk_btn btn'>Личный кабинет</button>";
+                }
                 else echo '<button class="header_authorization_btn btn popup_autor">Войти/Авторизоваться</button>';
                 ?>
 
@@ -30,13 +32,16 @@
             <?php
                 if (isset($_SESSION["auth"])) {
                     require_once("connect_db.php");
-                    mysqli_select_db($link,"aphrodite") or die("Ошибка подключения к базе данных");
                     $query = "SELECT name FROM users WHERE id = ".$_SESSION['user_id'];
                     $result = mysqli_query($link, $query);
                     $user =  mysqli_fetch_array($result);
-                    
+                     if ($_SESSION['user_role'] == 10)
+                     echo " <a class='lk-open' href='admin.php'><div class='profile-circle' id = \"auth_circle\" class=\"popup_autor\" 
+                    style='width:35px; height:35px;font-size:1.5em; color:black; background-color:rgba(0,0,0,0); border:solid;'>".mb_substr($user['name'], 0, 1)."</div></a>";
+                    else
                     echo " <a class='lk-open' href='lk.php'><div class='profile-circle' id = \"auth_circle\" class=\"popup_autor\" 
                     style='width:35px; height:35px;font-size:1.5em; color:black; background-color:rgba(0,0,0,0); border:solid;'>".mb_substr($user['name'], 0, 1)."</div></a>";
+                
                 }
                 else echo "<div class=\"authorization\"><img src=\"Resources/авторизация-black.png\" id = \"auth\" class=\"popup_autor\" alt=\"авторизация\"
                 width=\"30\"></div>";

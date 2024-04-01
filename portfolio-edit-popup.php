@@ -8,7 +8,7 @@ if (isset($_GET["id"])) {
         $portfolio_description = $row['description'];
         $portfolio_picture = $row['name'];
     }
-   
+    mysqli_close($link);
 }
 ?>
 <div class="popup-portfolio-edit">
@@ -48,32 +48,14 @@ if (isset($_GET["id"])) {
 </div>
 <script>
     $('#form-edit-portfolio').on("submit", function () {
-        var formData = new FormData();
-        var file = $("#portfolio_picture")[0].files[0];
-        if (file != undefined) {
-            var type = file.name.split('.')[1];
-            if (!type.match(/(png)|(jpeg)|(jpg)|(gif)$/i)) {
-                alert('Неверный тип файла - ' + file.name + '.\nЗагрузите png, jpeg, jpg, или gif.');
-                return false;
-            }
-            else {
-                formData.append("portfolio_picture", file);
-            }
-        };
-        formData.append("portfolio_id", $('#portfolio_id').val());
-        formData.append("portfolio_description", $('#portfolio_description').val());
-        formData.forEach(function (value, key) {
-            console.log('key = ' + key + ', value = ' + value);
-        });
-
+       var portfolio_description = document.getElementById('portfolio_description').value;
+       var portfolio_id = document.getElementById('portfolio_id').value;
         $.ajax({
             url: 'save-edit-portfolio.php',
             type: 'POST',
-            contentType: false,
-            processData: false,
             async: false,
             dataType: 'html',
-            data: formData,
+            data: {portfolio_description:portfolio_description, portfolio_id: portfolio_id},
             success: function () {
                 var popup_service_edit = document.querySelector(".popup-portfolio-edit");
                 var close_serv = document.getElementById("close-portfolio-edit-btn");

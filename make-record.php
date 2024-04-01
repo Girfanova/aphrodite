@@ -12,13 +12,19 @@
 
     <style>
         .record {
-            padding: 5%;
+            margin: 12vh auto 5% auto;
             font-size: 1.5em;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            width:80%;
         }
 
         .record-title {
             font-size: 2em;
-            padding: 2%;
+            margin: 2%;
+            display: block;
         }
 
         .form-make-record {
@@ -31,21 +37,16 @@
             padding: 2%;
         }
 
-        .button {
-            background-color: #E7CCDE;
-            padding: 1%;
-            font-size: 1.1em;
-            border: 1px solid grey;
+        input{
+            margin: 2%;
         }
-
         select {
             display: inline;
             width: 89%;
         }
     </style>
     <div class="record">
-        <div class=''>
-            <a href=''><img src='Resources/back-btn.png'></a>
+            <a href='#' onclick='history.back(); return false;'><img src='Resources/back-btn.png'></a>
             <p class='record-title'>Запись на услугу</p>
             <?php
             session_start();
@@ -65,7 +66,7 @@
                 $master_id = $stroka["master_id"];
                 $duration = $stroka["duration_in_min"];
             }
-
+            mysqli_close($link);
             ?>
 
             <form class='form-make-record' id='form-make-record' onsubmit='return false;' method="post">
@@ -116,7 +117,7 @@
 
                 <input type="submit" value="Записаться" class="btn form-submit-btn">
             </form>
-        </div>
+        
     </div>
 
     <?php require_once("footer.php") ?>

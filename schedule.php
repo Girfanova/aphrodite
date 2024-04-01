@@ -43,6 +43,7 @@ display: none;
                     echo "<br>";
                     unset($times);
                 }
+                mysqli_close($link);
                 echo "<input type='submit'>";
                 echo "</form>";
                 

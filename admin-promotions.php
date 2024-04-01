@@ -43,6 +43,7 @@ while ($data = mysqli_fetch_array($promotions)) {
 }
 
 echo "</table>";
+
 ?>
 <script>
 	function promotion_edit(id) {

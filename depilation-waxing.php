@@ -22,10 +22,13 @@
                     $service = mysqli_query($link,"SELECT services.id, service, price, category_id, category_name FROM services, categories WHERE category_id=9 and category_id=categories.id");
                      
                      while ($stroka = mysqli_fetch_array($service)) {
-                        // echo '<div class="service-li-container">';
-                        echo "<li class='service'><span>".$stroka['service']."</span><span>".$stroka['price']." руб. <a href='make-record.php?id=".$stroka['id']."'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
-                        // echo '</div>';
+                        if (isset($_SESSION['auth']))
+                        echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. <a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
+                    else
+                        echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. <a href='#' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
+               
                      }
+                     mysqli_close($link);
                 ?>
                 </ul>
             

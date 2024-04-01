@@ -54,7 +54,9 @@ while ($row = mysqli_fetch_array($schedule)) {
 }
 echo " </tbody>
 
-</table>"; ?>
+</table>"; 
+mysqli_close($link);
+?>
 <script>
     function red(input) {
         input.parentNode.style.backgroundColor = '#ffb0b073';

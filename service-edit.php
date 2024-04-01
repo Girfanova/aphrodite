@@ -42,6 +42,7 @@ while ($row = mysqli_fetch_array($services)) {
                         else
                             echo "<option>" . $category['category_name'] . "</option>";
                     }
+                    mysqli_close($link);
                     ?>
 
                 </select><br>

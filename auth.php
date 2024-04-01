@@ -6,7 +6,7 @@
                     <div class="popup-choice__reg">Регистрация</div>                    
                 </div>
                 <div class="popup-form">
-                    <form class="popup-form__log" action="login.php" method="POST">
+                    <form class="popup-form__log" id='popup-form-log' onsubmit='return false;' action="login.php" method="POST">
                     <div class="label">Номер телефона</div><div class="input-box">
                         <input type="text" id="phone_log" name="phone_log" class="input" placeholder="+7 (000) 000-00-00" required><br>
                         <div class="input-message" for="phone_log"></div><br>
@@ -19,7 +19,7 @@
                         <input type="submit" value="Войти" class='btn'>  
                     </form>
 
-                    <form class="popup-form__reg" onsubmit="return checktruevalue();" action="registration.php" method="POST">
+                    <form class="popup-form__reg" id='popup-form-reg' onsubmit="return false;" method="POST">
                         <div class="label">Фамилия</div>
                         <div class="input-box">
                         <input type="text" id="surname" name="surname" oninput='checkInputText(this);' class="input" placeholder="Введите фамилию" title="Только кириллица" required><br>

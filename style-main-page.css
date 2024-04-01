@@ -58,11 +58,14 @@ hr{
 }
 .main_caption__text{    
     position: absolute;
-    top: 24%;
-    left:10%;
+    top: 29vh;
+    left:13vw;
     z-index: 2;
-    padding: 5%;
-    font-size:0.65vw;
+    margin: 5%;
+    font-size:1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .main_caption p{
     margin-bottom: 3%;
@@ -80,6 +83,48 @@ hr{
     font-weight: lighter;
     margin-top: -5%;
     
+}
+@media screen and (max-aspect-ratio: 1753/787) {
+    .main_caption__text{
+        font-size: 0.6vw;
+        width:50vw;
+    }
+   
+}
+@media screen and (max-aspect-ratio: 1560/787) {
+    .main_caption__text{
+        top:auto;
+        bottom: 25%;
+        height: 40vh;
+        width: 40vw;
+        font-size: 0.8vw;
+    }
+    .main_caption__title{
+        font-size: 10em;
+    }
+   
+}
+@media screen and (max-aspect-ratio: 564/930) {
+    .main_caption .afr{
+        left: -100vw;
+    }
+   
+}
+@media screen and (max-aspect-ratio: 807/687) {
+    .main_caption__text{
+       font-size:1.7vw;
+       bottom: 2vh;
+       left:10vw;
+       width: 60vw;
+       justify-content: center;
+    }
+    .main_caption .afr{
+        top:10vh;
+        height: 100vh; 
+    }
+    .main_caption p, .main_caption h1{
+        text-align: left;
+    }
 }
 .record{
     width:200px;
@@ -177,6 +222,7 @@ hr{
 .advantage img{
     width: 50px;
     /* padding-right:2%; */
+    top:12%;
     margin: auto;
     position: absolute;
     border-radius: 100%;
@@ -318,7 +364,7 @@ hr{
     width: 100px;
 }
 .services{
-    margin: 5% 5% 10% 5%;
+    margin: 10% 5% 5% 5%;
     position: relative;
 }
 .services__list{
@@ -329,21 +375,21 @@ hr{
     justify-content: space-evenly;
 }
 .service{
-    margin: 50px 0px;
+    margin: 7% 0px;
     position: relative;
     height: 280px;
-    width: 30%;
+    width: 33%;
 }
 .service img{
     /* width: 250px; */
-    width: 50%;
-    margin: 30px 25% 0;
+    width: 60%;
+    margin: 30px 20% 0;
     /* margin: 30px 40px 0; */
     transition: all 0.5s ease;
 }
 .service__description{
     /* width: 200px; */
-    width: 50%;
+    width: 60%;
     margin: auto;
     margin-top: 0;
     text-align: center;
@@ -351,22 +397,22 @@ hr{
     position: absolute;
     /* left: 19%;
     bottom: -19%; */
-    left:25%;
+    left:20%;
     bottom:auto;
 } 
 .service:hover img{
     position: relative;
     /* margin: 27px 32.5px 5px;
     width: 265px; */
-    width:55%;
+    width:65%;
     transition: all 0.5s ease;
     box-shadow: 0 80px 0 var(--third-color);
     /* box-shadow: 0px 0px 20px #766670; */
 }
 .service:hover .service__description{
-    font-size: 2.2rem;
+    font-size: 2rem;
     transition: all 0.5s ease;
-    left:27%;
+    left:22%;
     margin-top:2%;
 }
 
@@ -420,7 +466,7 @@ hr{
     
 }
 @media screen and (max-width:1200px) {
-    .main_caption__text{
+    /* .main_caption__text{
         bottom: 15vh;
         top: auto;
         right:10vw;
@@ -432,24 +478,24 @@ hr{
     .main_caption__text p{
         margin-top: 10vh;
     }
-    
+     */
 }
 
 @media screen and (max-width:1400px) {
    
 }
 @media screen and (max-width:1000px) {
-    .main_caption{
+    /* .main_caption{
        
     }
     .main_caption__text{
-        width: auto;
+        width: 90vw;
         font-size: 1em;
     }
     .main_caption__title{
         letter-spacing: -1px;
         font-size: 17vw;
-    }
+    } */
     .record{
         width: 60%;
         position: relative;
@@ -460,9 +506,9 @@ hr{
         margin: 6% 0;
     }
     .main_caption .afr{
-        height: 80%;
+        /* height: 80%; */
         /* top:10%; */
-        right: 5%;
+        /* right: 5%; */
     }
     
     marquee span{
@@ -485,6 +531,27 @@ hr{
     .discount__content{
         width: 90%;
     }
+    .service{
+        width:50%;
+    }
+    .service img{
+        width: 90%;
+        margin: 2% 5%;
+    }
+    .service:hover img{
+        width: 90%;
+        margin: 2% 5%;
+    }
+    .service__description{
+        font-size:0.88em;
+        left:10%;
+        width: 80%;
+    }
+    .service:hover .service__description{
+        font-size: 0.9em;
+        left:10%;
+        width: 80%;
+    }
     
 }
 @media screen and (orientation:portrait) {
@@ -497,32 +564,32 @@ hr{
     .advantages{
         font-size: 0.9em;
     }
-    .main_caption .afr{
+    /* .main_caption .afr{
         height: 75%;
         width: auto;
         top:15%;
         overflow: hidden;
-    }
+    } */
     .main_caption__text{
         /* width: 80%; */
-        height: 95vh;
+        /* height: 95vh; */
         /* top: auto;
         bottom:10vh; */
-        text-align: center;
+        /* text-align: center; */
         /* bottom: 20vh; */
-        padding: 0%;
+        /* padding: 0%; */
         /* display: flex;
         flex-direction: column;
         justify-content: flex-end; */
        
     }
     .main_caption h1{
-        margin-top:30vh;
+        /* margin-top:30vh; */
     }
     .main_caption__text p{
         /* text-align: left; */
         /* margin: 0; */
-        font-size: 2em;
+        /* font-size: 2em; */
     }
     .marquee__inner span{
         font-size:1.8em;

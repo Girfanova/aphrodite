@@ -1,3 +1,5 @@
+<?php session_start();
+    if (!isset($_SESSION['auth'])) header('Location:/');?>
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -8,14 +10,16 @@
 
 <body>
     <?php require_once("header.php") ?>
-    <?php require_once("auth.php") ?>
+    <?php require_once("auth.php") ;
+        
+    ?>
 
     <style>
         
     </style>
     <div class="lk">
         <?php
-        session_start();
+        
         require_once("connect_db.php");
         $user = mysqli_query($link, "SELECT users.id, surname, name, role_name, role_id, phone FROM users, roles WHERE users.id = " . $_SESSION["user_id"] . " and role_id=roles.id");
         echo "<div class='lk-profile'>";
@@ -60,11 +64,11 @@
                    </tr>";
             while ($stroka = mysqli_fetch_array($records_not_done)) {
                 echo "<tr>";
-                echo "<td width=33%> {$stroka['Услуга']} </td>";
-                echo "<td width=20%> {$stroka['Мастер']} </td>";
-                echo "<td width=20%>" . date('d.m.Y', strtotime($stroka['Дата'])) . " </td>";
-                echo "<td width=20%> " . date('H.i', strtotime($stroka['Время'])) . "</td>";
-                echo "<td width=20% align='center'><a href='canceled-record.php?id=" . $stroka['id'] . "&date=" . $stroka['Дата'] . "&time=" . $stroka['Время'] . "&master=" . $stroka['Мастер'] . "'><img src='Resources/canceled.png'></img></a></td>";
+                echo "<td> {$stroka['Услуга']} </td>";
+                echo "<td> {$stroka['Мастер']} </td>";
+                echo "<td>" . date('d.m.Y', strtotime($stroka['Дата'])) . " </td>";
+                echo "<td> " . date('H.i', strtotime($stroka['Время'])) . "</td>";
+                echo "<td align='center'><a href='canceled-record.php?id=" . $stroka['id'] . "&date=" . $stroka['Дата'] . "&time=" . $stroka['Время'] . "&master=" . $stroka['Мастер'] . "'><img src='Resources/canceled.png'></img></a></td>";
                 echo "</tr>";
                 $t = 1;
             }
@@ -83,10 +87,10 @@
             
             echo "<table class='record-table' id='done-table'>";
             echo "<tr>
-                   <th width=60%>Услуга</th>
-                   <th width=20%>Мастер</th>
-                   <th width=20%>Дата</th>
-                   <th width=30%>Время</th>
+                   <th>Услуга</th>
+                   <th>Мастер</th>
+                   <th>Дата</th>
+                   <th>Время</th>
                    </tr>";
             while ($stroka = mysqli_fetch_array($records_done)) {
                 echo "<tr>";
@@ -118,10 +122,10 @@
                    </tr>";
             while ($stroka = mysqli_fetch_array($records_canceled)) {
                 echo "<tr>";
-                echo "<td width=65%> {$stroka['Услуга']} </td>";
-                echo "<td width=20%> {$stroka['Мастер']} </td>";
-                echo "<td width=11%>" . date('d.m.Y', strtotime($stroka['Дата'])) . " </td>";
-                echo "<td width=9%> " . date('H.i', strtotime($stroka['Время'])) . "</td>";
+                echo "<td> {$stroka['Услуга']} </td>";
+                echo "<td> {$stroka['Мастер']} </td>";
+                echo "<td>" . date('d.m.Y', strtotime($stroka['Дата'])) . " </td>";
+                echo "<td> " . date('H.i', strtotime($stroka['Время'])) . "</td>";
                 echo "</tr>";
             }
             if (mysqli_num_rows($records_canceled) <= 0)

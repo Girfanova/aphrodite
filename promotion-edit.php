@@ -21,6 +21,7 @@ while ($row = mysqli_fetch_array($promotions)) {
     $promotion_description = $row['description'];
     $promotion_picture = $row['picture'];
 }
+mysqli_close($link);
 ?>
 <div class="popup-edit-service-container">
     <div class="popup-edit-service">

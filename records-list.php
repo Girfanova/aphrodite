@@ -55,6 +55,7 @@
 
             echo '</div>';
         }
+        mysqli_close($link);
         ?>
     </div>
 

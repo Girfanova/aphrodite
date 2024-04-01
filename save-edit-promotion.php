@@ -67,7 +67,7 @@ if (!empty($_POST['promotion_title']) and !empty($_POST['promotion_description']
 
     $query = "UPDATE promotions set title='$title', description= '$description' where id=$id";
     mysqli_query($link, $query) or die(mysqli_error($link));
-
+    mysqli_close($link);
     echo "<script>
 
             document.location.href = 'admin-panel.php';

@@ -9,6 +9,7 @@ if (isset($_GET["promotion_id"])) {
         $promotion_picture = $row['picture'];
     }
 }
+mysqli_close($link);
 ?>
 <div class="popup-promotion-edit">
     <div class="popup-close-btn"><span id="close-promotion-edit-btn">x</span></div>

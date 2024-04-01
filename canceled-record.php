@@ -7,6 +7,6 @@
 	$master_id=$master_id_zapros["id"];
     $zapros="UPDATE schedule SET is_busy=0 Where master_id='$master_id' and date_schedule='".$_GET['date']."' and time_schedule='".$_GET['time']."'";
     mysqli_query($link,$zapros);
-	echo "<script>alert(".$_GET['date'].");</script>";
+	
 	header('Location: lk.php');
 ?>
