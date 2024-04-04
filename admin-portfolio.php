@@ -10,7 +10,7 @@
 		<th>Уда&shyлить</th>
 	</tr>
 <?php
-require_once("connect_db.php");
+require("connect_db.php");
 
 $files = scandir('Resources/portfolio/'); //список файлов в small/
 $portfolio = mysqli_query($link, 'SELECT * FROM portfolio order by id desc');
@@ -28,7 +28,7 @@ while ($data = mysqli_fetch_array($portfolio)) {
 		</tr>";
 		// </div>";
 }
-
+mysqli_close($link);
 ?>
 </table>
 <script>

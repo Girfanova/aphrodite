@@ -7,7 +7,7 @@
 	}
 	</style>
 <?php
-require_once("connect_db.php");
+require("connect_db.php");
 $promotions = mysqli_query($link, 'SELECT * FROM promotions');
 echo "<script>console.log(11111);</script>";
 ?>
@@ -43,6 +43,7 @@ while ($data = mysqli_fetch_array($promotions)) {
 }
 
 echo "</table>";
+mysqli_close($link);
 ?>
 <script>
 	function promotion_edit(id) {

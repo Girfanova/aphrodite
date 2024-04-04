@@ -1,7 +1,7 @@
 <?php
 
 require_once("service-add-popup.php");
-require_once('connect_db.php');
+require('connect_db.php');
 $services = mysqli_query($link, 'SELECT services.id, category_id, service, price, category_name, duration_in_min, is_recording FROM services, categories where categories.id = category_id');
 $count = mysqli_query($link, 'SELECT category_id, COUNT(*) as count FROM   `services` GROUP  BY `category_id`');
 
@@ -55,6 +55,7 @@ while ($data_count = mysqli_fetch_array($count)) {
 }
 
 echo "</table>";
+mysqli_close($link);
 ?>
 <script>
 	function service_edit(id) {
