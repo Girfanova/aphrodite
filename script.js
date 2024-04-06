@@ -118,7 +118,7 @@ var open_btn = document.querySelector(".authorization");
 var open_header_btn = document.querySelector(".header_authorization_btn");
 var open_authorization_btn = document.querySelector(".authorization_btn");
 if (popup) {
-    reg_btn.addEventListener("click", function () {
+    if (reg_btn) reg_btn.addEventListener("click", function () {
         if (!reg_btn.classList.contains('popup-choice_checked')) {
             log_btn.classList.remove('popup-choice_checked');
             reg_btn.classList.toggle('popup-choice_checked');
@@ -126,7 +126,7 @@ if (popup) {
             reg_form.style.display = "block";
         }
     })
-    log_btn.addEventListener("click", function () {
+    if(log_btn) log_btn.addEventListener("click", function () {
         if (!log_btn.classList.contains('popup-choice_checked')) {
             reg_btn.classList.remove('popup-choice_checked');
             log_btn.classList.toggle('popup-choice_checked');
@@ -260,7 +260,7 @@ else {
 
 //Проверка полей входа
 var password_log = document.getElementById("password_log");
-password_log.addEventListener('input', passwordCheckcount_log);
+if (password_log) password_log.addEventListener('input', passwordCheckcount_log);
 function passwordCheckcount_log() {
     if (password_log.value.length < 8) {
         password_log.style.borderColor = "red";
@@ -331,13 +331,13 @@ function passwordCheckcount() {
         return true;
     }
 }
-password_reg.addEventListener('input', passwordCheckcount);
-password_reg2.addEventListener('input', passwordCheck);
+if (password_reg) password_reg.addEventListener('input', passwordCheckcount);
+if (password_reg2) password_reg2.addEventListener('input', passwordCheck);
 
 var auth_btn = document.getElementById("auth-btn");
 
 //обработка регистрации
-document.getElementById('popup-form-reg').addEventListener('submit', function (event) {
+if (document.getElementById('popup-form-reg')) document.getElementById('popup-form-reg').addEventListener('submit', function (event) {
     var surname = document.getElementById('surname').value;
     var name = document.getElementById('name').value;
     var password = password_reg.value;
@@ -359,7 +359,7 @@ document.getElementById('popup-form-reg').addEventListener('submit', function (e
     else { alert("Проверьте введенные данные"); return false; }
 })
 //обработка входа
-document.getElementById('popup-form-log').addEventListener('submit', function (event) {
+if (document.getElementById('popup-form-log')) document.getElementById('popup-form-log').addEventListener('submit', function (event) {
     var password = document.getElementById('password_log').value;
     var phone = document.getElementById('phone_log').value;
     if (/^\+7\(\d{3}\)\d{3}-\d{2}-\d{2}$/.test(phone)) {
@@ -664,6 +664,9 @@ for (let elem of elements) {
 function openPopup() {
     popup.classList.toggle("popup_open");
     document.body.style.overflow = "hidden";
+}
+function closePopup(){
+    
 }
 
 

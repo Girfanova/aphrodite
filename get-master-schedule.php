@@ -69,7 +69,8 @@ mysqli_close($link);
             // input.parentNode.parentNode.style.backgroundColor = 'white';
             input.classList.remove('check');
             input.parentNode.parentNode.querySelectorAll('td.td > input').forEach(element => {
-                element.readOnly = false;
+                // element.readOnly = false;
+                element.disabled = false;
                 });;
         }
         else {
@@ -78,7 +79,8 @@ mysqli_close($link);
             // input.parentNode.parentNode.style.backgroundColor = '#e7e6e6';
             input.classList.add('check');
             input.parentNode.parentNode.querySelectorAll('td.td > input').forEach(element => {
-                element.readOnly = true;
+                // element.readOnly = true;
+                element.disabled = true;
                 });;
         }
     };
@@ -88,7 +90,7 @@ mysqli_close($link);
             if (input.classList.contains('check')){
                 input.parentNode.parentNode.style.backgroundColor = '#e7e6e6';
                 input.parentNode.parentNode.querySelectorAll('td.td > input').forEach(element => {
-                    element.readOnly = true;
+                    element.disabled = true;
                 });;
 
             }

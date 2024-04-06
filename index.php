@@ -40,7 +40,6 @@
 
 <body>
     <?php require_once("header.php") ?>
-    <?php require_once("auth.php") ?>
     <div class="content">
         <div class="main_caption parallax">
             <div class="main_caption__backgr"></div>

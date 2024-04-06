@@ -5,7 +5,6 @@
 <?php require_once('head.php') ?>
 </head>
 <?php require_once('header.php') ?>
-<?php require_once('auth.php') ?>
 <style>
 .img-container-404 {
 width: 40%;

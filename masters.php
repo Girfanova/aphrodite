@@ -2,18 +2,17 @@
 <html lang="ru">
 
 <head>
-    <?php require_once("head.php") ?>
+    <?php require_once ("head.php") ?>
     <link rel="stylesheet" href="style-pages.css" type="text/css">
 </head>
 
 <body>
-    <?php require_once("header.php") ?>
-    <?php require_once("auth.php") ?>
+    <?php require_once ("header.php") ?>
     <style>
 
     </style>
     <?php
-    require_once("connect_db.php");
+    require_once ("connect_db.php");
     $masters = mysqli_query($link, 'SELECT * FROM masters');
     ?>
     <div class="masters-container">
@@ -22,72 +21,99 @@
             <a href="lk.php"><img src='Resources\back-btn.png'></a>
             <p class="popup-edit-service_title">Мастера</p>
             <select id="master-list" onchange="show_master_schedule(this);">
-            <?php
-            $k=0;
-            while ($row = mysqli_fetch_array($masters)) {
-                if ($k== 0) { $k= 1; $first_m=$row['id']; 
-                    echo "<option value=".$row['id']." class='master' selected>" . $row['name'] . " " . $row['surname']."</option>";
+                <?php
+                $k = 0;
+                while ($row = mysqli_fetch_array($masters)) {
+                    if ($k == 0) {
+                        $k = 1;
+                        $first_m = $row['id'];
+                        echo "<option value=" . $row['id'] . " class='master' selected>" . $row['name'] . " " . $row['surname'] . "</option>";
+                    } else
+                        echo "<option value=" . $row['id'] . " class='master'>" . $row['name'] . " " . $row['surname'] . "</option>";
+
                 }
-                else
-                echo "<option value=".$row['id']." class='master'>" . $row['name'] . " " . $row['surname']."</option>";
-                    
-            }
-            mysqli_close($link);
-            ?>
+                mysqli_close($link);
+                ?>
 
             </select>
-            <!-- <a href="add-master.php" class="master">Добавить мастера</a>
-            <a href="add-master.php" class="master">Удалить мастера</a> -->
-            <a href="add-master.php" class="master">Редактировать мастера</a>
+            <a onclick='get_info_master();' class="master">Редактировать мастера</a>
         </div>
         <div class="schedule-list">
             <form id='form-schedule' onsubmit='return false;' method='post'>
-               <div id='schedule-master'></div>
+                <div id='schedule-master'></div>
                 <input type="submit" value="Сохранить" class="btn form-submit-btn">
             </form>
         </div>
     </div>
-
-    <?php require_once("footer.php") ?>
+        <?php require_once ("footer.php") ?>
     <script>
-        $("document").ready(function(){
+        $("document").ready(function () {
             let id = $('#master-list').val();
             console.log(id);
             $.ajax({
-            url: "get-master-schedule.php",
-            data: {id : id},
-            success: function (html) {
-                $("#schedule-master").html(html);
-            }
-        });
+                url: "get-master-schedule.php",
+                data: { id: id },
+                success: function (html) {
+                    $("#schedule-master").html(html);
+                }
+            });
         })
-        function show_master_schedule(select){
+        function show_master_schedule(select) {
             let id = select.value;
             $.ajax({
-            url: "get-master-schedule.php",
-            data: {id : id},
-            success: function (html) {
-                $("#schedule-master").html(html);
-            }
-        });
+                url: "get-master-schedule.php",
+                data: { id: id },
+                success: function (html) {
+                    $("#schedule-master").html(html);
+                }
+            });
         }
-        $('#form-schedule').on("submit", function(){
-        var dataForm = $(this).serialize();
-        console.log(dataForm);
-        $.ajax({
-			url: 'save-edit-schedule.php',         /* Куда отправить запрос */
-			method: 'post',             /* Метод запроса (post или get) */
-            async: false,
-			dataType: 'html',          /* Тип данных в ответе (xml, json, script, html). */
-			data:dataForm,     /* Данные передаваемые в массиве */
-			success: function (data) {   /* функция которая будет выполнена после успешного запроса.  */
-				alert(data); /* В переменной data содержится ответ от index.php. */
-			}
-		});
-    })
-    $('#start-0').on('input', function(){
-        console.log('hello');
-    })
+        $('#form-schedule').on("submit", function () {
+            var dataForm = $(this).serialize();
+            console.log(dataForm);
+            $.ajax({
+                url: 'save-edit-schedule.php',         /* Куда отправить запрос */
+                method: 'post',             /* Метод запроса (post или get) */
+                async: false,
+                dataType: 'html',          /* Тип данных в ответе (xml, json, script, html). */
+                data: dataForm,     /* Данные передаваемые в массиве */
+                success: function (data) {   /* функция которая будет выполнена после успешного запроса.  */
+                    alert(data); /* В переменной data содержится ответ от index.php. */
+                }
+            });
+        })
+        $('#start-0').on('input', function () {
+            console.log('hello');
+        })
+        function get_info_master() {
+            var id = document.getElementById('master-list').value;
+            $.ajax({
+                method: 'post',
+                data: { id: id },
+                url: "edit-master.php",
+                dataType: 'json',
+                success: function (html) {
+                    console.log(html);
+                    document.querySelector('.popup').classList.toggle('popup_open');
+                    document.querySelector('.popup-title').innerHTML = 'Редактирование мастера';
+                    html.forEach(element => {
+                        var categoryBtn = document.createElement("input");
+                        categoryBtn.type = 'checkbox';
+                        categoryBtn.value = element["id_category"];
+                        categoryBtn.name = 'category';
+                        categoryBtn.id = 'category' + element["id_category"];
+                        var categoryLabel = document.createElement("label");
+                        categoryLabel.innerHTML = element['category_name'];
+                        categoryLabel.setAttribute('for', 'category' + element["id_category"]);
+                        document.getElementById('popup-form-body').appendChild(categoryBtn);
+                        document.getElementById('popup-form-body').appendChild(categoryLabel);
+                    });
+                    console.log(html[0]['name']);
+
+                }
+            });
+            //открываем модалку с мастером
+        }
     </script>
 </body>
 

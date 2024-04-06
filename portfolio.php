@@ -15,8 +15,6 @@
 
 <body>
     <?php require_once ("header.php") ?>
-    <?php require_once ("auth.php") ?>
-
     <div class="content-page">
         <div class="gallery">
             <?php

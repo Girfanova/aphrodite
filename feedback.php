@@ -30,8 +30,6 @@
         }
             </style>
     <?php require_once("header.php")?>
-    <?php require_once("auth.php")?>
-        
         <div style="padding:10vh;" class="content-page">
         <div class="feedback-title">Свяжитесь с нами</div>
         <form class="popup-form__feedback" action="feedback.php" method="POST">

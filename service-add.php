@@ -8,7 +8,6 @@
 
 <body>
     <?php require_once("header.php") ?>
-    <?php require_once("auth.php") ?>
     <style>
     .popup-edit-service-container {
         position: absolute;

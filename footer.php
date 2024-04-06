@@ -1,3 +1,5 @@
+<?php if (!isset($_SESSION['auth'])) require_once('auth.php');
+ else require_once('popup.php');?>
 <footer>
         <div class="container">
             <div id="map-container">
@@ -29,9 +31,7 @@
             </div>
             
         </div>
-    </div>
-    <!-- <center><p style='margin:2% 0 0 0;'>Изображение обложки сайта от <a href="https://ru.freepik.com/free-photo/aesthetic-background-of-greek-bust_59773060.htm#query=%D0%B0%D1%84%D1%80%D0%BE%D0%B4%D0%B8%D1%82%D0%B0&position=7&from_view=search&track=ais">&nbspFreepik</a></p></center> -->
-        
+    </div>  
     </footer>
     <script language="JavaScript" type="text/javascript" src="js/jquery.min.js"></script>
     <script language="JavaScript" type="text/javascript" src="js/jquery.maskedinput.js"></script>

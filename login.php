@@ -12,12 +12,12 @@ if (!empty (!empty ($_POST['phone_log']) and !empty ($_POST['password_log']))) {
     $p = password_hash($password, PASSWORD_ARGON2I);
     if (!empty ($user)) {
         if (password_verify($password, $get_password)) {
-            echo "Успешная авторизация";
             session_start();
             $_SESSION["auth"] = 'true';
             $_SESSION["user_role"] = $user['role_id'];
             $_SESSION["user_id"] = $user['id'];
             $_SESSION["user_name"] = $user['name'];
+            echo 'Успешный вход';
         } else
             echo "Неверный пароль";
     } else {
