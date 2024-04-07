@@ -1,3 +1,4 @@
+<?php require_once('popup.php'); ?>
 <footer>
         <div class="container">
             <div id="map-container">

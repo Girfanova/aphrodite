@@ -118,25 +118,10 @@ var open_btn = document.querySelector(".authorization");
 var open_header_btn = document.querySelector(".header_authorization_btn");
 var open_authorization_btn = document.querySelector(".authorization_btn");
 if (popup) {
-    reg_btn.addEventListener("click", function () {
-        if (!reg_btn.classList.contains('popup-choice_checked')) {
-            log_btn.classList.remove('popup-choice_checked');
-            reg_btn.classList.toggle('popup-choice_checked');
-            log_form.style.display = "none";
-            reg_form.style.display = "block";
-        }
-    })
-    log_btn.addEventListener("click", function () {
-        if (!log_btn.classList.contains('popup-choice_checked')) {
-            reg_btn.classList.remove('popup-choice_checked');
-            log_btn.classList.toggle('popup-choice_checked');
-            reg_form.style.display = "none";
-            log_form.style.display = "block";
-        }
-    })
     close_btn.addEventListener("click", function () {
         popup.classList.remove("popup_open");
         document.body.style.overflow = "visible";
+        document.querySelector('.form-body').innerHTML='';
     })
     if (open_btn) {
         open_btn.addEventListener("click", function () {
@@ -160,6 +145,11 @@ if (popup) {
             document.body.style.overflow = "hidden";
         })
     }
+}
+function openPopup(){ 
+    var popup = document.querySelector('.popup');
+    popup.classList.toggle("popup_open");
+    document.body.style.overflow = "hidden";
 }
 
 var offset = 0;
