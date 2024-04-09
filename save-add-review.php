@@ -4,8 +4,9 @@ if ($_POST['review_content'] == '' or $_POST['review_author'] == '' or $_POST['r
 }
 else {
     require_once('connect_db.php');
-    $query = "UPDATE reviews set content='".$_POST['review_content']."', name='".$_POST['review_author']."', date='".$_POST['review_date']."' where id=". $_POST['review_id'];
+     var_dump($_POST);
+    $query = "INSERT INTO reviews (content, name, date) values ('".$_POST['review_content']."', '".$_POST['review_author']."', '".$_POST['review_date']."')";
     mysqli_query($link, $query) or die("Ошибка");
     mysqli_close($link);
-    echo "Данные обновлены";
+    echo "Отзыв добавлен";
 }
