@@ -13,33 +13,15 @@
         <?php
         session_start();
         require_once ("connect_db.php");
-        // // $user = mysqli_query($link, "SELECT users.id, surname, name, role_name, role_id, phone FROM users, roles WHERE users.id = " . $_SESSION["user_id"] . " and role_id=roles.id");
-        // // echo "<div class='lk-profile'>";
-        // // echo "<H1 class='lk-title'>Профиль</H1>";
-        // // while ($stroka = mysqli_fetch_array($user)) {
-        // //     echo "<div class='profile-table'>";
-        // //     echo "<div class='profile-circle'>" . mb_substr($stroka['name'], 0, 1) . "</div>";
-        // //     echo "<div>
-        // //             <div><b> {$stroka['surname']} {$stroka['name']}</b></div>
-        // //             <div>Телефон: {$stroka['phone']}</div>
-        // //             <div class='lk-role'><b> {$stroka['role_name']}</b></div>
-        // //         </div>";
-        
-        // //     echo "<div><div><a class='btn profile-btn' href='edit-profile.php'>Редактировать</a></div><div><a class='profile-btn btn' href='exit.php'>Выйти</a></div></div>";
-        
-        // //     echo "</div>";
-        // // }
-        // echo "</div>";
         $user = mysqli_query($link, "SELECT users.id, surname, name, role_name, role_id, phone FROM users, roles WHERE users.id = " . $_SESSION["user_id"] . " and role_id=roles.id");
         $portfoio = mysqli_query($link, "SELECT *  FROM portfolio");
+        if ($_SESSION['user_role']== 10){
         
-        echo "<div class='lk-profile'>";
-        echo "<H1 class='lk-title' style='padding-right:50%;'>Административная панель</H1>";
+        echo "<div class='lk-profile' style='flex-wrap:nowrap;'>";
+        echo "<H1 class='lk-title' style='padding-right:5%;'>Административная панель</H1>";
+        echo "<a class='profile-btn btn' href='exit.php' style='width:20%'>Выйти</a>";
         echo "<div id='popup' class='admin-popup'></div>";
-        if ($_SESSION['user_role']== 10)
-        echo "<a class='profile-btn btn' href='exit.php' >Выйти</a>";
         echo "</div>";
-        if ($_SESSION["user_role"] == 10) {
 
 
             echo "
@@ -69,11 +51,7 @@
                     </div>";
 
         } else {
-            echo 'Для доступа к административной панели введите логин и пароль:';
-            echo '<label for="admin-login">Логин</label>';
-            echo '<input type=text id="admin-login">';
-            echo '<label for="admin-password">Пароль</label>';
-            echo '<input type=text id="admin-password">';
+            header('Location:index.php');
 
         }
         ?>

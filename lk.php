@@ -1,5 +1,6 @@
 <?php session_start();
-    if (!isset($_SESSION['auth'])) header('Location:/');?>
+    if (!isset($_SESSION['auth'])) header('Location:/');
+    if (($_SESSION['user_role'])==10) header('Location:admin.php');?>
 <!DOCTYPE html>
 <html lang="ru">
 

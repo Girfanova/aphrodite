@@ -13,7 +13,7 @@ mysqli_close($link);
 ?>
 <div class="popup-promotion-edit">
     <div class="popup-close-btn"><span id="close-promotion-edit-btn">x</span></div>
-    <div class="popup-content">
+    <div class="popup-content" height='100%'>
 
         <div class="popup-form">
             <p class="popup-edit-service_title">Редактирование акции</p>

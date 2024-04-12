@@ -17,7 +17,8 @@ width: 60%;
 filter: drop-shadow(15px 10px 6px #392b1d);
 }
 .text-404{
-width: 60%;
+/* width: 60%; */
+width: 100%;
 height: 100%;
 align-items: center;
 display: flex;
@@ -73,9 +74,9 @@ body{
 
 <body>
     <div class="container-404">
-        <div class="img-container-404">
+        <!-- <div class="img-container-404">
             <img class='img-404' src='Resources/sad-afr.png' alt='Грустная афродита'>
-        </div>
+        </div> -->
         <div class="text-404">
             <h1>404</h1>
             <p>Страница не найдена...</p>

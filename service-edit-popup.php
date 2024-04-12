@@ -87,7 +87,6 @@ if (isset ($_GET["service_id"])) {
         </div>
     </div>
 </div>
-<?php mysqli_close($link);?>
 <script>
     $('#form-edit-service').on("submit", function () {
         var dataForm = $(this).serialize()
