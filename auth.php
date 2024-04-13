@@ -1,5 +1,5 @@
 <div class="popup">
-            <div class="popup-close-btn"><span id="close-btn">x</span></div>
+            <div class="popup-close-btn"><span id="close-btn">&times;</span></div>
             <div class="popup-content">
                 <div class="popup-choice">
                     <div class="popup-choice__log popup-choice_checked">Вход</div>
