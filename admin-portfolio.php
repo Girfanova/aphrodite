@@ -21,7 +21,7 @@ while ($data = mysqli_fetch_array($portfolio)) {
 	$id = $data['id'];
 	// echo "<div class='portfolio-photo'>
 			echo	"<tr id='admin-portfolio".$id."'>
-			<td class='img-td'><a data-fancybox='images' data-caption='$description' href='Resources/portfolio/$name'><img class='portfolio-img' title='$description' src='Resources/portfolio/$name'><img></a></td>
+			<td class='img-td'><a href='Resources/portfolio/$name'><img class='portfolio-img' title='$description' src='Resources/portfolio/$name'><img></a></td>
 				<td>$description</td>
 				<td><img onclick=portfolio_edit('" . $id . "'); src='Resources/edit.png' title='Редакировать' class='portfolio-photo-delete'></td>
 				<td><img onclick=portfolio_delete('" . $id . "'); src='Resources/delete.png' title='Удалить' class='portfolio-photo-delete'></td>
@@ -38,7 +38,7 @@ mysqli_close($link);
 	// window.VirableLoading = 0;
 	//This Virables Is Globals (Объявляем переменные)
 	//Download Pictures (Загрузка изображений)
-	//Create Object FormData (Создание объекта типа form)
+	//Create Object FormData (Создание объекта типа form) 
 	function add_photo() {
 		var formData = new FormData();
 		//Если выбранные изображение больше 10

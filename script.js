@@ -117,7 +117,7 @@ var open_header_btn = document.querySelector(".header_authorization_btn");
 var open_authorization_btn = document.querySelector(".authorization_btn");
 if (popup) {
     close_btn.addEventListener("click", function () {
-       closePopup();
+        closePopup();
     })
     if (open_btn) {
         open_btn.addEventListener("click", function () {
@@ -142,15 +142,15 @@ if (popup) {
         })
     }
 }
-function openPopup(){ 
+function openPopup() {
     var popup = document.querySelector('.popup');
     popup.classList.toggle("popup_open");
     document.body.style.overflow = "hidden";
 }
-function closePopup(){
+function closePopup() {
     popup.classList.remove("popup_open");
     document.body.style.overflow = "visible";
-    document.querySelector('.form-body').innerHTML='';
+    document.querySelector('.form-body').innerHTML = '';
 }
 var offset = 0;
 var sliderLine = document.querySelector(".slider__items");
@@ -231,7 +231,7 @@ if (document.location.pathname == '/') {
         if (scrollY > window.screen.height / 5) {
             black_bgr_menu();
         } else {
-            clear_bgr_menu(); 
+            clear_bgr_menu();
         }
     })
 
@@ -239,7 +239,7 @@ if (document.location.pathname == '/') {
     header.addEventListener("mouseout", function () {
         if ((scrollY < window.screen.height / 5) & (!menu.classList.contains('active')))
             clear_bgr_menu();
-        
+
     });
 }
 else {
@@ -394,11 +394,11 @@ if (canc_label) canc_label.addEventListener("click", function () {
 var portfolio_label = document.getElementById('portfolio-table-label');
 var service_label = document.getElementById('service-table-label');
 var promotions_label = document.getElementById('promotions-table-label');
-var contacts_label = document.getElementById('users-table-label');
+var contacts_label = document.getElementById('reviews-table-label');
 var portfolio_table = document.getElementById('portfolio-table');
 var service_table = document.getElementById('service-table');
 var promotions_table = document.getElementById('promotions-table');
-var contacts_table = document.getElementById('users-table');
+var contacts_table = document.getElementById('reviews-table');
 
 
 if (portfolio_label) portfolio_label.addEventListener("click", function () {
@@ -443,7 +443,6 @@ if (contacts_label) contacts_label.addEventListener("click", function () {
         portfolio_label.classList.remove('label-checked');
         promotions_label.classList.remove('label-checked');
         service_label.classList.remove('label-checked');
-        contacts_label.classList.remove('label-checked');
         contacts_table.style.display = "block";
         service_table.style.display = "none";
         promotions_table.style.display = "none";
@@ -454,13 +453,13 @@ if (contacts_label) contacts_label.addEventListener("click", function () {
 $('#form-add-service').on("submit", function () {
     var dataForm = $(this).serialize();
     $.ajax({
-        url: 'save-add-service.php',        
-        method: 'post',             
+        url: 'save-add-service.php',
+        method: 'post',
         async: false,
-        dataType: 'html',         
-        data: dataForm,     
-        success: function (data) {   
-            alert(data); 
+        dataType: 'html',
+        data: dataForm,
+        success: function (data) {
+            alert(data);
             var popup_service_edit = document.querySelector(".popup-service-add");
             popup_service_edit.classList.remove("popup_open");
             document.body.style.overflow = "visible";
@@ -477,7 +476,7 @@ $('#form-add-service').on("submit", function () {
     });
     return false;
 })
-function add_promotion(){
+function add_promotion() {
     var formData = new FormData();
     var file = $("#promotion_picture")[0].files[0];
     if (file != undefined) {
@@ -495,7 +494,7 @@ function add_promotion(){
     formData.append("promotion_description", $('#promotion_description').val());
     formData.forEach(function (value, key) {
         console.log('key = ' + key + ', value = ' + value);
-    }); 
+    });
 
     $.ajax({
         url: 'save-add-promotion.php',
@@ -523,7 +522,7 @@ function add_promotion(){
     return false;
 }
 $('#form-add-promotion').on("submit", function () {
-    
+
 });
 
 $('#form-make-record').on("submit", function () {
@@ -550,9 +549,9 @@ $('#form-make-record').on("submit", function () {
 
 
 });
-function onEntry(entry){
+function onEntry(entry) {
     entry.forEach(change => {
-        if (change.isIntersecting){
+        if (change.isIntersecting) {
             change.target.classList.add('about-salon-show');
         }
         else {
@@ -560,81 +559,121 @@ function onEntry(entry){
         }
     })
 }
-var options = {threshold: [0.2]};
-var observer =  new  IntersectionObserver (onEntry, options);
+var options = { threshold: [0.2] };
+var observer = new IntersectionObserver(onEntry, options);
 var elements = document.querySelectorAll('.about-salon');
-for (let elem of elements){
+for (let elem of elements) {
     observer.observe(elem);
-} 
+}
 
-
-
-
-// else {
-//     formData.append("promotion_title", $('#promotion_title').val());
-//     formData.append("promotion_id", $('#promotion_id').val());
-//     formData.append("promotion_description", $('#promotion_description').val());
-//     formData.forEach(function (value, key) {
-//         console.log('key = ' + key + ', value = ' + value);
-//     });
-
-//     $.ajax({
-//         url: 'save-add-promotion.php',
-//         type: 'POST',
-//         contentType: false,
-//         processData: false,
-//         async: false,
-//         dataType: 'html',
-//         data: formData,
-//         success: function (data) {
-//             console.log(data);
-//         }
-//     });
-
-//     return false;
-// }
-
-//(Если не соответствует тип)
-
-//Иначе
-
-// var dataForm = $(this).serialize()
-// $.ajax({
-//     url: 'save-add-promotion.php',         /* Куда отправить запрос */
-//     method: 'post',             /* Метод запроса (post или get) */
-//     async: false,
-//     dataType: 'html',          /* Тип данных в ответе (xml, json, script, html). */
-//     data:dataForm,     /* Данные передаваемые в массиве */
-//     success: function (data) {   /* функция которая будет выполнена после успешного запроса.  */
-//         alert(data); /* В переменной data содержится ответ от index.php. */
-//     }
-// });
-//переключение между вкладками
-/*const showTab = (elTabBtn) => {
-    const elTab = elTabBtn.closest('.tab');
-    if (elTabBtn.classList.contains('tab-btn-active')) {
-      return;
+if (document.querySelector('#reviews-table')) {
+    function getReviews() {
+        $.ajax({
+            method: 'post',
+            url: 'admin-reviews.php',
+            dataType: 'html',
+            async: 'false',
+            success: function (res) {
+                document.querySelector('#reviews-table').innerHTML = res;
+            }
+        })
     }
-    const targetId = elTabBtn.dataset.targetId;
-    const elTabPane = elTab.querySelector(`.tab-pane[data-id="${targetId}"]`);
-    if (elTabPane) {
-      const elTabBtnActive = elTab.querySelector('.tab-btn-active');
-      elTabBtnActive.classList.remove('tab-btn-active');
-      const elTabPaneShow = elTab.querySelector('.tab-pane-show');
-      elTabPaneShow.classList.remove('tab-pane-show');
-      elTabBtn.classList.add('tab-btn-active');
-      elTabPane.classList.add('tab-pane-show');
-    }
-  }
-  
-  document.addEventListener('click', (e) => {
-    if (e.target && !e.target.closest('.tab-btn')) {
-      return;
-    }
-    const elTabBtn = e.target.closest('.tab-btn');
-    showTab(elTabBtn);
-  });*/
+    getReviews();
+}
+//обработка добавления, удаления и редактирования отзывов
 
+function review_edit(id) {
+    $.ajax({
+        method: 'post',
+        data: { id: id },
+        url: 'get-edit-review.php',
+        type: 'json',
+        async: false,
+        success: function (res) {
+            openPopup();
+            let review = JSON.parse(res);
+            document.querySelector('.popup-title').innerHTML = 'Редактирование отзыва';
+            document.querySelector('.form-body').insertAdjacentHTML('afterbegin', `
+            <label>Содержание</label>
+            <div>
+            <textarea style="min-height:200px; width:96%; height:auto; resize:none; padding:2%;" id='review_content' name='review_content' required>${review['content']}</textarea>
+            </div>
+            <label>Автор</label>
+            <input type='text' id='review_author' name='review_author' value='${review['name']}' required>
+            <label>Дата</label>
+            <input type='date' id='review_date' name='review_date' value='${review['date']}' required>
+            <input type='text' id='review_id' name='review_id' style='visibility:hidden;' value='${review['id']}'>
+            `);
+            function saveEditReview() {
+                var author = document.querySelector('#review_author').value;
+                var date = document.querySelector('#review_date').value;
+                var content = document.querySelector('#review_content').value;
+                var id = document.querySelector('#review_id').value;
+                var dataForm = $(this).serialize();
+                $.ajax({
+                    method: 'post',
+                    dataType: 'html',
+                    url: 'save-edit-review.php',
+                    async: false,
+                    data: dataForm,
+                    success: function (res) {
+                        alert(res);
+                        closePopup();
+                        document.querySelector('#form').removeEventListener('submit', saveEditReview);
+                        document.getElementById('review_name' + id).innerHTML = author;
+                        document.getElementById('review_content' + id).innerHTML = content;
+                        document.getElementById('review_date' + id).innerHTML = date;
+                    }
+                })
+            }
+            document.querySelector('#form').addEventListener('submit', saveEditReview);
+        }
+    })
+}
+
+function review_add() {
+    openPopup();
+    document.querySelector('.popup-title').innerHTML = 'Добавление отзыва';
+    document.querySelector('.form-body').insertAdjacentHTML('afterbegin', `
+            <label>Содержание</label>
+            <div>
+            <textarea style="min-height:200px; width:96%; height:auto; resize:none; padding:2%;" id='review_content' name='review_content' required></textarea>
+            </div>
+            <label>Автор</label>
+            <input type='text' id='review_author' name='review_author' value='' required>
+            <label>Дата</label>
+            <input type='date' id='review_date' name='review_date' value='' required>
+            `);
+    document.querySelector('#form').addEventListener('submit', saveAddReview)
+    function saveAddReview() {
+        var dataForm = $(this).serialize();
+        $.ajax({
+            method: 'post',
+            dataType: 'html',
+            url: 'save-add-review.php',
+            async: false,
+            data: dataForm,
+            success: function (res) {
+                alert(res);
+                closePopup();
+                document.querySelector('#form').removeEventListener('submit', saveAddReview);
+                getReviews();
+            }
+        })
+    }
+}
+function review_delete(id) {
+    if (confirm('Хотите удалить отзыв?')) {
+        $.ajax({
+            method: 'post',
+            data: { id: id },
+            url: 'review-delete.php',
+            success: function () {
+                $('#admin-review' + id).remove();
+            }
+        })
+    }
+}
 
 
 

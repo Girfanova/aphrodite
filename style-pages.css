@@ -564,7 +564,9 @@ li span img {
     display: none;
     overflow-x: auto;
 }
+.record-table table{
 
+}
 .table-visible {
     display: block;
 }
@@ -580,10 +582,11 @@ li span img {
 .record-table td {
     text-align: center;
     border-top: 1px solid #C3C9CD;
+    padding: 0.5% 0;
 }
 
 .record-table th {
-    padding: 1%;
+    padding: 0.5%;
 }
 
 .record-table tr {
@@ -691,6 +694,14 @@ li span img {
 .popup-title{
     font-size: 2em;
     font-family: var(--title-font);
+    margin: 4% 0;
+}
+.form-body{
+    display: flex;
+    flex-direction: column;
+}
+.form-body label{
+    margin: 3% auto 1% auto;
 }
 .popup-edit-service-container {
     margin: 8% 0 8% 0;

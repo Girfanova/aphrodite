@@ -36,7 +36,7 @@
                     <p class='lk-title label-checked' id='portfolio-table-label'>Портфолио</p>
                     <p class='lk-title' id='service-table-label'>Услуги</p>
                     <p class='lk-title' id='promotions-table-label'>Акции</p>
-                    <p class='lk-title' id='users-table-label'>Отзывы</p>
+                    <p class='lk-title' id='reviews-table-label'>Отзывы</p>
                     </div>
                     <div class='record-table table-visible' id='portfolio-table'>";
             require_once ('admin-portfolio.php');
@@ -50,8 +50,7 @@
             require_once ('admin-promotions.php');
             echo "
                     </div>";
-            echo "<div class='record-table'id='users-table'>";
-            require_once ('admin-reviews.php');
+            echo "<div class='record-table'id='reviews-table'>";
             echo "
                     </div>";
 

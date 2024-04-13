@@ -105,16 +105,23 @@ a:hover{
 .popup-close-btn{
     color: rgb(var(--second-color-rgb));
     position: absolute;
-    height: 8vh;
+    height: 10vh;
     width: 100%;
     text-align: right;
     background-color:rgba(var(--first-color-rgb));
     font-size: 4rem;
-
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 .popup-close-btn span{
+    transition: all 0.5s ease;
     cursor: pointer;
     padding: 0 2% 0 0;
+}
+.popup-close-btn span:hover{
+    color: #92979a;
+    transition: all 0.5s ease;
 }
 .popup-content{
     width: 35%;
