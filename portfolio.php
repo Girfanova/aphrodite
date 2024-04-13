@@ -17,7 +17,7 @@
             <?php
             require_once ("connect_db.php");
             $photos = mysqli_query($link, 'SELECT * from portfolio order by id desc');
-            $k=1;
+            $count=1;
             $gallery_photo_arr = scandir('Resources/portfolio');
             while ($photo = mysqli_fetch_array($photos)) {
                 $photo_name = $photo['name'];
@@ -28,8 +28,8 @@
                     if ($gallery_photo_arr[1] == $gallery_photo)
                         continue;
                     if ($photo_name == $gallery_photo){
-                        echo "<div class='portfolio-image' onclick='openModal();currentSlide($k);'><img class='gallery-photo hover-shadow' title='$photo_desc' src='Resources/portfolio/$gallery_photo'><img></div>";
-                        $k++;
+                        echo "<div class='portfolio-image' onclick='openModal();currentSlide($count);'><img class='gallery-photo hover-shadow' title='$photo_desc' src='Resources/portfolio/$gallery_photo'><img></div>";
+                        $count++;
                     }
                 }
             }
@@ -46,7 +46,7 @@
 
                 echo "
                     <div class='mySlides'>
-                        <div class='numbertext'>1 / $k</div>
+                        <div class='numbertext'>$k / $count</div>
                         <img src=Resources/portfolio/".$photo_name." class='popup-photo'>
                         <p class='portf-desc'>$photo_desc</p>
                     </div>
