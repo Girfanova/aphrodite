@@ -1,9 +1,9 @@
 <?php
-if (!empty ($_POST['category_name']) and !empty ($_POST['service_name']) and !empty ($_POST['price'])) {
+if (!empty ($_POST['category_name']) and !empty ($_POST['service_name']) and !empty ($_POST['service_price'])) {
     //получение данных
-    $price = $_POST['price'];
+    $price = addslashes($_POST['service_price']);
     $category_id = $_POST['category_name'];
-    $service_name = $_POST['service_name'];
+    $service_name = addslashes($_POST['service_name']);
     //подключение к БД
     require_once ("connect_db.php");
     //формирование и выполнение запроса

@@ -3,8 +3,8 @@ session_start();
 if (!empty($_POST['promotion_title']) and !empty($_POST['promotion_description'])) {
     require_once("connect_db.php");
     $id = $_POST['promotion_id'];
-    $title = $_POST['promotion_title'];
-    $description = $_POST['promotion_description'];
+    $title = addslashes($_POST['promotion_title']);
+    $description = addslashes($_POST['promotion_description']);
     if ($_FILES['promotion_picture']['name']) {
         $picture = $_FILES['promotion_picture']['name'];
     }
@@ -66,12 +66,5 @@ if (!empty($_POST['promotion_title']) and !empty($_POST['promotion_description']
     $query = "UPDATE promotions set title='$title', description= '$description' where id=$id";
     mysqli_query($link, $query) or die(mysqli_error($link));
     mysqli_close($link);
-    echo "<script>
 
-            document.location.href = 'admin-panel.php';
-            </script>";
-
-} else
-    echo "<script>
-    alert('Пустые поля');
-    </script>";
+} 

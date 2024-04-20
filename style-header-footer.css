@@ -130,7 +130,7 @@ a:hover{
     background-color: rgb(var(--second-color-rgb));
     color: rgb(var(--first-color-rgb));
     font-size: 1.2rem;
-    
+    border-radius: 5px;
     margin: auto;
     text-align: center;
     
@@ -306,8 +306,11 @@ body{
 }
 
 .hr{
-    background: linear-gradient(to right, rgb(var(--second-color-rgb)), rgba(var(--first-color-rgb), 0.5), rgb(var(--second-color-rgb))), linear-gradient(to bottom, rgb(var(--second-color-rgb)), rgba(var(--second-color-rgb), 0.6), rgb(var(--second-color-rgb)));
-    height:3px;
+    /* background: linear-gradient(to right, rgb(var(--second-color-rgb)), rgba(var(--first-color-rgb), 0.5), rgb(var(--second-color-rgb))), linear-gradient(to bottom, rgb(var(--second-color-rgb)), rgba(var(--second-color-rgb), 0.6), rgb(var(--second-color-rgb))); */
+    /* background: var(--third-color); */
+    /* border:0; */
+    /* height:3px; */
+    /* border-color: var(--third-color); */
 }
 footer{
     background-color: var(--fifth-color);

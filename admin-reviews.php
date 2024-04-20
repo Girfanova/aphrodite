@@ -1,5 +1,5 @@
 <div class='add-service-btn' onclick='review_add();'>Добавить отзыв</div>
-<table id='review-table' border=1 >
+<table id='review-table' class='admin-table' >
 	<tr>
 		<th>Содержание</th>
 		<th>Автор</th>

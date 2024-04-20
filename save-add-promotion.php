@@ -1,8 +1,8 @@
 <?php
 session_start();
 if (!empty($_POST['promotion_description']) and !empty($_POST['promotion_title'])) {
-    $title = $_POST['promotion_title'];
-    $description = $_POST['promotion_description'];
+    $title = addslashes($_POST['promotion_title']);
+    $description = addslashes($_POST['promotion_description']);
     $picture = $_FILES['promotion_picture']['name'];
     
     require_once("connect_db.php");
@@ -40,29 +40,17 @@ if (!empty($_POST['promotion_description']) and !empty($_POST['promotion_title']
 
                 $mime = strtolower(end($getMime)); //тип фала
                 $name = reset($getMime); //имя файла
-                echo '<script language = "javascript">' .
-                    'alert("Файл загружен");' .
-                    'window.location.href="promotion-add.php"' .
-                    '</script>';
-
             } else {
                 echo '<script language = "javascript">' .
                 'alert("'.$check.'");' .
                 'window.location.href="promotion-add.php"' .
-                '</script>';;
+                '</script>';
             }
 
 
         }
     }
     mysqli_close($link);
-    echo "<script>
 
-    document.location.href = 'admin-panel.php';
-    </script>";
-
-} else
-    echo "<script>
-    alert('Пустые поля');
-    </script>";
+}
 

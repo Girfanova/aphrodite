@@ -1,18 +1,12 @@
 <?php
-if (!empty ($_POST['category_name']) and !empty ($_POST['service_name']) and !empty ($_POST['price'])) {
-//
-    $price = $_POST['price'];
+if (!empty ($_POST['category_name']) and !empty ($_POST['service_name']) and !empty ($_POST['service_price'])) {
+    $price = addslashes($_POST['service_price']);
     $category_name = $_POST['category_name'];
-    $service_name = $_POST['service_name'];
+    $service_name = addslashes($_POST['service_name']);
     $service_id = $_POST['service_id'];
     require_once ("connect_db.php");
-    $category_id = mysqli_query($link, "SELECT id from categories where category_name='" . $category_name . "'");
-    while ($row = mysqli_fetch_array($category_id)) {
-           $cat_id = $row["id"];
-    }
-    ;
-    $query = "UPDATE services set service='" . $service_name . "', price=$price, category_id=$cat_id where id=$service_id";
-    mysqli_query($link, $query);
+    $query = "UPDATE services set service='" . $service_name . "', price='".$price."', category_id=$category_name where id=$service_id";
+    mysqli_query($link, $query) or die($link);
     echo "Данные обновлены";
     mysqli_close($link);
 

@@ -21,7 +21,7 @@
                     $service = mysqli_query($link,"SELECT services.id, service, price, category_id, category_name FROM services, categories WHERE category_id=9 and category_id=categories.id");
                      
                      while ($stroka = mysqli_fetch_array($service)) {
-                        echo "<li class='service'><span>".$stroka['service']."</span><span>".$stroka['price']." руб. </span></li>";
+                        echo "<li class='service'><span>".$stroka['service']."</span><span>".$stroka['price']." </span></li>";
                      }
                 ?>
                 </ul>

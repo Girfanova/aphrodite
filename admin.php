@@ -39,15 +39,15 @@
                     <p class='lk-title' id='reviews-table-label'>Отзывы</p>
                     </div>
                     <div class='record-table table-visible' id='portfolio-table'>";
-            require_once ('admin-portfolio.php');
+            // require_once ('admin-portfolio.php');
             echo "
                     </div>";
             echo "<div class='record-table' id='service-table'>";
-            require_once ('admin-service.php');
+            // require_once ('admin-service.php');
             echo "
                     </div>";
             echo "<div class='record-table'id='promotions-table'>";
-            require_once ('admin-promotions.php');
+            // require_once ('admin-promotions.php');
             echo "
                     </div>";
             echo "<div class='record-table'id='reviews-table'>";
@@ -71,54 +71,6 @@
     <?php require_once ("footer.php")?>
 
     <script src="js/jquery.fancybox.min.js"></script>
-    <script>
-
-        
-        //для внедр
-        function portfolio_delete(id) {
-            if (confirm("Вы хотите удалить фото?")){
-            $.ajax({
-                url: '/portfolio-photo-delete.php',        
-                method: 'get',             
-                async: false,
-                dataType: 'html',          
-                data: { id_image: id },     
-                success: function (data) {   
-                    $('#admin-portfolio' + id).remove(); 
-                }
-            });
-        }
-        }
-        function service_delete(id, service_id) {
-            if (confirm("Вы хотите удалить услугу?")){
-            $.ajax({
-                url: '/service-delete.php',
-                method: 'get',
-                async: false,
-                dataType: 'html',
-                data: { service_id: id },
-                success: function (data) {
-                    $('#admin-service' + id).remove(); 
-                    let row = $('#admin-category-service' + service_id).attr('rowspan');
-                    $('#admin-category-service' + service_id).attr('rowspan', row-'1');
-                }
-            });}
-        }
-        function promotion_delete(id) {
-            if (confirm("Вы хотите удалить акцию?")){
-            $.ajax({
-                url: '/promotion-delete.php',        
-                method: 'get',            
-                async: false,
-                dataType: 'html',         
-                data: { promotion_id: id },     
-                success: function (data) {   
-                    $('#admin-promotion' + id).remove(); 
-                }
-            });
-        }
-        }
-    </script>
     
 </body>
 

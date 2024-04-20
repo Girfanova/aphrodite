@@ -23,28 +23,28 @@
                 $service = mysqli_query($link, "SELECT services.id, service, price, category_id, category_name FROM services, categories WHERE category_id=10 and category_id=categories.id");
                 echo "<li class='service__title'>Стрижка</li>";
                 while ($stroka = mysqli_fetch_array($service)) {
-                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. </span></li>";
+                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . "</span></li>";
                 }
 
                 $service = mysqli_query($link, "SELECT services.id, service, price, category_id, category_name FROM services, categories WHERE category_id=11 and category_id=categories.id");
                 echo "<li class='service__title'>Укладка</li>";
                 while ($stroka = mysqli_fetch_array($service)) {
-                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. </span></li>";
+                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . "</span></li>";
                  }
                 $service = mysqli_query($link, "SELECT services.id, service, price, category_id, category_name FROM services, categories WHERE category_id=12 and category_id=categories.id");
                 echo "<li class='service__title'>Окрашивание</li>";
                 while ($stroka = mysqli_fetch_array($service)) {
-                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. </span></li>";
+                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . "</span></li>";
                  }
                 $service = mysqli_query($link, "SELECT services.id, service, price, category_id, category_name FROM services, categories WHERE category_id=13 and category_id=categories.id");
                 echo "<li class='service__title'>Химическая завивка</li>";
                 while ($stroka = mysqli_fetch_array($service)) {
-                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. </span></li>";
+                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . "</span></li>";
                  }
                 $service = mysqli_query($link, "SELECT services.id, service, price, category_id, category_name FROM services, categories WHERE category_id=14 and category_id=categories.id");
                 echo "<li class='service__title'>Парфюмерия</li>";
                 while ($stroka = mysqli_fetch_array($service)) {
-                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. </span></li>";
+                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . "</span></li>";
                 }
 
                 ?>
@@ -56,7 +56,7 @@
                 $service = mysqli_query($link, "SELECT services.id, service, price, category_id, category_name FROM services, categories WHERE category_id=15 and category_id=categories.id");
 
                 while ($stroka = mysqli_fetch_array($service)) {
-                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. </span></li>";
+                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " </span></li>";
                 }
                 ?>
             </ul>
@@ -67,7 +67,7 @@
                 $service = mysqli_query($link, "SELECT services.id, service, price, category_id, category_name FROM services, categories WHERE category_id=16 and category_id=categories.id");
 
                 while ($stroka = mysqli_fetch_array($service)) {
-                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. </span></li>";
+                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " </span></li>";
                 }
                 ?>
             </ul>

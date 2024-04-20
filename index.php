@@ -2,26 +2,31 @@
 <html lang="ru">
 
 <head>
-<?php require_once("head.php")?>
-    <link rel="stylesheet" href="style-main-page.css" type="text/css">
+    <?php require_once ("head.php") ?>
     <link rel="stylesheet" href="css/simple-adaptive-slider.css" type="text/css">
+    <link rel="stylesheet" href="style-main-page.css" type="text/css">
 
 </head>
 <style>
-    .itcss__item {
+    .itcss__item1 {
         background-size: cover;
         /* border-radius: 30px; */
-        margin: 0 0.5%; 
+        margin: 0 0.5%;
         flex: 0 0 99%;
     }
-    .itcss__items{
+
+    .itcss__items1 {
         width: 100%;
     }
-    .itcss{
-        max-width:100%;
+
+    .itcss1 {
+        max-width: 100%;
     }
-    .itcss__wrapper{
-        background-color: rgba(0,0,0,0);
+    .itcss2{
+        padding: 3% 0;
+    }
+    .itcss__wrapper {
+        background-color: rgba(0, 0, 0, 0);
         overflow: visible;
     }
     .discount-text-container {
@@ -39,7 +44,7 @@
 </style>
 
 <body>
-    <?php require_once("header.php") ?>
+    <?php require_once ("header.php") ?>
     <div class="content">
         <div class="main_caption parallax">
             <div class="main_caption__backgr"></div>
@@ -54,7 +59,7 @@
 
                     <!--     <button class="record btn">Записаться</button>  -->
                 </div>
-                <img class="afr parallax-item" src="Resources/afr1.png" alt="афродита">
+                <img class="afr parallax-item" src="Resources/afr2.png" alt="афродита">
             </div>
         </div>
         <div class="marquee">
@@ -87,40 +92,45 @@
                     <img src="Resources/coffee.svg" alt="преимущество1">
                     <div class='advantage-text'>
                         <div class='advantage-title'>Уютная гостеприимная атмосфера</div>
-                        <div class='advantage-description'>У нас вы можете легко расслабиться и наслаждаться преображением.</div>
+                        <div class='advantage-description'>У нас вы можете легко расслабиться и наслаждаться
+                            преображением.</div>
                     </div>
                 </div>
                 <div class="advantage">
                     <img src="Resources/full-time.svg" alt="преимущество5">
                     <div class='advantage-text'>
-                    <div class='advantage-title'>Открыты 362 дня в году</div>
-                    <div class='advantage-description'>Закрываемся лишь на 3 дня в новогодние праздники.<br>Время работы - с 9:00 до 21:00</div>
-                </div>
+                        <div class='advantage-title'>Открыты 362 дня в году</div>
+                        <div class='advantage-description'>Закрываемся лишь на 3 дня в новогодние праздники.<br>Время
+                            работы - с 9:00 до 21:00</div>
+                    </div>
                 </div>
                 <div class="advantage">
                     <img src="Resources/location.svg" alt="преимущество3">
                     <div class='advantage-text'>
-                    <div class='advantage-title'>Удобное расположение</div>
-                    <div class='advantage-description'>Находимся рядом с остановками общественного транспорта, чтобы вам было удобно добираться до нас.</div>
-                </div>
+                        <div class='advantage-title'>Удобное расположение</div>
+                        <div class='advantage-description'>Находимся рядом с остановками общественного транспорта, чтобы
+                            вам было удобно добираться до нас.</div>
+                    </div>
                 </div>
                 <div class="advantage">
                     <img src="Resources/sanitaizer.svg" alt="преимущество2">
                     <div class='advantage-text'>
-                    <div class='advantage-title'>Соответствие всем требованиям санитарно-эпидемиологических норм</div>
-                    <div class='advantage-description'>Большое внимание уделяется обработке инструментов, поверхностей и
-                        воздуха. Мастера регулярно
-                        проходят медосмотр и сдают санминимум.</div>
-                </div>
+                        <div class='advantage-title'>Соответствие всем требованиям санитарно-эпидемиологических норм
+                        </div>
+                        <div class='advantage-description'>Большое внимание уделяется обработке инструментов,
+                            поверхностей и
+                            воздуха. Мастера регулярно
+                            проходят медосмотр и сдают санминимум.</div>
+                    </div>
                 </div>
                 <div class="advantage">
                     <img src="Resources/reliability.svg" alt="преимущество4">
                     <div class='advantage-text'>
-                    <div class='advantage-title'>У нас работают надежные специалисты</div>
-                    <div class='advantage-description'>Наши мастера с большим стажем работы, владеющие самыми
-                        разнообразными современными техниками в
-                        парикмахерском искусстве, косметологии и области маникюра.</div>
-                </div>
+                        <div class='advantage-title'>У нас работают надежные специалисты</div>
+                        <div class='advantage-description'>Наши мастера с большим стажем работы, владеющие самыми
+                            разнообразными современными техниками в
+                            парикмахерском искусстве, косметологии и области маникюра.</div>
+                    </div>
                 </div>
             </div>
 
@@ -130,30 +140,31 @@
 
             <div class="discount__rectangle">
                 <!-- <div class="discount__content"> -->
-                    <div class="itcss" style='height:100%;'>
-                        <div class="itcss__wrapper" style='height:100%;'>
-                            <div class="itcss__items" style='height:100%;'>
-                                <?php
-                                require_once("connect_db.php");
-                                $promotions = mysqli_query($link, "SELECT * FROM promotions");
-                                while ($row = mysqli_fetch_assoc($promotions)) {
-                                    $path = "Resources/promotions/" . $row['picture']."";
-                                    // echo "<script>console.log($path);</script>";
-                                    echo "<div style='background-image:url(" . $path . "); ' class='itcss__item'>
+                <div class="itcss itcss1" style='height:100%;'>
+                    <div class="itcss__wrapper itcss__wrapper1" style='height:100%;'>
+                        <div class="itcss__items itcss__items1" style='height:100%;'>
+                            <?php
+                            require ("connect_db.php");
+                            $promotions = mysqli_query($link, "SELECT * FROM promotions");
+                            while ($row = mysqli_fetch_assoc($promotions)) {
+                                $path = "Resources/promotions/" . $row['picture'] . "";
+                                // echo "<script>console.log($path);</script>";
+                                echo "<div style='background-image:url(" . $path . "); ' class='itcss__item itcss__item1'>
                                 <div class='discount-text-container'>
                                 <div class='discount__text1'>" . $row['title'] . "</div>
                                 <div class='discount__text2'>" . $row['description'] . "</div>
                                 </div>
                             </div>";
-                                }
-                                ?>
-                            </div>
+                            }
+                            mysqli_close($link);
+                            ?>
                         </div>
-                        <!-- Стрелки для перехода к предыдущему и следующему слайду -->
-                        <a class="itcss__control itcss__control_prev" href="#" role="button" data-slide="prev"></a>
-                        <a class="itcss__control itcss__control_next" href="#" role="button" data-slide="next"></a>
                     </div>
-                    <!-- <div class="discount-container">
+                    <!-- Стрелки для перехода к предыдущему и следующему слайду -->
+                    <a class="itcss__control itcss__control_prev" href="#" role="button" data-slide="prev"></a>
+                    <a class="itcss__control itcss__control_next" href="#" role="button" data-slide="next"></a>
+                </div>
+                <!-- <div class="discount-container">
                         <div class="discount__amount">-10%</div>
                         <div class="discount__text1">Скидка на первое посещение!</div>
                         <div class="discount__text2">Авторизуйтесь, чтобы воспользоваться предложением</div>
@@ -182,8 +193,7 @@
             <h2 class="services__title">Наши услуги</h2>
             <div class="services__list">
                 <div class="service">
-                    <a href="hairdressing.php"><img src="Resources/hair.jpg"
-                            alt="парикмахерские услуги"></a>
+                    <a href="hairdressing.php"><img src="Resources/hair.jpg" alt="парикмахерские услуги"></a>
                     <div class="service__description">Парикмахерские услуги</div>
                 </div>
                 <div class="service">
@@ -191,8 +201,7 @@
                     <div class="service__description">Ногтевой сервис</div>
                 </div>
                 <div class="service">
-                    <a href="eyelashes-and-eyebrows.php"> <img src="Resources/brow.jpg"
-                            alt="брови-ресницы"></a>
+                    <a href="eyelashes-and-eyebrows.php"> <img src="Resources/brow.jpg" alt="брови-ресницы"></a>
                     <div class="service__description">Ресницы и брови</div>
                 </div>
                 <div class="service">
@@ -207,15 +216,15 @@
         </div>
 
         <!-- <div class="about-salon"> -->
-            <!-- <h2 class="about-salon__title">Наша цель</h2> -->
-            <!-- <div class='greek-top'></div> -->
-            <!-- <div class='greek-bottom'></div> -->
-            <!-- <div class="container">
+        <!-- <h2 class="about-salon__title">Наша цель</h2> -->
+        <!-- <div class='greek-top'></div> -->
+        <!-- <div class='greek-bottom'></div> -->
+        <!-- <div class="container">
                 <div class='about-salon__image-container'> -->
-                    <!-- <div class='greek-left'></div> -->
-                    <!-- <div class='greek-right'></div> -->
+        <!-- <div class='greek-left'></div> -->
+        <!-- <div class='greek-right'></div> -->
 
-                    <!-- <img src="Resources/aphrodite-photo.jpg" class="about-salon__image" alt="о нас">
+        <!-- <img src="Resources/aphrodite-photo.jpg" class="about-salon__image" alt="о нас">
                 </div>
                 <div class="about-salon__description">
                     <p>
@@ -223,7 +232,7 @@
                         <br><br>Приходите и убедитесь в этом сами!
                     </p> -->
 
-                    <!-- <p>Наш салон красоты - это целый мир, в котором Вы можете провести время с комфортом в дали от
+        <!-- <p>Наш салон красоты - это целый мир, в котором Вы можете провести время с комфортом в дали от
                         повседневной деятельности.
                         В этом Вам помогут наш обходительный и вежливый персонал, располагающая обстановка и
                         расслабляющая, мелодичная музыка.
@@ -232,7 +241,7 @@
                         идеалу. Вашему идеалу.
                         Для нас по-настоящему важно, чтобы клиенты не сомневались в нашей компетентности, поэтому мы
                         предлагаем только лучшее.</p> -->
-                    <!-- </div>
+        <!-- </div>
                     
                 </div>
             </div> -->
@@ -240,44 +249,51 @@
         <div class="reviews">
             <h2 class="reviews__title">Что о нас говорят</h2>
             <div class="container">
-                <div class="reviews__content">
-                    <div class="review">
-                        <div class="review__text">Стригусь уже здесь почти год и за всё время, которое я ходил сюда,
-                            могу сказать, что это лучшая парикмахерская, в которой я был, всё очень классно. Коллектив
-                            отличный, вежливый, особенно могу выделить Руслана (именно к нему и хожу), просто суперский
-                            парикмахер, отлично сделает стрижку, так ещё и может подсказать разные другие варианты
-                            стрижек, которые могут вам подойти. Так же Руслан хороший собеседник, с ним можно поговорить
-                            почти на все темы, если не на все, конечно. В общем всем советую стричься именно в данной
-                            парикмахерской, лучше не видел.</div>
-                        <div class="review__author">- Вадим</div>
+            <div class="itcss itcss2">
+                        <div class="itcss__wrapper">
+                            <div class="itcss__items">
+                                <?php
+                                require ("connect_db.php");
+                                $reviews = mysqli_query($link, "SELECT * FROM reviews");
+                                while ($row = mysqli_fetch_assoc($reviews)) {
+                                    echo "<div class='itcss__item'>
+                                <div class='review'>
+                                <div class='review__author'>" . $row['name'] . "
+                                <!--<span class='review__author-status'> &#8212; посетитель</span>-->   
+                                </div>
+                                
+                                <p class='review__text'><span class='quotes'>&#10077;</span> " . $row['content'] . " <span class='quotes'>&#10078;</span></p>
+                                
+                                <div class='review__date'>" . date_format(date_create($row['date']), 'd.m.Y') . "</div>
+                                </div>
+                            </div>";
+                                }
+                                mysqli_close($link);
+                                ?>
+                            </div>
+                        </div>
+                        <!-- Стрелки для перехода к предыдущему и следующему слайду -->
+                        <a class="itcss__control itcss__control_prev" href="#" role="button" data-slide="prev"></a>
+                        <a class="itcss__control itcss__control_next" href="#" role="button" data-slide="next"></a>
                     </div>
-                    <div class="review">
-                        <div class="review__text">Посетила данный салон, осталась очень довольна работой специалиста по
-                            пирсингу Альфии. Очень внимательный и вежливый подход к клиенту, ответила на все вопросы,
-                            дала рекомендации по уходу за проколами, работа выполнена качественно, с учётом всех
-                            пожеланий клиента👍🏽</div>
-                        <div class="review__author">- Регина</div>
-                    </div>
-                    <div class="review">
-                        <div class="review__text">Ходила в массажный салон к Светлане на ручной и аппаратный массаж.
-                            Удобное место расположения, у нее комфортно и уютно. Светлана настоящий мастер своего дела.
-                            Я очень довольна результатом. Кожа на лице заметно посвежела и разгладилась, овал лица стал
-                            более четкий. Убрали целлюлит, ноги стали более подтянутые и стройные. Советую массаж тем, у
-                            кого есть боли в спине. Превосходный результат! Всем рекомендую этот салон.</div>
-                        <div class="review__author">- Лейсан</div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
-    <?php require_once("footer.php") ?>
+    <?php require_once ("footer.php") ?>
     <script src='js/simple-adaptive-slider.js'></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // инициализация слайдера
-            new ItcSimpleSlider('.itcss', {
+            // инициализация 1 слайдера
+            new ItcSimpleSlider('.itcss1', {
                 loop: true,
                 autoplay: true,
+                interval: 5000,
+                swipe: true,
+            });
+            // инициализация 2 слайдера
+            new ItcSimpleSlider('.itcss2', {
+                loop: true,
+                autoplay: false,
                 interval: 5000,
                 swipe: true,
             });

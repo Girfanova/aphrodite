@@ -12,7 +12,8 @@
     <?php require_once ("header.php") ?>
 
     <div class="content-page">
-        <div class="about-us__title">Портфолио</div>
+        <div class="portfolio__title">Портфолио</div>
+        <hr>
         <div class="gallery">
             <?php
             require_once ("connect_db.php");
@@ -47,7 +48,7 @@
                 echo "
                     <div class='mySlides'>
                         <div class='numbertext'>$k / $count</div>
-                        <img src=Resources/portfolio/".$photo_name." class='popup-photo'>
+                        <img src='Resources/portfolio/".$photo_name."' class='popup-photo'>
                         <p class='portf-desc'>$photo_desc</p>
                     </div>
                     ";
