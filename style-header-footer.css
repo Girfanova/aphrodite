@@ -75,6 +75,7 @@ a:hover{
     padding:1% 2%;
     font-size:1.1em;
     border:none;
+    border-radius: 3px;
 }
 .profile-circle{
     background-color:var(--fourth-color);
@@ -245,7 +246,8 @@ nav li{
     height: 100%;
 }
 .menu_link{
-   padding-top:3.5vh;
+   margin-top:3.5vh;
+   display: inline-block;
 }
 .menu_list{
     display: flex;

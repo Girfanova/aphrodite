@@ -74,7 +74,7 @@ menu_burg.addEventListener('click', function () {
         document.querySelector('.menu_sub-list').classList.remove('active');
         menu.classList.remove('active');
         menu_burg.classList.remove('active');
-        authorization_btn.classList.remove('active');
+        if (authorization_btn) authorization_btn.classList.remove('active');
         if (window.scrollY < window.screen.height / 3) {
             // header.style.background = "rgba(0, 0, 0, 0.558)";
             header.classList.add('header-active');

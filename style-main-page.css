@@ -206,12 +206,11 @@
     border: 1px solid var(--third-color);
     padding: 10% 6% 8% 6%;
     margin-top: 10%;
-    /* border-radius: 25px; */
+    border-radius: 3px;
     box-shadow: rgba(var(--first-color-rgb), 0.2) 10px 10px 20px;
     /* border:rgb(var(--first-color-rgb)) 3px solid; */
     height:100%;
     width:100%;
-    /* transition: all 0.5s ease; */
 
 }
 .advantage-title{
@@ -429,14 +428,10 @@
 .reviews{
  margin: 10% 0 10% 0;
  background: linear-gradient(var(--third-color), rgba(255, 255, 255, 0));
- border-radius: 15px 15px 0 0;
+ /* border-radius: 15px 15px 0 0; */
  overflow: hidden;
 }
-.reviews .container{
-    width: 90%;
-    margin: auto;
 
-}
 .reviews__title{
     text-align: center;
     padding: 5% 0 2% 0;
@@ -678,7 +673,7 @@
     
     .review{
         font-size: 1.6em;
-        margin: 2% 0 8% 0;
+        margin: 2% auto 8% auto;
         width: 80%;
     }
 }

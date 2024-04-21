@@ -18,7 +18,7 @@
         object-fit: contain;
     }
     .itcss__wrapper{
-        border-radius: 12px;
+        border-radius: 3px;
     }
     .control-container-prev,
     .control-container-next {
@@ -97,7 +97,7 @@
                 </p>
             </div>
         </div>
-        <hr class='hr'>
+        <!-- <hr class='hr'> -->
         <div class="about-salon">
             <div class="about-salon__description">
                 <p>
@@ -116,7 +116,7 @@
                 <img src="Resources/lamp1.jpg" class="about-salon__image" alt="о нас">
             </div>
         </div>
-        <hr class='hr'>
+        <!-- <hr class='hr'> -->
         <div class="about-salon">
             <div class='about-salon-1__image-container'>
                 <div class="slider-container">
@@ -146,7 +146,7 @@
                 </p>
             </div>
         </div>
-        <hr class='hr'>
+        <!-- <hr class='hr'> -->
         <div class="about-salon">
             <div class="about-salon-1__description" width=30%>
                 <p>
@@ -176,17 +176,16 @@
                 </div>
             </div>
         </div>
-        <hr class='hr'>
-        <div class="about-us">
-        </div>
-        <div class="about-us__text">
-            Наши мастера всегда готовы помочь с выбором подходящей услуги и дать
-            советы по уходу за волосами, ногтями, кожей лица и тела.
-            "Афродита" – это место, где каждый сможет почувствовать себя богиней, раскрыть свою
-            красоту и насладиться высоким качеством услуг. <br>
-           <i> Мы всегда рады видеть вас у нас и гарантируем незабываемый опыт преображения!</i>
-            <br>
-            <br>
+        <!-- <hr class='hr'> -->
+        <div class="about-salon">
+            <div class="about-us__text">
+                Наши мастера всегда готовы помочь с выбором подходящей услуги и дать
+                советы по уходу за волосами, ногтями, кожей лица и тела.
+                "Афродита" – это место, где каждый сможет почувствовать себя богиней, раскрыть свою
+                красоту и насладиться высоким качеством услуг. <br><br>
+               <b> Мы всегда рады видеть вас у нас и гарантируем незабываемый опыт преображения!</b>
+              
+            </div>
         </div>
 
     </div>

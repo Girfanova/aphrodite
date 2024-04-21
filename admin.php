@@ -6,20 +6,7 @@
     <link rel="stylesheet" href="style-pages.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.min.css">
 </head>
-<style>
-.form-admin{
-    width: 30%;
-    min-width: 300px;
-    height:30vh;
-    margin: 5% auto;
-    display: flex;
-    border: 2px var(--third-color) solid;
-    padding: 5%;
-    border-radius: 10px;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
-</style>
+
 <body>
     <?php require_once ("header.php") ?>
     <div class="lk">
@@ -56,12 +43,12 @@
 
         } else {
             echo "<form class='form-admin' method='post' action='login.php'>";
-            echo '<p>Для доступа к административной панели введите логин и пароль:</p>';
+            // echo '<p>Для доступа к административной панели введите логин и пароль:</p>';
             echo '<label for="admin-login">Логин</label>';
             echo '<input type=text id="admin-login" name="login" required>';
             echo '<label for="admin-password">Пароль</label>';
             echo '<input type=password id="admin-password" name="password"  required>';
-            echo '<button type=submit class="form-submit-btn">Войти</button>';
+            echo '<button type=submit class="form-submit-btn btn">Войти</button>';
             echo '</form>';
         }
         ?>

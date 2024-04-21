@@ -8,6 +8,55 @@
 
 </head>
 <style>
+    .control-container-next,
+    .control-container-prev {
+        position: absolute;
+        top: 0;
+        font-size: 4rem;
+        font-weight: lighter;
+        color: rgb(var(--second-color-rgb));
+        width: 4vw;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        opacity: 0;
+        transition: all ease 0.5s;
+    }
+
+    .control-container-next {
+        right: 0;
+    }
+
+    .control-container-prev {
+        left: 0;
+    }
+
+    .discount__rectangle:hover .control-container-next,
+    .discount__rectangle:hover .control-container-prev {
+        opacity: 1;
+        transition: all ease 0.5s;
+
+    }
+    .reviews .container{
+        position: relative;
+    }
+    .reviews .container:hover .control-container-next,
+    .reviews .container:hover .control-container-prev {
+        opacity: 1;
+        transition: all ease 0.5s;
+
+    }
+
+    .itcss__control {
+        cursor: pointer;
+        width: 100%;
+        text-align: center;
+        /* text-shadow: 0px 0px 2px rgb(var(--first-color-rgb)); */
+        background-color: rgba(var(--first-color-rgb), 0.3);
+        /* background-color: var(--third-color); */
+        padding: 0;
+    }
+
     .itcss__item1 {
         background-size: cover;
         /* border-radius: 30px; */
@@ -22,13 +71,16 @@
     .itcss1 {
         max-width: 100%;
     }
-    .itcss2{
+
+    .itcss2 {
         padding: 3% 0;
     }
+
     .itcss__wrapper {
         background-color: rgba(0, 0, 0, 0);
         overflow: visible;
     }
+
     .discount-text-container {
         width: 100%;
         height: 100%;
@@ -136,8 +188,6 @@
 
         </div>
         <div class="discount">
-            <!-- <a class="discount__more" href="promotions.php">Все акции<span class="arrow"><span></span></span></a> -->
-
             <div class="discount__rectangle">
                 <!-- <div class="discount__content"> -->
                 <div class="itcss itcss1" style='height:100%;'>
@@ -160,33 +210,17 @@
                             ?>
                         </div>
                     </div>
-                    <!-- Стрелки для перехода к предыдущему и следующему слайду -->
-                    <a class="itcss__control itcss__control_prev" href="#" role="button" data-slide="prev"></a>
-                    <a class="itcss__control itcss__control_next" href="#" role="button" data-slide="next"></a>
                 </div>
-                <!-- <div class="discount-container">
-                        <div class="discount__amount">-10%</div>
-                        <div class="discount__text1">Скидка на первое посещение!</div>
-                        <div class="discount__text2">Авторизуйтесь, чтобы воспользоваться предложением</div>
-                        <?php
-                        // session_start();
-                        // if ($_SESSION['auth'] == true)
-                        //     echo "<button class='authorization_btn' disabled >Вы уже авторизованы</button>";
-                        // else
-                        //     echo " <button class='authorization_btn btn'>Авторизоваться</button>";
-                        ?>
-
-                    </div> -->
-                <!-- </div> -->
-                <!-- <div class="discount__content">
-                    <div class="possibilities">
-                        <div class="possibilities-title">После авторизации вам будут доступны:</div>
-                        <div class='pos'><img src='Resources/add.png'><span class="pos1">Онлайн-запись</span></div>
-                        <div class='pos'><img src='Resources/account.png'><span class="pos2">Личный кабинет</span></div>
-                        <div class='pos'><img src='Resources/history.png'><span class="pos3">История посещений</span>
-                        </div>
-                    </div>
-                </div> -->
+                <!-- Стрелки для перехода к предыдущему и следующему слайду -->
+                <div class='control-container-prev'>
+                    <div class="itcss__control itcss__control_prev" id='slider3-prev' href="" role="button"
+                        data-slide="prev">
+                        &#8249;</div>
+                </div>
+                <div class='control-container-next'>
+                    <div class="itcss__control itcss__control_next" id='slider3-next' href="" role="button"
+                        data-slide="next">&#8250;</div>
+                </div>
             </div>
         </div>
         <div class="services">
@@ -215,48 +249,17 @@
             </div>
         </div>
 
-        <!-- <div class="about-salon"> -->
-        <!-- <h2 class="about-salon__title">Наша цель</h2> -->
-        <!-- <div class='greek-top'></div> -->
-        <!-- <div class='greek-bottom'></div> -->
-        <!-- <div class="container">
-                <div class='about-salon__image-container'> -->
-        <!-- <div class='greek-left'></div> -->
-        <!-- <div class='greek-right'></div> -->
-
-        <!-- <img src="Resources/aphrodite-photo.jpg" class="about-salon__image" alt="о нас">
-                </div>
-                <div class="about-salon__description">
-                    <p>
-                        <span class="first-letter">Наша цель</span> - дарить красоту и придавать уверенность своим клиентам. У нас каждый сможет почувствовать себя богиней. 
-                        <br><br>Приходите и убедитесь в этом сами!
-                    </p> -->
-
-        <!-- <p>Наш салон красоты - это целый мир, в котором Вы можете провести время с комфортом в дали от
-                        повседневной деятельности.
-                        В этом Вам помогут наш обходительный и вежливый персонал, располагающая обстановка и
-                        расслабляющая, мелодичная музыка.
-                        У нас Вы сможете отвлечься от проблем и будничной суеты.<br><br>
-                        Мы ценим каждого нашего клиента. Основная цель нашей работы - это безостановочное стремление к
-                        идеалу. Вашему идеалу.
-                        Для нас по-настоящему важно, чтобы клиенты не сомневались в нашей компетентности, поэтому мы
-                        предлагаем только лучшее.</p> -->
-        <!-- </div>
-                    
-                </div>
-            </div> -->
-
         <div class="reviews">
             <h2 class="reviews__title">Что о нас говорят</h2>
             <div class="container">
-            <div class="itcss itcss2">
-                        <div class="itcss__wrapper">
-                            <div class="itcss__items">
-                                <?php
-                                require ("connect_db.php");
-                                $reviews = mysqli_query($link, "SELECT * FROM reviews");
-                                while ($row = mysqli_fetch_assoc($reviews)) {
-                                    echo "<div class='itcss__item'>
+                <div class="itcss itcss2">
+                    <div class="itcss__wrapper">
+                        <div class="itcss__items">
+                            <?php
+                            require ("connect_db.php");
+                            $reviews = mysqli_query($link, "SELECT * FROM reviews");
+                            while ($row = mysqli_fetch_assoc($reviews)) {
+                                echo "<div class='itcss__item'>
                                 <div class='review'>
                                 <div class='review__author'>" . $row['name'] . "
                                 <!--<span class='review__author-status'> &#8212; посетитель</span>-->   
@@ -267,15 +270,22 @@
                                 <div class='review__date'>" . date_format(date_create($row['date']), 'd.m.Y') . "</div>
                                 </div>
                             </div>";
-                                }
-                                mysqli_close($link);
-                                ?>
-                            </div>
+                            }
+                            mysqli_close($link);
+                            ?>
                         </div>
-                        <!-- Стрелки для перехода к предыдущему и следующему слайду -->
-                        <a class="itcss__control itcss__control_prev" href="#" role="button" data-slide="prev"></a>
-                        <a class="itcss__control itcss__control_next" href="#" role="button" data-slide="next"></a>
                     </div>
+                </div>
+                <!-- Стрелки для перехода к предыдущему и следующему слайду -->
+                <div class='control-container-prev'>
+                    <div class="itcss__control itcss__control_prev" id='slider4-prev' href="" role="button"
+                        data-slide="prev">
+                        &#8249;</div>
+                </div>
+                <div class='control-container-next'>
+                    <div class="itcss__control itcss__control_next" id='slider4-next' href="" role="button"
+                        data-slide="next">&#8250;</div>
+                </div>
             </div>
         </div>
     </div>
@@ -283,20 +293,32 @@
     <script src='js/simple-adaptive-slider.js'></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // инициализация 1 слайдера
-            new ItcSimpleSlider('.itcss1', {
+            // инициализация слайдера акций
+            const slider3 = new ItcSimpleSlider('.itcss1', {
                 loop: true,
                 autoplay: true,
                 interval: 5000,
                 swipe: true,
             });
-            // инициализация 2 слайдера
-            new ItcSimpleSlider('.itcss2', {
+            document.getElementById('slider3-prev').onclick = () => {
+                slider3.prev();
+            }
+            document.getElementById('slider3-next').onclick = () => {
+                slider3.next();
+            }
+            // инициализация слайдера отзывов
+            const slider4 = new ItcSimpleSlider('.itcss2', {
                 loop: true,
                 autoplay: false,
                 interval: 5000,
                 swipe: true,
             });
+            document.getElementById('slider4-prev').onclick = () => {
+                slider4.prev();
+            }
+            document.getElementById('slider4-next').onclick = () => {
+                slider4.next();
+            }
         });
     </script>
 
