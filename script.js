@@ -74,7 +74,7 @@ menu_burg.addEventListener('click', function () {
         document.querySelector('.menu_sub-list').classList.remove('active');
         menu.classList.remove('active');
         menu_burg.classList.remove('active');
-        authorization_btn.classList.remove('active');
+        if (authorization_btn) authorization_btn.classList.remove('active');
         if (window.scrollY < window.screen.height / 3) {
             // header.style.background = "rgba(0, 0, 0, 0.558)";
             header.classList.add('header-active');
@@ -103,9 +103,7 @@ op_sublist.addEventListener('click', function () {
     }
 })
 
-function op_menu_p(x) {
 
-}
 var popup = document.querySelector('.popup');
 var log_btn = document.querySelector('.popup-choice__log');
 var reg_btn = document.querySelector('.popup-choice__reg');
@@ -126,7 +124,7 @@ if (popup) {
             reg_form.style.display = "block";
         }
     })
-    if(log_btn) log_btn.addEventListener("click", function () {
+    if (log_btn) log_btn.addEventListener("click", function () {
         if (!log_btn.classList.contains('popup-choice_checked')) {
             reg_btn.classList.remove('popup-choice_checked');
             log_btn.classList.toggle('popup-choice_checked');
@@ -135,8 +133,7 @@ if (popup) {
         }
     })
     close_btn.addEventListener("click", function () {
-        popup.classList.remove("popup_open");
-        document.body.style.overflow = "visible";
+        closePopup();
     })
     if (open_btn) {
         open_btn.addEventListener("click", function () {
@@ -161,7 +158,16 @@ if (popup) {
         })
     }
 }
-
+function openPopup() {
+    var popup = document.querySelector('.popup');
+    popup.classList.toggle("popup_open");
+    document.body.style.overflow = "hidden";
+}
+function closePopup() {
+    popup.classList.remove("popup_open");
+    document.body.style.overflow = "visible";
+    document.querySelector('.form-body').innerHTML = '';
+}
 var offset = 0;
 var sliderLine = document.querySelector(".slider__items");
 var prew_btn = document.querySelector(".prew-btn");
@@ -280,6 +286,7 @@ function isTextValid(value) {
     const KIRILLITSA = /[^а-яА-ЯёЁ ]/i;
     return KIRILLITSA.test(value);
 }
+
 function checkInputText(text_block) {
     if (!(isTextValid(text_block.value))) {
         text_block.style.borderColor = 'green';
@@ -378,7 +385,6 @@ if (document.getElementById('popup-form-log')) document.getElementById('popup-fo
     else { alert("Проверьте введенные данные"); return false; }
 })
 
-
 function checktruevalueEdit() {
     if ((checkInputText(document.getElementById('surname_edit')) && checkInputText(document.getElementById('name_edit')))) {
         return true;
@@ -431,7 +437,6 @@ if (document.getElementById('form-change-password')) document.getElementById('fo
     }
     return false;
 })
-
 function checkRecordForm() {
 
 }
@@ -440,9 +445,6 @@ $("#phone_feedback").mask("+7(999)999-99-99", { autoclear: false });
 $("#tel").mask("+7(999)999-99-99", { autoclear: false });
 $("#phone_reg").mask("+7(999)999-99-99", { autoclear: false });
 $("#phone_log").mask("+7(999)999-99-99", { autoclear: false });
-
-//обработка запроса на вход
-
 
 var rec_label = document.getElementById('record-table-label');
 var done_label = document.getElementById('done-table-label');
@@ -536,16 +538,33 @@ if (contacts_label) contacts_label.addEventListener("click", function () {
         portfolio_label.classList.remove('label-checked');
         promotions_label.classList.remove('label-checked');
         service_label.classList.remove('label-checked');
-        contacts_label.classList.remove('label-checked');
         contacts_table.style.display = "block";
         service_table.style.display = "none";
         promotions_table.style.display = "none";
         portfolio_table.style.display = "none";
     }
 })
+//обработка загрузки фото портфолио на страницу
 
-$('#form-add-service').on("submit", function () {
-    var dataForm = $(this).serialize();
+function changeInputPhoto(input) {
+    var labelVal = document.querySelector('.upload-text').innerText;
+    var countFiles = '';
+    if (input.files && input.files.length >= 1)
+        countFiles = input.files.length;
+
+    if (countFiles) {
+        document.querySelector('.upload-text').innerText = 'Выбрано файлов: ' + countFiles;
+        document.querySelector('.add-photo-btn').classList.add('btn-visible');
+    }
+    else {
+        document.querySelector('.upload-text').innerText = labelVal;
+        document.querySelector('.add-photo-btn').classList.remove('btn-visible');
+    }
+};
+
+function add_service(form) {
+    var dataForm = $(form).serialize();
+    console.log(dataForm);
     $.ajax({
         url: 'save-add-service.php',
         method: 'post',
@@ -560,16 +579,9 @@ $('#form-add-service').on("submit", function () {
             $('#popup').html = '';
         }
     });
-    $.ajax({
-        url: "admin-service.php",
-        cache: false,
-        async: false,
-        success: function (html) {
-            $("#service-table").html(html);
-        }
-    });
+    getServices();
     return false;
-})
+}
 function add_promotion() {
     var formData = new FormData();
     var file = $("#promotion_picture")[0].files[0];
@@ -660,81 +672,570 @@ for (let elem of elements) {
     observer.observe(elem);
 }
 
-//открыть авторизацию
-function openPopup() {
-    popup.classList.toggle("popup_open");
-    document.body.style.overflow = "hidden";
+//загрузка таблиц админа
+if (document.querySelector('#portfolio-table')) {
+    function getPortfolio() {
+        $.ajax({
+            method: 'post',
+            url: 'admin-portfolio.php',
+            dataType: 'html',
+            async: 'false',
+            success: function (res) {
+                document.querySelector('#portfolio-table').innerHTML = res;
+            }
+        })
+    }
+    getPortfolio();
 }
-function closePopup(){
-    
+
+if (document.querySelector('#service-table')) {
+    function getServices() {
+        $.ajax({
+            method: 'post',
+            url: 'admin-service.php',
+            dataType: 'html',
+            async: 'false',
+            success: function (res) {
+                document.querySelector('#service-table').innerHTML = res;
+            }
+        })
+    }
+    getServices();
+}
+
+if (document.querySelector('#promotions-table')) {
+    function getPromotions() {
+        $.ajax({
+            method: 'post',
+            url: 'admin-promotions.php',
+            dataType: 'html',
+            async: 'false',
+            success: function (res) {
+                document.querySelector('#promotions-table').innerHTML = res;
+            }
+        })
+    }
+    getPromotions();
+}
+
+if (document.querySelector('#reviews-table')) {
+    function getReviews() {
+        $.ajax({
+            method: 'post',
+            url: 'admin-reviews.php',
+            dataType: 'html',
+            async: 'false',
+            success: function (res) {
+                document.querySelector('#reviews-table').innerHTML = res;
+            }
+        })
+    }
+    getReviews();
+}
+
+//функция экранирования
+function escapeHtml(str) {
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/`/g, '&#x60;');
+}
+
+//обработка добавления, удаления и редактирования отзывов
+function review_edit(id) {
+    $.ajax({
+        method: 'post',
+        data: { id: id },
+        url: 'get-edit-review.php',
+        type: 'json',
+        async: false,
+        success: function (res) {
+            openPopup();
+            let review = JSON.parse(res);
+            document.querySelector('.popup-title').innerHTML = 'Редактирование отзыва';
+            document.querySelector('.form-body').insertAdjacentHTML('afterbegin', `
+            <label>Содержание</label>
+            <div>
+            <textarea style="min-height:200px; width:96%; height:auto; resize:none; padding:2%;" id='review_content' name='review_content' required>${review['content']}</textarea>
+            </div>
+            <label>Автор</label>
+            <input type='text' id='review_author' name='review_author' value='${escapeHtml(review['name'])}' required>
+            <label>Дата</label>
+            <input type='date' id='review_date' name='review_date' value='${escapeHtml(review['date'])}' required>
+            <input type='text' id='review_id' name='review_id' style='visibility:hidden;' value='${review['id']}'>
+            `);
+            function saveEditReview() {
+                var author = document.querySelector('#review_author').value;
+                var date = document.querySelector('#review_date').value;
+                var content = document.querySelector('#review_content').value;
+                let id = document.querySelector('#review_id').value;
+                var dataForm = $(this).serialize();
+                $.ajax({
+                    method: 'post',
+                    dataType: 'html',
+                    url: 'save-edit-review.php',
+                    async: false,
+                    data: dataForm,
+                    success: function () {
+                        closePopup();
+                        document.querySelector('#form').removeEventListener('submit', saveEditReview);
+                        document.getElementById('review_name' + id).innerHTML = author;
+                        document.getElementById('review_content' + id).innerHTML = content;
+                        document.getElementById('review_date' + id).innerHTML = date;
+                    }
+                })
+            }
+            document.querySelector('#form').addEventListener('submit', saveEditReview);
+        }
+    })
+}
+
+function review_add() {
+    openPopup();
+    document.querySelector('.popup-title').innerHTML = 'Добавление отзыва';
+    document.querySelector('.form-body').insertAdjacentHTML('afterbegin', `
+            <label>Содержание</label>
+            <div>
+            <textarea style="min-height:200px; width:96%; height:auto; resize:none; padding:2%;" id='review_content' name='review_content' required></textarea>
+            </div>
+            <label>Автор</label>
+            <input type='text' id='review_author' name='review_author' value='' required>
+            <label>Дата</label>
+            <input type='date' id='review_date' name='review_date' value='' required>
+            `);
+    document.querySelector('#form').addEventListener('submit', saveAddReview)
+    function saveAddReview() {
+        var dataForm = $(this).serialize();
+        $.ajax({
+            method: 'post',
+            dataType: 'html',
+            url: 'save-add-review.php',
+            async: false,
+            data: dataForm,
+            success: function (res) {
+                alert(res);
+                closePopup();
+                document.querySelector('#form').removeEventListener('submit', saveAddReview);
+                getReviews();
+            }
+        })
+    }
+}
+function review_delete(id) {
+    if (confirm('Хотите удалить отзыв?')) {
+        $.ajax({
+            method: 'post',
+            data: { id: id },
+            url: 'review-delete.php',
+            success: function () {
+                $('#admin-review' + id).remove();
+            }
+        })
+    }
 }
 
 
 
-// else {
-//     formData.append("promotion_title", $('#promotion_title').val());
-//     formData.append("promotion_id", $('#promotion_id').val());
-//     formData.append("promotion_description", $('#promotion_description').val());
-//     formData.forEach(function (value, key) {
-//         console.log('key = ' + key + ', value = ' + value);
-//     });
+// портфолио добавление, удаление, редактирование
 
-//     $.ajax({
-//         url: 'save-add-promotion.php',
-//         type: 'POST',
-//         contentType: false,
-//         processData: false,
-//         async: false,
-//         dataType: 'html',
-//         data: formData,
-//         success: function (data) {
-//             console.log(data);
-//         }
-//     });
+function add_photo() {
+    var formData = new FormData();
+    //Если выбранные изображение больше 10
+    if ($('#uploadimage')[0].files.length > 10) { alert('Файлов больше 10'); return false };
+    //Insert File Listes In An Object FormData (Создание вставки массивов изображений $_FILES в объект formdata )
+    // alert('Неверный тип данных. Загрузите .png .jpeg .jpg или .gif');
+    $.each($('#uploadimage')[0].files, function (count, This_File) {
+        //If MIME Type Of Picture Not Match With That Formats (Если не соответствует тип)
+        // if (!This_File.type.match(/(.png)|(.jpeg)|(.jpg)|(.gif)$/i) || ($('#uploadimage')[0].files[count].size / 1024).toFixed(0) > 1524) {
+        if (!This_File.type.match(/(.png)|(.jpeg)|(.jpg)|(.gif)$/i)) {
+            alert('Неверный тип файла - ' + This_File.name + '.\nЗагрузите png, jpeg, jpg, или gif.');
+            return false;
+        }
+        //Иначе
+        else {
+            //Append Objects ( вставляем массивы изображений $_FILES в объект formdata )
+            formData.append("image" + count, This_File);
 
-//     return false;
-// }
+            //Если мы уже вставили все изображения
+            if (count == $('#uploadimage')[0].files.length - 1) {
+                //var query = 0;
+                //Вторая защита (если имя НЕ неизвестно)
+                if ($("#uploadimage")[0].files[0].name != undefined) {
+                    //Query 
+                    $.ajax({
+                        url: 'upload-images.php',
+                        type: 'POST',
+                        contentType: false,
+                        processData: false,
+                        async: false,
+                        dataType: 'json',
+                        data: formData,
+                        success:
+                            alert("Загружено")
+                    });
+                    $.ajax({
+                        url: "admin-portfolio.php",
+                        cache: false,
+                        success: function (php) {
+                            $("#portfolio-table").html(php);
+                        }
+                    });
+                }
+            }
+        }
+    });
 
-//(Если не соответствует тип)
+}
 
-//Иначе
-
-// var dataForm = $(this).serialize()
-// $.ajax({
-//     url: 'save-add-promotion.php',         /* Куда отправить запрос */
-//     method: 'post',             /* Метод запроса (post или get) */
-//     async: false,
-//     dataType: 'html',          /* Тип данных в ответе (xml, json, script, html). */
-//     data:dataForm,     /* Данные передаваемые в массиве */
-//     success: function (data) {   /* функция которая будет выполнена после успешного запроса.  */
-//         alert(data); /* В переменной data содержится ответ от index.php. */
-//     }
-// });
-//переключение между вкладками
-/*const showTab = (elTabBtn) => {
-    const elTab = elTabBtn.closest('.tab');
-    if (elTabBtn.classList.contains('tab-btn-active')) {
-      return;
+function portfolio_edit(id) {
+    $.ajax({
+        method: 'post',
+        data: { id: id },
+        url: 'portfolio-edit-popup.php',
+        type: 'json',
+        async: false,
+        success: function (res) {
+            openPopup();
+            let portfolio = JSON.parse(res);
+            document.querySelector('.popup-title').innerHTML = 'Добавление описания';
+            if (portfolio['portfolio_description'] == null) description = ''
+            else description = escapeHtml(portfolio['portfolio_description']);
+            document.querySelector('.form-body').insertAdjacentHTML('afterbegin', `
+            <label>Фото</label>
+            <div>            
+            <img width="200px" src="Resources/portfolio/${portfolio['portfolio_picture']}">
+            </div>
+            <label>Описание</label>
+            <input type='text' id='portfolio_description' name='portfolio_description' value='${description}'>
+            <input type='text' id='portfolio_id' name='id' style='visibility:hidden;' value='${portfolio['portfolio_id']}'>
+            `);
+            function saveEditPortfolio() {
+                var description = document.querySelector('#portfolio_description').value;
+                var id = document.querySelector('#portfolio_id').value;
+                var dataForm = $(this).serialize();
+                $.ajax({
+                    method: 'post',
+                    dataType: 'html',
+                    url: 'save-edit-portfolio.php',
+                    async: false,
+                    data: dataForm,
+                    success: function () {
+                        closePopup();
+                        document.querySelector('#form').removeEventListener('submit', saveEditPortfolio);
+                        document.getElementById('admin-portfolio' + id).querySelector(".description").innerHTML = description;
+                    }
+                })
+            }
+            document.querySelector('#form').addEventListener('submit', saveEditPortfolio);
+        }
+    })
+}
+function portfolio_delete(id) {
+    if (confirm("Вы хотите удалить фото?")) {
+        $.ajax({
+            url: '/portfolio-photo-delete.php',
+            method: 'get',
+            async: false,
+            dataType: 'html',
+            data: { id_image: id },
+            success: function () {
+                $('#admin-portfolio' + id).remove();
+            }
+        });
     }
-    const targetId = elTabBtn.dataset.targetId;
-    const elTabPane = elTab.querySelector(`.tab-pane[data-id="${targetId}"]`);
-    if (elTabPane) {
-      const elTabBtnActive = elTab.querySelector('.tab-btn-active');
-      elTabBtnActive.classList.remove('tab-btn-active');
-      const elTabPaneShow = elTab.querySelector('.tab-pane-show');
-      elTabPaneShow.classList.remove('tab-pane-show');
-      elTabBtn.classList.add('tab-btn-active');
-      elTabPane.classList.add('tab-pane-show');
+}
+
+
+// акции добавление редактирование удаление
+
+function promotion_edit(id) {
+
+    $.ajax({
+        method: 'post',
+        data: { promotion_id: id },
+        url: 'promotion-edit-popup.php',
+        type: 'json',
+        async: false,
+        success: function (res) {
+            openPopup();
+            let promotion = JSON.parse(res);
+            document.querySelector('.popup-title').innerHTML = 'Редактирование акции';
+            document.querySelector('.form-body').insertAdjacentHTML('afterbegin', `
+            <label>Заголовок</label>
+            <input type='text' id='promotion_title' name='promotion_title' value='${escapeHtml(promotion['title'])}' required>
+            <label>Описание</label>
+            <input type='text' id='promotion_description' name='promotion_description' value='${escapeHtml(promotion['description'])}' required>
+            <label>Фон</label>
+            <img width=200px src='Resources/promotions/${promotion['picture']}'>                    
+	        <input type='file' id='promotion_picture' name='promotion_picture'>
+            <input type='text' id='promotion_id' name='promotion_id' style='visibility:hidden;' value='${promotion['id']}'>
+            `);
+            function saveEditPromotion() {
+                var formData = new FormData();
+                var file = $("#promotion_picture")[0].files[0];
+                if (file != undefined) {
+                    var type = file.name.split('.')[1];
+                    if (!type.match(/(png)|(jpeg)|(jpg)|(gif)$/i)) {
+                        alert('Неверный тип файла - ' + file.name + '.\nЗагрузите png, jpeg, jpg, или gif.');
+                        return false;
+                    }
+                    else {
+                        formData.append("promotion_picture", file);
+                    }
+                };
+                formData.append("promotion_title", $('#promotion_title').val());
+                formData.append("promotion_id", $('#promotion_id').val());
+                formData.append("promotion_description", $('#promotion_description').val());
+
+                var title = document.querySelector('#promotion_title').value;
+                var description = document.querySelector('#promotion_description').value;
+                var photo = document.querySelector('#promotion_picture').value;
+                var id = document.querySelector('#promotion_id').value;
+                $.ajax({
+                    method: 'post',
+                    dataType: 'html',
+                    contentType: false,
+                    processData: false,
+                    url: 'save-edit-promotion.php',
+                    async: false,
+                    data: formData,
+                    success: function () {
+                        closePopup();
+                        document.querySelector('#form').removeEventListener('submit', saveEditPromotion);
+                        let promotion = document.getElementById('admin-promotion' + id);
+                        promotion.querySelector('.promotion-table-title').innerHTML = title;
+                        promotion.querySelector('.promotion-table-description').innerHTML = description;
+                        if (photo != '')
+                            promotion.querySelector('.promotion-table-img').src = "Resources/promotions/" + photo.split(/(\\|\/)/g).pop();
+                    }
+                })
+            }
+            document.querySelector('#form').addEventListener('submit', saveEditPromotion);
+        }
+    })
+
+}
+
+function promotion_add() {
+    openPopup();
+    document.querySelector('.popup-title').innerHTML = 'Добавление акции';
+    document.querySelector('.form-body').insertAdjacentHTML('afterbegin', `
+    <label>Заголовок</label>
+    <input type='text' id='promotion_title' name='promotion_title' required>
+    <label>Описание</label>
+    <input type='text' id='promotion_description' name='promotion_description' required>
+    <label>Фон</label>                  
+    <input type='file' id='promotion_picture' name='promotion_picture' required>`);
+    document.querySelector('#form').addEventListener('submit', saveAddPromotion)
+    function saveAddPromotion() {
+        var formData = new FormData();
+        var file = $("#promotion_picture")[0].files[0];
+        if (file != undefined) {
+            var type = file.name.split('.')[1];
+            if (!type.match(/(png)|(jpeg)|(jpg)|(gif)$/i)) {
+                alert('Неверный тип файла - ' + file.name + '.\nЗагрузите png, jpeg, jpg, или gif.');
+                return false;
+            }
+            else {
+                formData.append("promotion_picture", file);
+            }
+        };
+        formData.append("promotion_title", $('#promotion_title').val());
+        formData.append("promotion_description", $('#promotion_description').val());
+
+        $.ajax({
+            method: 'post',
+            dataType: 'html',
+            url: 'save-add-promotion.php',
+            async: false,
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function () {
+                closePopup();
+                document.querySelector('#form').removeEventListener('submit', saveAddPromotion);
+                getPromotions();
+            }
+        })
     }
-  }
-  
-  document.addEventListener('click', (e) => {
-    if (e.target && !e.target.closest('.tab-btn')) {
-      return;
+
+}
+
+function promotion_delete(id) {
+    if (confirm("Вы хотите удалить акцию?")) {
+        $.ajax({
+            url: '/promotion-delete.php',
+            method: 'get',
+            async: false,
+            dataType: 'html',
+            data: { promotion_id: id },
+            success: function (data) {
+                $('#admin-promotion' + id).remove();
+            }
+        });
     }
-    const elTabBtn = e.target.closest('.tab-btn');
-    showTab(elTabBtn);
-  });*/
+}
+
+
+// услуги редактирование удаление добавление
+function service_edit(id) {
+    $.ajax({
+        method: 'post',
+        data: { id: id },
+        url: 'service-edit-popup.php',
+        type: 'json',
+        async: false,
+        success: function (res) {
+            openPopup();
+            let service = JSON.parse(res);
+            console.log(service);
+            document.querySelector('.popup-title').innerHTML = 'Редактирование услуги';
+            document.querySelector('.form-body').insertAdjacentHTML('afterbegin', `
+            <label>Категория</label>
+            <div>
+            <select name="category_name" id="category_name" required>
+            </select>
+            </div>
+            <label>Название</label>
+            <input type='text' id='service_name' name='service_name' value='${escapeHtml(service['name'])}' required>
+            <label>Стоимость</label>
+            <input type='text' id='service_price' name='service_price' value='${escapeHtml(service['price'])}' required>
+            <label>Для записи?</label>
+            <div class="input-box">
+                <div>
+                    <input type="radio" id="rec1" name="is_recording" value="1"/>
+                    <label for="rec1">Да</label>
+                </div>
+
+                <div>
+                <input type="radio" id="rec0" name="is_recording" value="0" />
+                <label for="rec0">Нет</label>
+                </div>
+
+            </div>
+            <label>Длительность</label>
+            <input type='number' id='service_duration' name='service_duration' value='${service['duration']}' required>мин.
+            <input type='text' id='service_id' name='service_id' style='visibility:hidden;' value='${service['id']}'>
+            `);
+            if (service['recording'] == 1) document.getElementById('rec1').checked = true;
+            else document.getElementById('rec0').checked = true;
+            var k = 0;
+            while (k < service['categories'].length) {
+                if (service['categories'][k][2] == 'selected')
+                    document.querySelector('#category_name').insertAdjacentHTML('beforeend', `<option value='${service['categories'][k][1]}' selected>${service['categories'][k][0]}</option>`);
+                else
+                    document.querySelector('#category_name').insertAdjacentHTML('beforeend', `<option value='${service['categories'][k][1]}'>${service['categories'][k][0]}</option>`);
+                k++;
+            }
+            console.log(document.querySelector('#category_name'));
+            function saveEditService() {
+                var dataForm = $(this).serialize();
+                $.ajax({
+                    method: 'post',
+                    dataType: 'html',
+                    url: 'save-edit-service.php',
+                    async: false,
+                    data: dataForm,
+                    success: function () {
+                        closePopup();
+                        document.querySelector('#form').removeEventListener('submit', saveEditService);
+                        getServices();
+                    }
+                })
+            }
+            document.querySelector('#form').addEventListener('submit', saveEditService);
+        }
+    })
+}
+
+function service_add() {
+    $.ajax({
+        method: 'post',
+        dataType: 'json',
+        url: 'service-add-popup.php',
+        async: false,
+        success: function (res) {
+            var categories_name = (res);
+            openPopup();
+            document.querySelector('.popup-title').innerHTML = 'Добавление услуги';
+            document.querySelector('.form-body').insertAdjacentHTML('afterbegin', `
+    <label>Категория</label>
+    <div>
+    <select name="category_name" id="category_name" required>
+    </select>
+    </div>
+    <label>Название</label>
+    <input type='text' id='service_name' name='service_name' required>
+    <label>Стоимость</label>
+    <input type='text' id='service_price' name='service_price' required>
+    <label>Для записи?</label>
+    <div class="input-box">
+    <div>
+        <input type="radio" id="rec1" name="is_recording" value="1" />
+        <label for="rec1">Да</label>
+    </div>
+
+    <div>
+        <input type="radio" id="rec0" name="is_recording" value="0" />
+        <label for="rec0">Нет</label>
+    </div>
+
+</div>
+    <label>Длительность</label>
+    <input type='number' id='service_duration' name='service_duration' required>мин.
+    `);
+            var k = 0;
+            while (k < categories_name.length) {
+                document.querySelector('#category_name').insertAdjacentHTML('beforeend', `<option value='${categories_name[k][1]}'>${categories_name[k][0]}</option>`);
+                k++;
+            }
+            document.querySelector('#form').addEventListener('submit', saveAddService);
+        }
+    })
+    function saveAddService() {
+        var dataForm = $(this).serialize();
+        $.ajax({
+            method: 'post',
+            dataType: 'html',
+            url: 'save-add-service.php',
+            async: false,
+            data: dataForm,
+            success: function () {
+                closePopup();
+                document.querySelector('#form').removeEventListener('submit', saveAddService);
+                getServices();
+            }
+        })
+    }
+    // var popup_service_edit = document.querySelector(".popup-service-add");
+    // var close_serv = document.getElementById("close-service-add-btn");
+    // popup_service_edit.classList.toggle("popup_open");
+    // document.body.style.overflow = "hidden";
+    // close_serv.addEventListener("click", function () {
+    //     popup_service_edit.classList.remove("popup_open");
+    //     document.body.style.overflow = "visible";
+    // })
+}
+
+function service_delete(id, service_id) {
+    if (confirm("Вы хотите удалить услугу?")) {
+        $.ajax({
+            url: '/service-delete.php',
+            method: 'get',
+            async: false,
+            dataType: 'html',
+            data: { service_id: id },
+            success: function (data) {
+                $('#admin-service' + id).remove();
+                let row = $('#admin-category-service' + service_id).attr('rowspan');
+                $('#admin-category-service' + service_id).attr('rowspan', row - '1');
+            }
+        });
+    }
+}
 
 
 
