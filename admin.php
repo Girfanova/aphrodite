@@ -47,7 +47,7 @@
             echo '<label for="admin-login">Логин</label>';
             echo '<input type=text id="admin-login" name="login" required>';
             echo '<label for="admin-password">Пароль</label>';
-            echo '<input type=password id="admin-password" name="password"  required>';
+            echo '<input type=password id="admin-password" name="password" placeholder="********" required>';
             echo '<button type=submit class="form-submit-btn btn">Войти</button>';
             echo '</form>';
         }
