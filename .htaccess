@@ -5,4 +5,4 @@ AddHandler x-httpd-php5 .js
 SetHandler application/x-httpd-php
 </FilesMatch>
 
-ErrorDocument 404 http://aphrodite/404.html
+ErrorDocument 404 /404.php
