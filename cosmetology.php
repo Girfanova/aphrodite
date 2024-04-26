@@ -24,9 +24,9 @@
 
                 while ($stroka = mysqli_fetch_array($service)) {
                     if (isset($_SESSION['auth']))
-                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. <a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
+                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " <a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
                 else
-                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. <a href='#' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
+                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " <a href='#' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
            }
                 ?>
             </ul>
@@ -37,9 +37,9 @@
                 $service = mysqli_query($link, "SELECT services.id, service, price, category_id, category_name FROM services, categories WHERE category_id=6 and category_id=categories.id");
                 while ($stroka = mysqli_fetch_array($service)) {
                     if (isset($_SESSION['auth']))
-                        echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. <a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
+                        echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " <a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
                     else
-                        echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. <a href='#' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
+                        echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " <a href='#' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
                 }
                 ?>
             </ul>
@@ -49,7 +49,7 @@
                 <?php
                 $service = mysqli_query($link, "SELECT services.id, service, price, category_id, category_name FROM services, categories WHERE category_id=7 and category_id=categories.id");
                 while ($stroka = mysqli_fetch_array($service)) {
-                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. " .
+                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " " .
                         //  <a href='make-record.php?id=".$stroka['id']."'><img title='Записаться' src='Resources/add.png'></img></a>
                         " </span></li>";
                 }
@@ -61,7 +61,7 @@
                 <?php
                 $service = mysqli_query($link, "SELECT services.id, service, price, category_id, category_name FROM services, categories WHERE category_id=8 and category_id=categories.id");
                 while ($stroka = mysqli_fetch_array($service)) {
-                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. " .
+                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " " .
                         //<a href='make-record.php?id=".$stroka['id']."'><img title='Записаться' src='Resources/add.png'></img></a>
                         "</span></li>";
                 }

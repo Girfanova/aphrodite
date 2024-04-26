@@ -1,25 +1,4 @@
-<!DOCTYPE html>
-<html lang="ru">
-
-<head>
-<?php require_once("head.php")?>
-    <link rel="stylesheet" href="style-pages.css" type="text/css">
-</head>
-
-<body>
-    <?php require_once("header.php") ?>
-    <style>
-
-    </style>
-    <div class="lk">
-        <?php
-        session_start();
-        require_once("connect_db.php");
-        $user = mysqli_query($link, "SELECT users.id, surname, name, role_name, role_id, phone FROM users, roles WHERE users.id = " . $_SESSION["user_id"] . " and role_id=roles.id");
-        echo "<div class='lk-profile'>";
-        echo "<a href='lk.php'><img src='Resources\back-btn.png'></a><H1 class='lk-title'>Учет посещений</H1>";
-
-        echo "</div>";
+<?php
         if ($_SESSION["user_role"] == 3) {
 
             
@@ -31,12 +10,13 @@
             // </select></div>";
             echo "<div class=''>Фильтровать по мастерам: <select id='filter-select' onchange='do_filter();'>";
             echo "<option value='000'>Все</option>";
+            require('connect_db.php');
             $masters = mysqli_query($link,"SELECT * from masters") or die(mysqli_error($link));
             while ($row = mysqli_fetch_array($masters)) {
                 echo "<option value='".$row['id']."'>".$row['name']." ".$row['surname']."</option>";
             }
             echo "</select></div>";
-            echo "<table class='record-table table-visible' id='record-table'>";
+            echo "<table class='record-table' id='record-table'>";
             echo "<tr>
                    <th width=14%>Клиент</th>
                    <th width=15%>Телефон клиента</th>
@@ -48,44 +28,10 @@
                    <th width=9%>Выполнено</th>
                    </tr>";
                 echo '<tbody id="record-list-table" width=100%></tbody>';
-            echo '</table>
-                            ';
+                echo "<tr><td colspan=8 align='center'><span style='cursor:pointer;' id='more_btn'>Загрузить еще</span></td></tr>";
+                
+            echo '</table>';
 
             echo '</div>';
         }
         mysqli_close($link);
-        ?>
-    </div>
-
-
-    <?php require_once("footer.php") ?>
-</body>
-<script>
-    $(document).ready(function(){
-        select = document.getElementById('filter-select').value;
-        $.ajax({
-            url: 'record-list-table.php',       
-			method: 'get',            
-            async: false,
-			dataType: 'html',          
-			data:{select:select},    
-			success: function (data) {   
-				document.getElementById('record-list-table').innerHTML = data; 
-			}
-        })
-    })
-    function do_filter(){
-        select = document.getElementById('filter-select').value;
-        $.ajax({
-            url: 'record-list-table.php',       
-			method: 'get',            
-            async: false,
-			dataType: 'html',          
-			data:{select:select},    
-			success: function (data) {   
-				document.getElementById('record-list-table').innerHTML = data; 
-			}
-        })
-    }
-    </script>
-</html>

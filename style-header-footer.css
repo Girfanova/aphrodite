@@ -63,6 +63,7 @@ a:hover{
     font-family:var(--text-font);
     transition: all 0.5s ease-in-out;
     text-transform: uppercase;
+    border-radius: 2px;
 }
 .btn:hover{
     transition: all 0.5s ease;
@@ -138,17 +139,23 @@ a:hover{
 }
 .popup-choice{
     width: 100%;
+    display: flex;
 }
 .popup-choice__log, .popup-choice__reg{
-    width: 45.65%;
+    width: 46%;
     padding: 2%;
     display: inline-block;
     margin: 0;
     font-size: 1.5em;
-    background-color: #92979a;
+    background-color: rgba(var(--first-color-rgb), 0.2);
     cursor: pointer;
 }
-
+.popup-choice__log{
+    border-radius: 3px 0 0 0;
+}
+.popup-choice__reg{
+    border-radius: 0 3px  0 0;
+}
 .popup-choice_checked{
     background-color: rgb(var(--second-color-rgb));
     cursor: default;

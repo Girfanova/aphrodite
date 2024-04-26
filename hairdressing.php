@@ -22,7 +22,7 @@
                 $service = mysqli_query($link, "SELECT services.id, service, price, category_id, category_name, is_recording FROM services, categories WHERE category_id=10 and category_id=categories.id");
                 echo "<li class='service__title'>Стрижка</li>";
                 while ($stroka = mysqli_fetch_array($service)) {
-                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. ";
+                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " ";
                     if ($stroka['is_recording'] == 1) {
                         if (isset($_SESSION['auth'])) 
                         echo "<a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a>";
@@ -34,7 +34,7 @@
                 $service = mysqli_query($link, "SELECT services.id, service, price, category_id, category_name, is_recording FROM services, categories WHERE category_id=11 and category_id=categories.id");
                 echo "<li class='service__title'>Укладка</li>";
                 while ($stroka = mysqli_fetch_array($service)) {
-                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. ";
+                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . "";
                     if ($stroka['is_recording'] == 1) {
                         if (isset($_SESSION['auth'])) 
                         echo "<a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a>";
@@ -45,7 +45,7 @@
                 $service = mysqli_query($link, "SELECT services.id, service, price, category_id, category_name, is_recording FROM services, categories WHERE category_id=12 and category_id=categories.id");
                 echo "<li class='service__title'>Окрашивание</li>";
                 while ($stroka = mysqli_fetch_array($service)) {
-                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. ";
+                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " ";
                     if ($stroka['is_recording'] == 1) {
                         if (isset($_SESSION['auth'])) 
                         echo "<a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a>";
@@ -56,7 +56,7 @@
                 $service = mysqli_query($link, "SELECT services.id, service, price, category_id, category_name, is_recording FROM services, categories WHERE category_id=13 and category_id=categories.id");
                 echo "<li class='service__title'>Химическая завивка</li>";
                 while ($stroka = mysqli_fetch_array($service)) {
-                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. ";
+                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " ";
                     if ($stroka['is_recording'] == 1) {
                         if (isset($_SESSION['auth'])) 
                         echo "<a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a>";
@@ -67,7 +67,7 @@
                 $service = mysqli_query($link, "SELECT services.id, service, price, category_id, category_name, is_recording FROM services, categories WHERE category_id=14 and category_id=categories.id");
                 echo "<li class='service__title'>Парфюмерия</li>";
                 while ($stroka = mysqli_fetch_array($service)) {
-                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. ";
+                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " ";
                     if ($stroka['is_recording'] == 1) {
                         if (isset($_SESSION['auth'])) 
                         echo "<a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a>";
@@ -86,9 +86,9 @@
 
                 while ($stroka = mysqli_fetch_array($service)) {
                     if (isset($_SESSION['auth']))
-                        echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. <a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
+                        echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " <a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
                     else
-                        echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. <a href='#' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
+                        echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " <a href='#' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
                 }
                 ?>
             </ul>
@@ -100,9 +100,9 @@
 
                 while ($stroka = mysqli_fetch_array($service)) {
                     if (isset($_SESSION['auth']))
-                        echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. <a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
+                        echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " <a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
                     else
-                        echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " руб. <a href='#' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
+                        echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " <a href='#' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
                 }
                 mysqli_close($link);
                 ?>

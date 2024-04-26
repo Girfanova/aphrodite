@@ -16,6 +16,7 @@
                         <input type="password" id="password_log" name="password_log" class="input" title="Не менее 8 символов. Содержит цифры и буквы" placeholder="********" minlength="8" required><br>
                         <div class="input-message" for="password_log" id="password_log_label"></div><br>
                         </div>
+                        <div id='message-block-log'></div>
                         <input type="submit" value="Войти" class='btn'>  
                     </form>
 
@@ -46,7 +47,7 @@
                         <div class="input-message" id="password_reg_label2" for="password_reg2"></div><br><br>
                         </div>
                         <input type="checkbox" name='agree' required><span>&nbspСоглашаюсь с политикой конфиденциальности</span><br>
-                        
+                        <div id='message-block-reg'></div>
                         <input type="submit" id="auth-btn" class='btn'>
                     </form>
                     

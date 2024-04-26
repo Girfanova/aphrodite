@@ -1,11 +1,11 @@
 <?php
 require_once("connect_db.php");
 // получение id категории выбранной услуги и длительность услуги
-$category_id = mysqli_fetch_row(mysqli_query($link, "SELECT category_id from services where id=" . $_GET["service_id"]))[0];
+$spec_id = mysqli_fetch_row(mysqli_query($link, "SELECT specialization_id FROM categories, services WHERE categories.id = services.category_id and services.id=" . $_GET["service_id"] ))[0];
 $service_duration = mysqli_fetch_row(mysqli_query($link, "SELECT duration_in_min from services where id=" . $_GET["service_id"]))[0];
 
 // получение id мастеров, отвечающих за выбранную категорию услуг
-$masters = mysqli_query($link, "SELECT id_master from masters_categories where id_category=$category_id");
+$masters = mysqli_query($link, "SELECT id from masters where specialization_id=$spec_id");
 while ($master_id = mysqli_fetch_array($masters)) {
     //получнеие графика работы мастера в выбранный день недели 
     $schedule_master = mysqli_fetch_row(mysqli_query($link, "SELECT not_work, start_of_work, end_of_work from schedule where id_master=" . $master_id[0] . " and day_of_week=" . $_GET['day_of_week'])); 

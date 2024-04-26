@@ -17,12 +17,12 @@
             $_SESSION['auth'] = true;
             $_SESSION["user_role"]  = '1';
             $_SESSION['user_id']= $user['id'];
-            echo "Успешная регистрация";
+            echo json_encode(array('status' => 'success', 'message' => 'Успешная регистрация')); 
         }
         else{
-            echo "Этот номер уже зарегистрирован";           
+            echo json_encode(array('status' => 'error', 'message' => 'Этот номер уже зарегистрирован'));
         }
     }
-    else echo "Пустые поля";
+    else echo json_encode(array('status' => 'error', 'message' => 'Пустые поля'));
     mysqli_close($link);
  ?>

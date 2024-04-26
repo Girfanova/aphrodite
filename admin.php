@@ -38,7 +38,7 @@
             echo "
                     </div>";
             echo "<div class='record-table'id='users-table'>";
-            echo "<div>Поиск <input type=text oninput='search_user(this.value);'></div>";
+            echo "<div class='search'>Поиск <input type=text oninput='search_user(this.value);'></div>";
             echo "<div id='user-list'></div>";
             // require_once('users-list.php');
             echo "
@@ -74,7 +74,7 @@ function change_role(elem, id) {
     $.ajax({
         url: "change-role.php",
         method:'POST',
-        cache: false,
+        cache: false, 
         data: { id: id, role_id: value },
         success: function (ht) {
             console.log(ht);

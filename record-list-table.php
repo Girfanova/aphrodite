@@ -1,6 +1,8 @@
 <?php
 require_once ("connect_db.php");
 $id_master = $_GET['select'];
+$today = getdate();
+$date = $today['year'] .'-'. $today['mon'] . '-' . $today['mday'];
 if ($id_master == '000') {
     $records = mysqli_query($link, "Select distinct
                     (select phone from users where users.id=user_id) as 'Телефон клиента', 
@@ -13,8 +15,8 @@ if ($id_master == '000') {
                     done,
                     canceled
                     from users, roles, records, services
-                    where services.id = service_id
-                    order by date_record desc");
+                    where services.id = service_id and date_record >= '$date'
+                    order by date_record asc");
 } else {
     $records = mysqli_query($link, "Select distinct
                     (select phone from users where users.id=user_id) as 'Телефон клиента', 
@@ -28,7 +30,8 @@ if ($id_master == '000') {
                     canceled
                     from users, roles, records, services
                     where services.id = service_id and master_id=$id_master
-                    order by date_record desc");
+                    order by date_record desc
+                    limit 10");
 }
 while ($stroka = mysqli_fetch_array($records)) {
     echo "<tr>";
@@ -53,5 +56,6 @@ while ($stroka = mysqli_fetch_array($records)) {
     echo "</tr>";
 }
 mysqli_close($link);
+
 if (mysqli_num_rows($records) == 0)
-echo "<tr><td colspan=8>Еще нет записей</td></tr>";
+echo "<tr><td colspan=8 align='center'>Еще нет записей</td></tr>";

@@ -166,7 +166,8 @@ function openPopup() {
 function closePopup() {
     popup.classList.remove("popup_open");
     document.body.style.overflow = "visible";
-    document.querySelector('.form-body').innerHTML = '';
+    if (document.querySelector('.form-body'))
+        document.querySelector('.form-body').innerHTML = '';
 }
 var offset = 0;
 var sliderLine = document.querySelector(".slider__items");
@@ -217,7 +218,7 @@ function clear_bgr_menu() {
         auth_circle.style.color = 'black';
         auth_circle.style.border = '3px solid';
     }
-    if (authorization) authorization.src = "Resources/авторизация-black.png";
+    if (authorization) authorization.style.filter = "invert(0)";
     // document.querySelector('.menu_sub-list').style.background = "rgba(0, 0, 0, 0)";
     if (menu_burg) {
         menu_burg.classList.add('black-menu-burg');
@@ -231,7 +232,7 @@ function black_bgr_menu() {
         menu_list_a.style.color = "white";
     // logo.src = "Resources/логотип11.png";
     logo.style.filter = "invert(1)";
-    if (authorization) authorization.src = "Resources/авторизация.png";
+    if (authorization) authorization.style.filter = "invert(1)";
     if (auth_circle) {
         auth_circle.style.background = 'none';
         auth_circle.style.color = 'white';
@@ -268,6 +269,7 @@ else {
 var password_log = document.getElementById("password_log");
 if (password_log) password_log.addEventListener('input', passwordCheckcount_log);
 function passwordCheckcount_log() {
+    document.querySelector('#message-block-log').innerHTML = '';
     if (password_log.value.length < 8) {
         password_log.style.borderColor = "red";
         document.getElementById("password_log_label").innerHTML = 'Пароль меньше 8 символов';
@@ -354,16 +356,31 @@ if (document.getElementById('popup-form-reg')) document.getElementById('popup-fo
         $.ajax({
             url: "registration.php",
             method: "post",
+            dataType: 'json',
             data: { surname: surname, name: name, password_reg: password, phone_reg: phone },
+            beforeSend: function () {
+                document.querySelector('#message-block-reg').innerHTML = "Проверка данных...";
+                document.querySelector('#message-block-reg').style.color = 'grey';
+            },
             success: function (res) {
-                alert(res);
-                location.href = 'lk.php';
+                document.querySelector('#message-block-reg').innerHTML = res['message'];
+                document.querySelector('#message-block-reg').style.color = 'green';
+                if (res['status'] == 'success')
+                    setTimeout(() => location.href = 'lk.php', 2000);
+                else {
+                    document.querySelector('#message-block-reg').style.color = 'red';
+                    document.querySelector('#phone_reg').style.borderColor = 'red';
+                }
             }
 
         });
         return false;
     }
-    else { alert("Проверьте введенные данные"); return false; }
+    else {
+        document.querySelector("#message-block-reg").innerHTML = "Проверьте введенные данные";
+        document.querySelector('#message-block-reg').style.color = 'red';
+        return false;
+    }
 })
 //обработка входа
 if (document.getElementById('popup-form-log')) document.getElementById('popup-form-log').addEventListener('submit', function (event) {
@@ -374,15 +391,28 @@ if (document.getElementById('popup-form-log')) document.getElementById('popup-fo
         $.ajax({
             url: "login.php",
             method: "post",
+            dataType: 'json',
+            beforeSend: function () {
+                document.querySelector('#message-block-log').innerHTML = "Проверка данных...";
+                document.querySelector('#message-block-log').style.color = 'grey';
+            },
             data: { password_log: password, phone_log: phone },
             success: function (res) {
-                alert(res);
-                location.href = 'lk.php';
+                document.querySelector('#message-block-log').innerHTML = res['message'];
+                if (res['status'] == 'success'){
+                    document.querySelector('#message-block-reg').style.color = 'green';
+                    setTimeout(() => location.href = 'lk.php', 2000);
+                }
+                else document.querySelector('#message-block-log').style.color = 'red';
             }
         });
         return false;
     }
-    else { alert("Проверьте введенные данные"); return false; }
+    else { 
+        document.querySelector("#message-block-reg").innerHTML = "Проверьте введенные данные";
+        document.querySelector('#message-block-reg').style.color = 'red';
+        return false;
+    }
 })
 
 function checktruevalueEdit() {
@@ -440,6 +470,15 @@ if (document.getElementById('form-change-password')) document.getElementById('fo
 function checkRecordForm() {
 
 }
+
+// function clear_reg_phone() {
+//     console.log(1);
+//     document.querySelector('#message-block-reg').innerHTML = '';
+//     document.querySelector('#phone_reg').style.borderColor = 'black';
+// }
+// if (document.querySelector("#phone_reg")) {
+//     document.querySelector("#phone_reg").oninput = clear_reg_phone();
+// }
 
 $("#phone_feedback").mask("+7(999)999-99-99", { autoclear: false });
 $("#tel").mask("+7(999)999-99-99", { autoclear: false });

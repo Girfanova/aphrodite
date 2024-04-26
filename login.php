@@ -17,11 +17,11 @@ if (!empty (!empty ($_POST['phone_log']) and !empty ($_POST['password_log']))) {
             $_SESSION["user_role"] = $user['role_id'];
             $_SESSION["user_id"] = $user['id'];
             $_SESSION["user_name"] = $user['name'];
-            echo 'Успешный вход';
+            echo json_encode(array('status' => 'success', 'message' => 'Успешный вход'));
         } else
-            echo "Неверный пароль";
+        echo json_encode(array('status' => 'error-password', 'message' => 'Неверный пароль'));            
     } else {
-        echo "Неверный логин";
+        echo json_encode(array('status' => 'error-phone', 'message' => 'Номер не зарегистрирован'));
     }
 }
 mysqli_close($link);
