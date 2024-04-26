@@ -4,7 +4,7 @@
         $name = $_POST['name'];
         $surname = $_POST['surname'];
         $phone = $_POST['phone_reg'];
-        $password = password_hash($_POST['password_reg'],PASSWORD_ARGON2I);
+        $password = password_hash($_POST['password_reg'],PASSWORD_DEFAULT);
         
         $query = "SELECT * FROM users WHERE phone = '$phone'";
         $user = mysqli_fetch_array( mysqli_query($link, $query));

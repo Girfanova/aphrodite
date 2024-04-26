@@ -1,3 +1,9 @@
+<?php 
+session_start();
+if ($_SESSION["user_role"] != 10) {
+    header('Location:/');
+}
+?>
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -11,7 +17,6 @@
     <?php require_once ("header.php") ?>
     <div class="lk">
         <?php
-        session_start();
         if ($_SESSION["user_role"] == 10) {
         echo "<div class='lk-profile'>";
         echo "<H1 class='lk-title'>Панель администратора</H1>";
@@ -43,9 +48,6 @@
             // require_once('users-list.php');
             echo "
                     </div>";
-
-        } else {
-            header('Location:index.php');
 
         }
         ?>
