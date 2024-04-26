@@ -2,8 +2,8 @@
 <html lang="ru">
 
 <head>
-    <?php require_once ("head.php") ?>
-    <link rel="stylesheet" href="style-pages.css" type="text/css">
+    <?php require_once ("head.html") ?>
+    <link rel="stylesheet" href="css/style-pages.css" type="text/css">
 </head>
 
 <body>
@@ -83,7 +83,7 @@
             mysqli_close($link);
             ?>
             <!-- смена номера и имени -->
-            <form class='form-edit-profile' id='form-edit-profile'  onsubmit='return checktruevalueEdit();' action="save_edit-profile.php"
+            <form class='form-edit-profile' id='form-edit-profile'  onsubmit='return checktruevalueEdit();' action="requests/save_edit-profile.php"
                 method="post">
 
                 <span class='lk-title'>Редактирование профиля</span>
@@ -138,7 +138,7 @@
         </div>
     </div>
 
-    <?php require_once ("footer.php") ?>
+    <?php require_once ("footer.html") ?>
 </body>
 
 </html>

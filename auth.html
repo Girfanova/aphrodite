@@ -1,0 +1,56 @@
+<div class="popup">
+            <div class="popup-close-btn"><span id="close-btn">&times;</span></div>
+            <div class="popup-content">
+                <div class="popup-choice">
+                    <div class="popup-choice__log popup-choice_checked">Вход</div>
+                    <div class="popup-choice__reg">Регистрация</div>                    
+                </div>
+                <div class="popup-form">
+                    <form class="popup-form__log" id='popup-form-log' onsubmit='return false;' method="POST">
+                    <div class="label">Номер телефона</div><div class="input-box">
+                        <input type="text" id="phone_log" name="phone_log" class="input" placeholder="+7 (000) 000-00-00" required><br>
+                        <div class="input-message" for="phone_log"></div><br>
+                        </div>
+
+                        <div class="label">Пароль</div><div class="input-box">
+                        <input type="password" id="password_log" name="password_log" class="input" title="Не менее 8 символов. Содержит цифры и буквы" placeholder="********" minlength="8" required><br>
+                        <div class="input-message" for="password_log" id="password_log_label"></div><br>
+                        </div>
+                        <div id='message-block-log'></div>
+                        <input type="submit" value="Войти" class='btn'>  
+                    </form>
+
+                    <form class="popup-form__reg" id='popup-form-reg' onsubmit="return false;" method="POST">
+                        <div class="label">Фамилия</div>
+                        <div class="input-box">
+                        <input type="text" id="surname" name="surname" oninput='checkInputText(this);' class="input" placeholder="Введите фамилию" title="Только кириллица" required><br>
+                        <div class="input-message" for="surname" id="surname_label"></div><br>
+                        </div>
+                        
+                        <div class="label">Имя</div><div class="input-box">
+                        <input type="text" id="name" name="name" oninput='checkInputText(this);' class="input" placeholder="Введите имя" title="Только кириллица"required><br>
+                        <div class="input-message" for="name" id="name_label"></div><br>
+                        </div>
+                        
+                        <div class="label">Номер телефона</div><div class="input-box">
+                        <input type="text" id="phone_reg" name="phone_reg" class="input" placeholder="+7 (000) 000-00-00" maxlength="11" required><br>
+                        <div class="input-message" for="phone_reg" id="phone_reg_label"></div><br>
+                        </div>
+                        
+                        <div class="label">Пароль</div><div class="input-box">
+                        <input type="password" id="password_reg" name="password_reg" class="input" title="Не менее 8 символов. Содержит цифры и буквы" placeholder="********" minlength="8" required><br>
+                        <div class="input-message" for="password_reg" id="password_reg_label"></div><br>
+                        </div>
+                        
+                        <div class="label">Повтор пароля</div><div class="input-box">
+                        <input type="password" id="password_reg2" name="password_reg2" class="input" title="Не менее 8 символов. Содержит цифры и буквы" placeholder="********" minlength="8" required><br>
+                        <div class="input-message" id="password_reg_label2" for="password_reg2"></div><br><br>
+                        </div>
+                        <input type="checkbox" name='agree' required><span>&nbspСоглашаюсь с политикой конфиденциальности</span><br>
+                        <div id='message-block-reg'></div>
+                        <input type="submit" id="auth-btn" class='btn'>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>

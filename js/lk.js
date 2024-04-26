@@ -116,13 +116,13 @@ $('#form-schedule').on("submit", function () {
     var dataForm = $(this).serialize();
     console.log(dataForm);
     $.ajax({
-        url: 'save-edit-schedule.php',         /* Куда отправить запрос */
-        method: 'post',             /* Метод запроса (post или get) */
+        url: 'requests/save-edit-schedule.php',         
+        method: 'post',            
         async: false,
-        dataType: 'html',          /* Тип данных в ответе (xml, json, script, html). */
-        data: dataForm,     /* Данные передаваемые в массиве */
-        success: function () {   /* функция которая будет выполнена после успешного запроса.  */
-            getSchedule(); /* В переменной data содержится ответ от index.php. */
+        dataType: 'html',         
+        data: dataForm,    
+        success: function () {  
+            getSchedule();
         }
     });
 })
@@ -156,7 +156,7 @@ function get_info_master() {
     var id = document.querySelector('input[name="selected-master"]:checked').value;
     $.ajax({
         method: 'get',
-        url: "edit-master.php",
+        url: "requests/edit-master.php",
         dataType: 'json',
         success: function (html) {
             console.log(html);
@@ -190,7 +190,7 @@ function get_info_master() {
                 $.ajax({
                     method: 'post',
                     dataType: 'html',
-                    url: 'save-edit-master.php',
+                    url: 'requests/save-edit-master.php',
                     async: false,
                     data: { id: id, selected_cat: selected_cat },
                     success: function (html) {

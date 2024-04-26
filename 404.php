@@ -2,7 +2,7 @@
 <html >
 <meta charset="UTF-8">
 <head>
-<?php require_once('head.php') ?>
+<?php require_once('head.html') ?>
 </head>
 <?php require_once('header.php') ?>
 <style>
@@ -53,5 +53,5 @@ font-size: 5em;
         </div>
     </div>
 </body>
-<?php require_once('footer.php') ?>
+<?php require_once('footer.html') ?>
 </html>

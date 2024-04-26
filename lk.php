@@ -7,9 +7,9 @@ if (($_SESSION['user_role']) == 10)
 <html lang="ru">
 
 <head>
-    <?php require_once ("head.php") ?>
-    <link rel="stylesheet" href="style-pages.css" type="text/css">
-    <link rel="stylesheet" href="css\lk.css" type="text/css">
+    <?php require_once ("head.html") ?>
+    <link rel="stylesheet" href="css/style-pages.css" type="text/css">
+    <link rel="stylesheet" href="css/lk.css" type="text/css">
 </head>
 
 <body>
@@ -35,7 +35,7 @@ if (($_SESSION['user_role']) == 10)
                     <div class='lk-role'><b> {$stroka['role_name']}</b></div>
                 </div>";
 
-            echo "<div><div><a class='btn profile-btn' href='edit-profile.php'>Редактировать</a></div   ><div><a class='profile-btn btn' href='exit.php'>Выйти</a></div></div>";
+            echo "<div><div><a class='btn profile-btn' href='edit-profile.php'>Редактировать</a></div   ><div><a class='profile-btn btn' href='requests/exit.php'>Выйти</a></div></div>";
 
             echo "</div>";
         }
@@ -77,7 +77,7 @@ if (($_SESSION['user_role']) == 10)
                 echo "<td> " . date('H.i', strtotime($stroka['Время'])) . "</td>";
                 if ($stroka['canceled'] == 1) echo "<td align='center'>-</td>";
                 else if ($stroka['done'] == 1) echo "<td align='center'>-</td>";
-                else echo "<td align='center'><a href='canceled-record.php?id=" . $stroka['id'] . "&date=" . $stroka['Дата'] . "&time=" . $stroka['Время'] . "&master=" . $stroka['Мастер'] . "'><img src='Resources/canceled.png'></img></a></td>";
+                else echo "<td align='center'><a href='requests/canceled-record.php?id=" . $stroka['id'] . "&date=" . $stroka['Дата'] . "&time=" . $stroka['Время'] . "&master=" . $stroka['Мастер'] . "'><img src='Resources/canceled.png'></img></a></td>";
                 if ($stroka['done'] == 1) echo "<td>Выполнено</td>";
                 else if ($stroka['canceled'] == 1) echo "<td>Отменено</td>";
                 else echo "<td>В ожидании</td>";
@@ -112,7 +112,7 @@ if (($_SESSION['user_role']) == 10)
     </div>
 
 
-    <?php require_once ("footer.php") ?>
+    <?php require_once ("footer.html") ?>
     <script language="JavaScript" type="text/javascript" src="js/lk.js"></script>
 </body>
 

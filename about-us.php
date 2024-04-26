@@ -2,9 +2,8 @@
 <html lang="ru">
 
 <head>
-    <?php require_once ("head.php") ?>
-    <link rel="stylesheet" href="style-pages.css" type="text/css">
-    <!-- <link rel="stylesheet" href="style-main-page.css" type="text/css"> -->
+    <?php require_once ("head.html") ?>
+    <link rel="stylesheet" href="css/style-pages.css" type="text/css">
     <link rel="stylesheet" href="css/simple-adaptive-slider.css" type="text/css">
 </head>
 <style>
@@ -79,7 +78,7 @@
 
         <div class="about-salon">
             <div class='about-salon__image-container'>
-                <img src="Resources/aphrodite-photo.jpg" class="about-salon__image" alt="о нас">
+                <img src="Resources/salon-photos/60-3.jpg" class="about-salon__image" alt="о нас">
             </div>
             <div class="about-salon__description">
                 <div class="about-us__title">О нас
@@ -189,7 +188,7 @@
         </div>
 
     </div>
-    <?php require_once ("footer.php") ?>
+    <?php require_once ("footer.html") ?>
     <script src='js/simple-adaptive-slider.js'></script>
     <script>
 

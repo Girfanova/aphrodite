@@ -45,13 +45,13 @@ while ($stroka = mysqli_fetch_array($records)) {
         echo "<td >" . date('d.m.Y', strtotime($stroka['Дата'])) . " </td>";
         echo "<td > " . date('H.i', strtotime($stroka['Время'])) . "</td>";
         if ($stroka['canceled'] == 0 && $stroka['done'] == 0)
-            echo "<td  align='center'><a href='canceled-record.php?id=" . $stroka['id'] . "&date=" . $stroka['Дата'] . "&time=" . $stroka['Время'] . "&master=" . $stroka['Мастер'] . "'><img src='Resources/canceled.png'></img></a></td>";
+            echo "<td  align='center'><a href='requests/canceled-record.php?id=" . $stroka['id'] . "&date=" . $stroka['Дата'] . "&time=" . $stroka['Время'] . "&master=" . $stroka['Мастер'] . "'><img src='Resources/canceled.png'></img></a></td>";
         elseif ($stroka['canceled'] == 1)
             echo '<td>Отменено</td>';
         else
             echo '<td>-</td>';
         if ($stroka['done'] == 0 && $stroka['canceled'] == 0)
-            echo "<td  align='center'><a href='done-record.php?id=" . $stroka['id'] . "'><img src='Resources/done.png'></img></a></td>";
+            echo "<td  align='center'><a href='requests/done-record.php?id=" . $stroka['id'] . "'><img src='Resources/done.png'></img></a></td>";
         elseif ($stroka['done'] == 1)
             echo '<td>Выполнено</td>';
         else

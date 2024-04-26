@@ -2,8 +2,8 @@
 <html lang="ru">
 
 <head>
-    <?php require_once ("head.php") ?>
-    <link rel="stylesheet" href="style-pages.css" type="text/css">
+    <?php require_once ("head.html") ?>
+    <link rel="stylesheet" href="css/style-pages.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/gallery.css">
 
 </head>
@@ -62,7 +62,7 @@
 
         </div>
     </div>
-    <?php require_once ("footer.php") ?>
+    <?php require_once ("footer.html") ?>
     <script src="js/jquery.min.js"></script>
     <script src="js/gallery.js"></script>
 </body>

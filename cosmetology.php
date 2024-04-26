@@ -2,8 +2,8 @@
 <html lang="ru">
 
 <head>
-    <?php require_once ("head.php") ?>
-    <link rel="stylesheet" href="style-pages.css" type="text/css">
+    <?php require_once ("head.html") ?>
+    <link rel="stylesheet" href="css/style-pages.css" type="text/css">
 </head>
 
 <body>
@@ -73,7 +73,7 @@
 
         </div>
     </div>
-    <?php require_once ("footer.php") ?>
+    <?php require_once ("footer.html") ?>
 
 </body>
 

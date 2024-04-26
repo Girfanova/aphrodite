@@ -2,9 +2,9 @@
 <html lang="ru">
 
 <head>
-    <?php require_once ("head.php") ?>
+    <?php require_once ("head.html") ?>
     <link rel="stylesheet" href="css/simple-adaptive-slider.css" type="text/css">
-    <link rel="stylesheet" href="style-main-page.css" type="text/css">
+    <link rel="stylesheet" href="css/style-main-page.css" type="text/css">
 
 </head>
 <style>
@@ -289,7 +289,7 @@
             </div>
         </div>
     </div>
-    <?php require_once ("footer.php") ?>
+    <?php require_once ("footer.html") ?>
     <script src='js/simple-adaptive-slider.js'></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {

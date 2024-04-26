@@ -51,3 +51,5 @@
             
         </div>
     </header>
+    <?php if (!isset($_SESSION['auth'])) require_once('auth.html');
+ else require_once('popup.html');?>

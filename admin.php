@@ -2,8 +2,8 @@
 <html lang="ru">
 
 <head>
-    <?php require_once ("head.php") ?>
-    <link rel="stylesheet" href="style-pages.css" type="text/css">
+    <?php require_once ("head.html") ?>
+    <link rel="stylesheet" href="css/style-pages.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.min.css">
 </head>
 
@@ -15,7 +15,7 @@
         if ($_SESSION["user_role"] == 10) {
         echo "<div class='lk-profile'>";
         echo "<H1 class='lk-title'>Панель администратора</H1>";
-        echo "<a class='profile-btn btn' href='exit.php' >Выйти</a>";
+        echo "<a class='profile-btn btn' href='requests/exit.php' >Выйти</a>";
         echo "</div>";
         echo "<div id='popup' class='admin-popup'></div>";
             echo "
@@ -52,7 +52,7 @@
     </div>
 
 
-    <?php require_once ("footer.php")?>
+    <?php require_once ("footer.html")?>
 
     <script src="js/jquery.fancybox.min.js"></script>
     <script>
@@ -72,7 +72,7 @@ function change_role(elem, id) {
     value = elem.value;
     console.log(value+' '+id);
     $.ajax({
-        url: "change-role.php",
+        url: "requests/change-role.php",
         method:'POST',
         cache: false, 
         data: { id: id, role_id: value },
