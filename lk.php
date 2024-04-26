@@ -15,10 +15,6 @@ if (($_SESSION['user_role']) == 10)
 <body>
     <?php require_once ("header.php")
         ?>
-
-    <style>
-
-    </style>
     <div class="lk">
         <?php
 

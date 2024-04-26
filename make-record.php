@@ -8,43 +8,7 @@
 
 <body>
     <?php require_once("header.php") ?>
-
-    <style>
-        .record {
-            margin: 12vh auto 5% auto;
-            font-size: 1.5em;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            width:80%;
-        }
-
-        .record-title {
-            font-size: 2em;
-            margin: 2%;
-            display: block;
-        }
-
-        .form-make-record {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            align-items: baseline;
-            border-radius: 10px;
-            border: 1px solid grey;
-            padding: 2%;
-        }
-
-        input{
-            margin: 2%;
-        }
-        select {
-            display: inline;
-            width: 89%;
-        }
-    </style>
-    <div class="record">
+    <div class="record-container">
             <a href='#' onclick='history.back(); return false;'><img src='Resources/back-btn.png'></a>
             <p class='record-title'>Запись на услугу</p>
             <?php

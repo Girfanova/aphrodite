@@ -24,7 +24,39 @@
     margin: 1%;
     cursor: pointer;
 }
+.record-container {
+    margin: 12vh auto 5% auto;
+    font-size: 1.5em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width:80%;
+}
 
+.record-title {
+    font-size: 2em;
+    margin: 2%;
+    display: block;
+}
+
+.form-make-record {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: baseline;
+    border-radius: 10px;
+    border: 1px solid grey;
+    padding: 2%;
+}
+
+.form-make-record input{
+    margin: 2%;
+}
+.form-make-record select {
+    display: inline;
+    width: 89%;
+}
 @media screen and (max-width:500px) {
     .gallery div {
         width: 48%;
