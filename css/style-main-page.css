@@ -552,7 +552,7 @@
         width: 90%;
     }
     .service{
-        width:43%;
+        width:42%;
     }
     .service img{
         /* width: 90%;
@@ -563,12 +563,13 @@
         /* margin: 2% 5%; */
     }
     .service__description{
-        font-size:0.88em;
+        font-size:0.7em;
         left:10%;
+	padding:2%;
         /* width: 80%; */
     }
     .service:hover .service__description{
-        font-size: 0.9em;
+        font-size: 0.72em;
         left:10%;
         /* width: 80%; */
     }

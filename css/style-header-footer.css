@@ -63,7 +63,7 @@ a:hover{
     font-family:var(--text-font);
     transition: all 0.5s ease-in-out;
     text-transform: uppercase;
-    border-radius: 2px;
+    /* border-radius: 2px; */
 }
 .btn:hover{
     transition: all 0.5s ease;
@@ -76,7 +76,8 @@ a:hover{
     padding:1% 2%;
     font-size:1.1em;
     border:none;
-    border-radius: 3px;
+    /* border-radius: 3px; */
+    margin: 2%;
 }
 .profile-circle{
     background-color:var(--fourth-color);
@@ -185,7 +186,7 @@ a:hover{
     border: 12px rgb(var(--first-color-rgb));
     border-bottom: 1px solid;
     outline: none;
-    font-family: 'Source Sans 3',sans-serif;
+    font-family: var(--text-font),sans-serif;
     letter-spacing: 2px;
     font-size: 1.4em;
 }

@@ -69,7 +69,7 @@
     <div class="lk">
 
         <div class='lk-profile'>
-            <a href='lk.php'> <img class='back-btn' src='Resources/back-btn.png' title='Назад'> </a>
+            <a href='lk.php'> <img class='back-btn' src='Resources/back-btn.svg' title='Назад'> </a>
             <?php
             session_start();
             require_once ("connect_db.php");
