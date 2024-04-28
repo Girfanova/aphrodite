@@ -25,7 +25,7 @@
     cursor: pointer;
 }
 .record-container {
-    margin: 20vh auto 5% auto;
+    margin: 20vh auto 20vh auto;
     font-size: 1.4em;
     padding: 2%;
     display: flex;
@@ -50,7 +50,7 @@
     text-decoration: underline var(--third-color) 1px;
 }
 
-.form-make-record {
+.form-make-record, .form-change-password, .form-edit-profile {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -67,6 +67,10 @@
 .form-make-record select {
     display: inline;
     width: 89%;
+}
+.back-btn{
+    /* width: 100%; */
+    opacity: 0.5;
 }
 @media screen and (max-width:500px) {
     .gallery div {
@@ -582,8 +586,7 @@ li span img {
 }
 
 .profile-table {
-    border: 0;
-    border: 3px solid var(--third-color);
+    border: 1px solid var(--third-color);
     padding: 2%;
     width: 100%;
     max-width: 600px;
@@ -642,7 +645,9 @@ li span img {
     text-align: left;
 
 }
-
+.record-table .material-symbols-outlined{
+    cursor: pointer;
+}
 
 .record-table tr:nth-child(2n+1) {
     background-color: #f8f5f4;
@@ -676,11 +681,11 @@ li span img {
 .profile-btn {
     text-align: center;
     background-color: rgb(var(--second-color-rgb));
-    padding: 1%;
+    padding: 4%;
     margin: 1%;
     display: block;
     font-size: 0.9em;
-    /* width: 100%; */
+    width: 100%;
 
 }
 

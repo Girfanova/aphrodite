@@ -10,7 +10,7 @@
     <?php require_once ("header.php") ?>
     <div class="record-container">
         <a href='#' onclick='history.back(); return false;'>
-        <img src='Resources/back-btn.svg' title='Назад'>
+        <img src='Resources/back-btn.svg' class='back-btn' title='Назад'>
     </a>
         <p class='record-title'>Запись на услугу</p>
         <?php

@@ -50,9 +50,14 @@ while ($data_count = mysqli_fetch_array($count)) {
 					} else {
 						echo "<td>Нет</td	><td>-</td	>";
 					}
-			echo "<td text-align='center'><img onclick=service_edit(" . $service['id'] . "); style='display:block; margin:auto;' src='Resources/edit.png' title='Редактировать' width=30px></td>
-					<td text-align='center'><img onclick=service_delete(" . $service['id'] . "," .$service['category_id']."); style='display:block; margin:auto;' src='Resources\delete.png' title='Удалить' width=30px></td>
-					</tr>";
+					echo "
+					<td><span onclick=service_edit(" . $service['id'] . "); title='Редактировать' class='material-symbols-outlined'>
+				edit
+				</span></td>
+				<td><span onclick=service_delete(" . $service['id'] . "," .$service['category_id']."); title='Удалить' class='material-symbols-outlined'>
+				delete
+				</span></td>
+				</tr>";
 			$k++;
 		}
 	}

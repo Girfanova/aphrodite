@@ -78,7 +78,8 @@
     $count = -1;
     foreach($_FILES as $Pictures) {
         $count++;
-		copy($Pictures['tmp_name'], 'Resources/portfolio/' . $Pictures['name']);
+		// echo $Pictures['tmp_name'], '../Resources/portfolio/' . $Pictures['name'];
+		copy($Pictures['tmp_name'], '../Resources/portfolio/' . $Pictures['name']);
 		require_once("connect_db.php");
 		$name_file = $Pictures['name'];
 		$query = "INSERT INTO portfolio SET name ='{$name_file}'";

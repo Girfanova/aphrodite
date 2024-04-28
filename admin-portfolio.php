@@ -28,8 +28,12 @@ while ($data = mysqli_fetch_array($portfolio)) {
 			echo	"<tr id='admin-portfolio".$id."'>
 			<td class='img-td'><a href='Resources/portfolio/$name'><img class='portfolio-img' title='$description' src='Resources/portfolio/$name'><img></a></td>
 				<td class='description'>$description</td>
-				<td><img onclick=portfolio_edit('" . $id . "'); src='Resources/edit.png' title='Редакировать' class='portfolio-photo-delete'></td>
-				<td><img onclick=portfolio_delete('" . $id . "'); src='Resources/delete.png' title='Удалить' class='portfolio-photo-delete'></td>
+				<td><span onclick=portfolio_edit('" . $id . "'); title='Редактировать' class='material-symbols-outlined'>
+				edit
+				</span></td>
+				<td><span onclick=portfolio_delete('" . $id . "'); title='Удалить' class='material-symbols-outlined'>
+				delete
+				</span></td>
 		</tr>";
 		// </div>";
 }

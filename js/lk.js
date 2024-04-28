@@ -207,3 +207,53 @@ function get_info_master() {
     });
     //открываем модалку с мастером
 }
+
+//услуга выполнена
+function makeDoneRecord(id){
+    $.ajax({
+        method: 'post',
+        data:{id:id},
+        url:'requests/done-record.php',
+        success:function(){
+            document.querySelector('#record' + id).querySelector('.done-btn').innerHTML="<input type='checkbox' checked onclick='removeDoneRecord("+id+");'>";
+           document.querySelector('#record' + id).querySelector('.canceled-btn').innerHTML="&mdash;";
+        },
+    })
+}
+
+//услуга выполнена (отмена)
+function removeDoneRecord(id){
+    $.ajax({
+        method: 'post',
+        data:{id:id},
+        url:'requests/remove-done-record.php',
+        success:function(){
+           document.querySelector('#record' + id).querySelector('.done-btn').innerHTML="<input type='checkbox' onclick='makeDoneRecord("+id+");'>";
+           document.querySelector('#record' + id).querySelector('.canceled-btn').innerHTML="<input type='checkbox' onclick='makeCanceledRecord("+id+");'>";
+        },
+    })
+}
+//услуга отменена
+function makeCanceledRecord(id){
+    $.ajax({
+        method: 'post',
+        data:{id:id},
+        url:'requests/canceled-record.php',
+        success:function(){
+           document.querySelector('#record' + id).querySelector('.canceled-btn').innerHTML="<input type='checkbox' checked onclick='removeCanceledRecord("+id+");'>";
+           document.querySelector('#record' + id).querySelector('.done-btn').innerHTML="&mdash;";
+        },
+    })
+}
+//услуга отменена (отмена)
+function removeCanceledRecord(id){
+    $.ajax({
+        method: 'post',
+        data:{id:id},
+        url:'requests/remove-canceled-record.php',
+        success:function(){
+           document.querySelector('#record' + id).querySelector('.canceled-btn').innerHTML="<input type='checkbox' onclick='makeCanceledRecord("+id+");'>";
+           document.querySelector('#record' + id).querySelector('.done-btn').innerHTML="<input type='checkbox' onclick='makeDoneRecord("+id+");'>";
+        },
+    })
+}

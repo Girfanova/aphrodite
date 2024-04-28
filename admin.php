@@ -11,6 +11,7 @@ if ($_SESSION["user_role"] != 10) {
     <?php require_once ("head.html") ?>
     <link rel="stylesheet" href="css/style-pages.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
 <body>

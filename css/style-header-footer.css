@@ -73,7 +73,7 @@ a:hover{
 }
 .form-submit-btn{
     background-color:var(--third-color);
-    padding:1% 2%;
+    padding:2%;
     font-size:1.1em;
     border:none;
     /* border-radius: 3px; */
@@ -87,8 +87,9 @@ a:hover{
     border-radius:100%;
     margin:auto;
     text-align:center;
+    border: 1px var(--third-color) solid;
     color:rgb(var(--second-color-rgb));
-    font-size:2.4em;
+    font-size:2.7em;
 }
 .popup, .popup-service-edit, .popup-service-add, .popup-promotion-edit, .popup-promotion-add, .popup-portfolio-edit{
     width: 100%;
@@ -451,7 +452,7 @@ footer .container{
         background-color:rgba(var(--first-color-rgb), 0.916);
         padding-top:5%;
         transition:all 0.3s ease 0s;
-        font-size: 1.4em;  
+        font-size: 1em;  
         align-items: center;
         justify-content: space-between;
     }
@@ -489,8 +490,8 @@ footer .container{
     }
     #menu-burg{
         display:block;
-        width:5vh;
-        height:2.5vh;
+        width:3vh;
+        height:2vh;
         position:relative;
         z-index:2;
         cursor:pointer;
@@ -557,7 +558,7 @@ footer .container{
         background-color: rgb(var(--first-color-rgb));
      }
     .popup{
-        background-color: var(--third-color);
+        /* background-color: var(--third-color); */
     }
 }
 @media screen and (max-width:1420px) {
@@ -592,7 +593,8 @@ footer .container{
 @media screen and (orientation:portrait) {
     .popup-content{
         width: 100%;
-        margin: 8vh auto 0vh;
+        margin: 10vh auto 0vh;
+        /* height: 90vh; */
      }
      .input{
         width: 100%;

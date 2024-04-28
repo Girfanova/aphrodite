@@ -267,16 +267,17 @@ else {
 
 //Проверка полей входа
 var password_log = document.getElementById("password_log");
-if (password_log) password_log.addEventListener('input', passwordCheckcount_log);
-function passwordCheckcount_log() {
-    document.querySelector('#message-block-log').innerHTML = '';
-    if (password_log.value.length < 8) {
-        password_log.style.borderColor = "red";
-        document.getElementById("password_log_label").innerHTML = 'Пароль меньше 8 символов';
+if (password_log) password_log.addEventListener('input', () => passwordCheckcount(password_log));
+function passwordCheckcount(password) {
+    if (document.querySelector('#message-block-log')) document.querySelector('#message-block-log').innerHTML = '';
+    if (password.value.length < 8) {
+        password.style.borderColor = "red";
+        document.querySelector(`[for="${password.id}"]`).innerHTML = 'Пароль меньше 8 символов';
+        // document.getElementById("password_log_label").innerHTML = 'Пароль меньше 8 символов';
     }
     else {
-        password_log.style.borderColor = "green";
-        document.getElementById("password_log_label").innerHTML = '';
+        password.style.borderColor = "green";
+        document.querySelector(`[for="${password.id}"]`).innerHTML = '';
     }
 }
 //Проверки введенных полей 
@@ -318,7 +319,7 @@ function passwordCheck() {
 
     }
 }
-function passwordCheckcount() {
+function passwordCheckcount_reg() {
     if (password_reg.value.length < 8) {
         password_reg.style.borderColor = "red";
         document.getElementById("password_reg_label").innerHTML = 'Пароль меньше 8 символов';
@@ -340,7 +341,7 @@ function passwordCheckcount() {
         return true;
     }
 }
-if (password_reg) password_reg.addEventListener('input', passwordCheckcount);
+if (password_reg) password_reg.addEventListener('input', passwordCheckcount_reg);
 if (password_reg2) password_reg2.addEventListener('input', passwordCheck);
 
 var auth_btn = document.getElementById("auth-btn");
@@ -351,7 +352,7 @@ if (document.getElementById('popup-form-reg')) document.getElementById('popup-fo
     var name = document.getElementById('name').value;
     var password = password_reg.value;
     var phone = document.getElementById('phone_reg').value;
-    if (checkInputText(document.getElementById('surname')) && checkInputText(document.getElementById('name')) && passwordCheck() && passwordCheckcount() && /^\+7\(\d{3}\)\d{3}-\d{2}-\d{2}$/.test(phone)) {
+    if (checkInputText(document.getElementById('surname')) && checkInputText(document.getElementById('name')) && passwordCheck() && passwordCheckcount_reg() && /^\+7\(\d{3}\)\d{3}-\d{2}-\d{2}$/.test(phone)) {
         event.preventDefault();
         $.ajax({
             url: "requests/registration.php",
@@ -424,8 +425,8 @@ function checktruevalueEdit() {
 
 if (document.getElementById('form-change-password')) document.getElementById('form-change-password').addEventListener('submit', function (event) {
     var old_password = document.getElementById('old-password');
-    var new_password = document.getElementById('new-password');
-    var new_password1 = document.getElementById('new-password1');
+    var new_password = document.getElementById('password_reg');
+    var new_password1 = document.getElementById('password_reg2');
     old_password.style.color = 'black';
     new_password.style.color = 'black';
     new_password1.style.color = 'black';
@@ -858,7 +859,7 @@ function add_photo() {
                 if ($("#uploadimage")[0].files[0].name != undefined) {
                     //Query 
                     $.ajax({
-                        url: 'requeste/upload-images.php',
+                        url: 'requests/upload-images.php',
                         type: 'POST',
                         contentType: false,
                         processData: false,
@@ -1221,6 +1222,10 @@ function service_delete(id, service_id) {
     }
 }
 
-
+//форма редактирования профиля, смена пароля
+var password_old = document.querySelector('#old-password');
+var password_new = document.querySelector('#new-password');
+var password_new1 = document.querySelector('#new-password1');
+if (password_old) password_old.addEventListener('input',() => passwordCheckcount(password_old));
 
 

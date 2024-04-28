@@ -10,57 +10,70 @@
     <?php require_once ("header.php") ?>
 
     <style>
-        .lk {
+        .lk{
             font-size: 2em;
-            padding: 13vh 7% 0 7%;
+            /* padding: 13vh 7% 0 7%; */
 
         }
 
-        .lk a:hover {
+        /* .lk a:hover {
             color: red;
-        }
-
+        } */
+/* 
         .lk a {
             color: grey;
-        }
+        } */
 
-        .lk-title {
+        /* .lk-title {
             font-size: 2em;
             margin: 0 0 5% 0;
             width: 100%;
             text-align: center;
-        }
+        } */
 
         .form-edit-profile,
         .form-change-password {
-            width: 60%;
+            /* width: 60%;
             margin: 1% 2% 5% 2%;
             display: flex;
             flex-wrap: wrap;
-            font-size: 0.7em;
+            justify-content: space-around; */
             padding: 2%;
-            justify-content: space-around;
-            border: 1px solid grey;
-            height: 100%;
+            border: 1px solid var(--third-color);
+            border-radius: 3px;
+            min-width:435px;
+            width: 40%;
+            /* height: 100%; */
         }
-
-        .lk-profile {
+        @media  screen and (max-width:435px) {
+            .edit-profile a {
+                width:100%;
+}
+        }
+        
+        .edit-profile {
+            display: flex;
             align-items: baseline;
+            justify-content: center;
             min-height: 40vh;
-            flex-wrap: nowrap;
+            flex-wrap: wrap;
+            font-size: 0.65em;
+            margin: 2%;
         }
-
+        .edit-profile .record-title{
+            margin: 0 0 10% 0;
+        }
         .input-message {
             margin-top: -2%;
         }
 
-        .button {
+        /* .button {
             background-color: #E7CCDE;
             padding: 1%;
             font-size: 1.1em;
             border: 1px solid grey;
             cursor: pointer;
-        }
+        } */
 
         .lk img {
            
@@ -68,8 +81,8 @@
     </style>
     <div class="lk">
 
-        <div class='lk-profile'>
-            <a href='lk.php'> <img class='back-btn' src='Resources/back-btn.svg' title='Назад'> </a>
+        <div class='edit-profile'>
+            <a href='lk.php' class='back-btn'> <img src='Resources/back-btn.svg' title='Назад'> </a>
             <?php
             session_start();
             require_once ("connect_db.php");
@@ -86,7 +99,7 @@
             <form class='form-edit-profile' id='form-edit-profile'  onsubmit='return checktruevalueEdit();' action="requests/save_edit-profile.php"
                 method="post">
 
-                <span class='lk-title'>Редактирование профиля</span>
+                <span class='record-title'>Редактирование профиля</span>
 
                 <div class="label">Фамилия</div>
                 <div class="input-box">
@@ -113,7 +126,7 @@
 
             <!-- смена пароля -->
             <form class='form-change-password' id ='form-change-password' onsubmit='return false;'>
-                <span class='lk-title'>Смена пароля</span>
+                <span class='record-title'>Смена пароля</span>
 
                 <div class="label">Старый пароль</div>
                 <div class="input-box">
@@ -123,15 +136,15 @@
                 </div>
                 <div class="label">Новый пароль</div>
                 <div class="input-box">
-                    <input type="password" name="new-password" id="new-password" class="input"
+                    <input type="password" name="new-password" id="password_reg" class="input"
                         placeholder="********" title="Минимум 8 символов" required minlength='8'><br>
-                    <div class="input-message" for="new-password" id="new-password-label"></div><br>
+                    <div class="input-message" for="new-password" id="password_reg_label"></div><br>
                 </div>
                 <div class="label">Повторите новый пароль</div>
                 <div class="input-box">
-                    <input type="password" name="new-password1" id="new-password1" class="input"
+                    <input type="password" name="new-password1" id="password_reg2" class="input"
                         placeholder="********" title="Минимум 8 символов" required minlength='8'><br>
-                    <div class="input-message" for="new-password1" id="new-password1-label"></div><br>
+                    <div class="input-message" for="new-password1" id="password_reg_label2"></div><br>
                 </div>
                 <input type="submit" value="Сохранить" class="btn form-submit-btn">
             </form>
