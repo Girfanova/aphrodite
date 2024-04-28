@@ -29,8 +29,6 @@
                     style='width:35px; height:35px;font-size:1.5em; color:black; background-color:rgba(0,0,0,0); border:solid;'>А</div></a>";
                 }
                 
-            ?>
-           
-            
+            ?>   
         </div>
     </header>

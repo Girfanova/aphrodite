@@ -24,14 +24,12 @@ while ($data = mysqli_fetch_array($portfolio)) {
 	$name = $data['name'];
 	$description = $data['description'];
 	$id = $data['id'];
-	// echo "<div class='portfolio-photo'>
 			echo	"<tr id='admin-portfolio".$id."'>
 			<td class='img-td'><a href='Resources/portfolio/$name'><img class='portfolio-img' title='$description' src='Resources/portfolio/$name'><img></a></td>
 				<td class='description'>$description</td>
-				<td><img onclick=portfolio_edit('" . $id . "'); src='Resources/edit.png' title='Редакировать' class='portfolio-photo-delete'></td>
-				<td><img onclick=portfolio_delete('" . $id . "'); src='Resources/delete.png' title='Удалить' class='portfolio-photo-delete'></td>
+				<td><span onclick=portfolio_edit('" . $id . "'); class='material-symbols-outlined' title='Редакировать'>edit</span></td>
+				<td><span onclick=portfolio_delete('" . $id . "'); class='material-symbols-outlined' title='Удалить'>delete</span></td>
 		</tr>";
-		// </div>";
 }
 mysqli_close($link);
 ?>

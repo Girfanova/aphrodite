@@ -25,9 +25,9 @@ while ($data = mysqli_fetch_array($promotions)) {
 	} else {
 		echo "<td align=center>-</td>";
 	}
-	echo "<td text-align='center'><img style='display:block; margin:auto;' src='Resources\\edit.png' title='Редактировать' width=30px onclick=promotion_edit(" . $data['id'] . ");></a></td>";
-	echo "<td text-align='center'><img style='display:block; margin:auto;' src='Resources\delete.png' title='Удалить' width=30px onclick=promotion_delete(" . $data['id'] . ");></td>
-					</tr>";
+	echo "	<td><span onclick=promotion_edit(" . $data['id'] . "); class='material-symbols-outlined' title='Редакировать'>edit</span></td>
+			<td><span onclick=promotion_delete(" . $data['id'] . "); class='material-symbols-outlined' title='Удалить'>delete</span></td>
+		</tr>";
 	$k++;
 
 }

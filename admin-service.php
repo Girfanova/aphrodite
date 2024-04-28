@@ -44,8 +44,8 @@ while ($data_count = mysqli_fetch_array($count)) {
 					<td class='service' >" . $service['service'] . "</td>
 					<td class='price'>" . $service['price'] . " </td>";
 			
-			echo "<td text-align='center'><img onclick=service_edit(" . $service['id'] . "); style='display:block; margin:auto;' src='Resources/edit.png' title='Редактировать' width=30px></td>
-					<td text-align='center'><img onclick=service_delete(" . $service['id'] . "," .$service['category_id']."); style='display:block; margin:auto;' src='Resources\delete.png' title='Удалить' width=30px></td>
+			echo "	<td><span onclick=service_edit(" . $service['id'] . "); class='material-symbols-outlined' title='Редакировать'>edit</span></td>
+					<td><span onclick=service_delete(" . $service['id'] . "," .$service['category_id']."); class='material-symbols-outlined' title='Удалить'>delete</span></td>
 					</tr>";
 			$k++;
 		}

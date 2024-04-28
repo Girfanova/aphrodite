@@ -19,9 +19,10 @@
 					<td id='review_name" . $review['id'] . "'>" . $review['name'] . " </td>
 					<td id='review_date" . $review['id'] . "'>" . $review['date'] . " </td>";
 
-		echo "<td text-align='center'><img onclick=review_edit(" . $review['id'] . "); style='display:block; margin:auto;' src='Resources/edit.png' title='Редактировать' width=30px></td>
-					<td text-align='center'><img onclick=review_delete(" . $review['id'] . "); style='display:block; margin:auto;' src='Resources\delete.png' title='Удалить' width=30px></td>
-					</tr>";
+		echo "
+				<td><span onclick=review_edit(" . $review['id'] . "); class='material-symbols-outlined' title='Редакировать'>edit</span></td>
+				<td><span onclick=review_delete(" . $review['id'] . "); class='material-symbols-outlined' title='Удалить'>delete</span></td>
+				</tr>";
 	}
 
 	echo "</table>";

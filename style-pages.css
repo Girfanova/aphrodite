@@ -562,7 +562,9 @@ li span img {
     overflow-x: auto;
 }
 
-.record-table table {}
+.record-table .material-symbols-outlined {
+    cursor: pointer;
+}
 
 .table-visible {
     display: block;

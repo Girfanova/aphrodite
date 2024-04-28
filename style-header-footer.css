@@ -410,7 +410,7 @@ footer .container{
         background-color:rgba(var(--first-color-rgb), 0.916);
         padding-top:5%;
         transition:all 0.3s ease 0s;
-        font-size: 1.4em;  
+        font-size: 1em;  
         align-items: center;
         justify-content: space-between;
     }
@@ -448,8 +448,8 @@ footer .container{
     }
     #menu-burg{
         display:block;
-        width:5vh;
-        height:2.5vh;
+        width:3vh;
+        height:2vh;
         position:relative;
         z-index:2;
         cursor:pointer;
