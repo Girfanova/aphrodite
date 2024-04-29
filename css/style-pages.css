@@ -253,7 +253,7 @@ li span img {
 
 .about-salon-1__image-container {
     position: relative;
-    width: 55%;
+    width: 45%;
 }
 
 
@@ -273,7 +273,7 @@ li span img {
 }
 
 .about-salon-1__description {
-    width: 45%;
+    width: 55%;
     font-size: 2em;
     text-decoration: underline var(--third-color);
 }

@@ -9,7 +9,7 @@
 <style>
     .itcss {
         position: relative;
-        max-width: none;
+        max-width: 700px;
         width: 100%;
     }
     .itcss__item {
@@ -78,11 +78,11 @@
 
         <div class="about-salon">
             <div class='about-salon__image-container'>
-                <img src="Resources/salon-photos/60-afr.jpg" class="about-salon__image" alt="о нас">
+                <img src="Resources/salon-photos/60-4 (3).jpg" class="about-salon__image" alt="о нас">
             </div>
             <div class="about-salon__description">
                 <div class="about-us__title">О нас
-                    <div class='stars'>&#9733;&#9733;&#9733;</div>
+                    <div class='stars'>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                 </div>
                 <p>
                     Название нашего салона красоты выбрано не случайно – Афродита является символом женственности,
@@ -104,9 +104,9 @@
                     спокойно и безопасно с бактерицидной лампой.
                     <br><br>Бактерицидная лампа:<br>
                     <br><span class='check-mark'>&#10004;</span> очищает воздух
-                    <br><span class='check-mark'>&#10004;</span>уничтожает полевых клещей
-                    <br><span class='check-mark'>&#10004;</span>уничтожает вирусы
-                    <br><span class='check-mark'>&#10004;</span>уничтожает бактерии
+                    <br><span class='check-mark'>&#10004;</span> уничтожает полевых клещей
+                    <br><span class='check-mark'>&#10004;</span> уничтожает вирусы
+                    <br><span class='check-mark'>&#10004;</span> уничтожает бактерии
                     <br><br>Лампа в салоне находится в закрытом виде, что безопасно для использования в присутствии
                     людей.
                 </p>
