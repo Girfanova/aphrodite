@@ -31,7 +31,7 @@ if (($_SESSION['user_role']) == 10)
                     <div class='lk-role'><b> {$stroka['role_name']}</b></div>
                 </div>";
 
-            echo "<div><div><a class='btn profile-btn' href='edit-profile.php'>Редактировать</a></div   ><div><a class='profile-btn btn' href='requests/exit.php'>Выйти</a></div></div>";
+            echo "<div><div><a class='btn profile-btn ' href='edit-profile.php'>Редактировать</a></div><div><a class='profile-btn btn' href='requests/exit.php'>Выйти</a></div></div>";
 
             echo "</div>";
         }
@@ -64,19 +64,24 @@ if (($_SESSION['user_role']) == 10)
                    <th width=9%>Отменить</th>
                    <th width=9%>Статус</th>
                    </tr>";
-                
+                $today = date('Y-m-d');
             while ($stroka = mysqli_fetch_array($records_not_done)) {
-                echo "<tr>";
+                echo "<tr id='record".$stroka['id']."'>";
                 echo "<td> {$stroka['Услуга']} </td>";
                 echo "<td> {$stroka['Мастер']} </td>";
                 echo "<td>" . date('d.m.Y', strtotime($stroka['Дата'])) . " </td>";
                 echo "<td> " . date('H.i', strtotime($stroka['Время'])) . "</td>";
-                if ($stroka['canceled'] == 1) echo "<td align='center'>-</td>";
-                else if ($stroka['done'] == 1) echo "<td align='center'>-</td>";
-                else echo "<td align='center'><a href='requests/canceled-record.php?id=" . $stroka['id'] . "&date=" . $stroka['Дата'] . "&time=" . $stroka['Время'] . "&master=" . $stroka['Мастер'] . "'><img src='Resources/canceled.png'></img></a></td>";
-                if ($stroka['done'] == 1) echo "<td>Выполнено</td>";
-                else if ($stroka['canceled'] == 1) echo "<td>Отменено</td>";
-                else echo "<td>В ожидании</td>";
+                if ($stroka['canceled'] == 1) {
+                    if ($stroka['Дата']<$today) echo "<td  align='center' class='canceled-btn'>&mdash;</td>";
+                    else echo "<td  align='center' class='canceled-btn'><input type='checkbox' checked onclick='removeCanceledRecord(" . $stroka['id'] . ");'></td>";
+                }
+
+                else if ($stroka['done'] == 1) echo "<td align='center'>&mdash;</td>";                
+                else echo "<td  align='center' class='canceled-btn'><input type='checkbox' onclick='makeCanceledRecord(" . $stroka['id'] . ");'></td>";
+                
+                if ($stroka['done'] == 1) echo "<td class='status'>Выполнено</td>";
+                else if ($stroka['canceled'] == 1) echo "<td class='status'>Отменено</td>";
+                else echo "<td class='status'>В ожидании</td>";
                 echo "</tr>";
                 $t = 1;
             }
@@ -89,8 +94,8 @@ if (($_SESSION['user_role']) == 10)
             echo '
             <div class="tab" id="tab-1">
                 <div class="tab-nav">
-                    <button type="button" class="tab-btn tab-btn-active" data-target-id="0"><img src="Resources/record.png">Учет посещений</button>
-                    <button type="button" class="tab-btn" data-target-id="1"><img src="Resources/master.png">Мастера</button>
+                    <button type="button" class="tab-btn tab-btn-active" data-target-id="0">Учет посещений</button>
+                    <button type="button" class="tab-btn" data-target-id="1">Мастера</button>
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane tab-pane-show" data-id="0">';

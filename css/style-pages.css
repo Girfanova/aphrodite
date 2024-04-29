@@ -576,7 +576,7 @@ li span img {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    margin: 4% 0 1% 0;
+    margin: 2% 0 1% 0;
 }
 
 .admin-menu p:hover {
@@ -610,6 +610,7 @@ li span img {
 .admin-menu .record-table{
     display: table;
 }
+
 .select-user-role{
     width: 100%;
     height: 100%;
@@ -635,6 +636,8 @@ li span img {
     /* text-align: center; */
     border-top: 1px solid #C3C9CD;
     border-right: 1px solid #C3C9CD;
+    border-bottom: 1px solid #C3C9CD;
+    border-left: 1px solid #C3C9CD;
     padding: 0 0.5%;
 }
 
@@ -688,7 +691,10 @@ li span img {
     width: 100%;
 
 }
-
+.admin-exit-btn{
+    width: auto;
+    padding: 1%;
+}
 .lk .btn:hover {
     background-color: var(--third-color);
 }

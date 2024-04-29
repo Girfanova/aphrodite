@@ -1,17 +1,26 @@
+.tab{
+    margin-top:3%;
+}
+.tab-nav{
+    display: flex;
+    justify-content: center;
+}
 .tab-btn{
     border:0;
     background-color: rgb(var(--second-color-rgb));
     cursor: pointer;
-    width: 50%;
+    width: auto;
     margin: 1%;
     padding: 1%;
     display: flex;
     align-items: center;
     transition: all 0.5s ease;
+    font-family: var(--text-font);
+    font-size: 1.2em;
 }
 .tab-btn-active {
     pointer-events: none;
-    border-bottom:2px solid var(--third-color);
+    border-bottom:1px solid var(--third-color);
   }
   .tab-pane:not(.tab-pane-show) {
     display: none;

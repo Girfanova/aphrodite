@@ -12,25 +12,15 @@
             
             
             if (!empty($phoneDB)) {
-                echo "<script>
-                alert('Номер телефона уже зарегистрирован');
-                document.location.href = '../edit-profile.php';
-                </script>";
+                echo json_encode(array('status' => 'error', 'response' => 'Номер телефона уже зарегистрирован')) ;
             }
             elseif ($user['surname'] != $surname || $user['name'] != $name || $user['phone'] != $phone){
+            // $query="UPDATE users SET surname = '$surname', name = '$name' WHERE id='$id_user'";
             $query="UPDATE users SET surname = '$surname', name = '$name', phone='$phone' WHERE id='$id_user'";
             mysqli_query($link, $query);
-            echo "<script>
-            alert('Данные сохранены');
-            document.location.href = '../lk.php';
-            </script>";
+            echo json_encode(array('status' => 'success', 'response' => 'Данные сохранены')) ;
             }
-            else {
-                echo "<script>
-            alert('Вы не внесли изменений');
-            document.location.href = '../edit-profile.php';
-            </script>";
-            }
+            else
+            echo json_encode(array('status' => 'error', 'response' => 'Вы не внесли изменений')) ;
     }
     mysqli_close($link);
- ?>

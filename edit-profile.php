@@ -30,6 +30,12 @@
             width: 100%;
             text-align: center;
         } */
+        .form-edit-profile{
+            width: 30%;
+        }
+        .form-change-password {
+            width: 50%;
+        }
 
         .form-edit-profile,
         .form-change-password {
@@ -41,8 +47,8 @@
             padding: 2%;
             border: 1px solid var(--third-color);
             border-radius: 3px;
-            min-width:435px;
-            width: 40%;
+            /* min-width:435px; */
+            /* width: 40%; */
             /* height: 100%; */
         }
         @media  screen and (max-width:435px) {
@@ -96,8 +102,7 @@
             mysqli_close($link);
             ?>
             <!-- смена номера и имени -->
-            <form class='form-edit-profile' id='form-edit-profile'  onsubmit='return checktruevalueEdit();' action="requests/save_edit-profile.php"
-                method="post">
+            <form class='form-edit-profile' id='form-edit-profile'  onsubmit='return false; '>
 
                 <span class='record-title'>Редактирование профиля</span>
 
@@ -114,13 +119,14 @@
                         value="<?php echo $name; ?>" title="Только кириллица" required><br>
                     <div class="input-message" for="name_edit" id="name_edit_label"></div><br>
                 </div>
-
+                
                 <div class="label">Номер телефона</div>
                 <div class="input-box">
-                    <input type="tel" id="tel" name="phone_edit" class="input" value="<?php echo $phone; ?>"
+                    <input type="tel" id="phone_edit" name="phone_edit" class="input" value="<?php echo $phone; ?>"
                         placeholder="+7 (000) 000-00-00" required><br>
                     <div class="input-message" for="phone_edit" id="phone_edit_label"></div><br>
                 </div>
+                <div style='width:100%; text-align:center;' id='message-block-name'></div>
                 <input type="submit" value="Сохранить" class="btn form-submit-btn">
             </form>
 
@@ -146,6 +152,7 @@
                         placeholder="********" title="Минимум 8 символов" required minlength='8'><br>
                     <div class="input-message" for="new-password1" id="password_reg_label2"></div><br>
                 </div>
+                <div style='width:100%; text-align:center;' id='message-block-password'></div>
                 <input type="submit" value="Сохранить" class="btn form-submit-btn">
             </form>
         </div>

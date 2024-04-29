@@ -9,7 +9,7 @@ while ($row = mysqli_fetch_array($master_services)) {
     echo '<div id="spec" style="display:inline-block;">' . $row['name'] . '</div>';
 }
 echo "
-<a onclick='get_info_master();' class='edit-category'><img src='Resources/edit.png'></a>
+<a onclick='get_info_master();' class='edit-category'><span class='material-symbols-outlined'>edit</span></a>
 
 ";
 echo '</div>';

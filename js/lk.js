@@ -114,15 +114,17 @@ function show_master_schedule() {
 }
 $('#form-schedule').on("submit", function () {
     var dataForm = $(this).serialize();
-    console.log(dataForm);
     $.ajax({
         url: 'requests/save-edit-schedule.php',         
         method: 'post',            
         async: false,
         dataType: 'html',         
         data: dataForm,    
-        success: function () {  
-            getSchedule();
+        success: function (res) {  
+            document.querySelector('#schedule-master').insertAdjacentHTML('beforeend',  `
+            <div style="width:100%; text-align:center;">${res}</div>
+            `)
+            setTimeout (() => getSchedule(), 1000); 
         }
     });
 })
@@ -216,7 +218,7 @@ function makeDoneRecord(id){
         url:'requests/done-record.php',
         success:function(){
             document.querySelector('#record' + id).querySelector('.done-btn').innerHTML="<input type='checkbox' checked onclick='removeDoneRecord("+id+");'>";
-           document.querySelector('#record' + id).querySelector('.canceled-btn').innerHTML="&mdash;";
+            document.querySelector('#record' + id).querySelector('.canceled-btn').innerHTML="&mdash;";
         },
     })
 }
@@ -241,7 +243,10 @@ function makeCanceledRecord(id){
         url:'requests/canceled-record.php',
         success:function(){
            document.querySelector('#record' + id).querySelector('.canceled-btn').innerHTML="<input type='checkbox' checked onclick='removeCanceledRecord("+id+");'>";
-           document.querySelector('#record' + id).querySelector('.done-btn').innerHTML="&mdash;";
+           let doneBtn = document.querySelector('#record' + id).querySelector('.done-btn');
+           if (doneBtn) doneBtn.innerHTML="&mdash;";
+           let status = document.querySelector('#record' + id).querySelector('.status');
+           if (status) status.innerHTML="Отменено";
         },
     })
 }
@@ -253,7 +258,10 @@ function removeCanceledRecord(id){
         url:'requests/remove-canceled-record.php',
         success:function(){
            document.querySelector('#record' + id).querySelector('.canceled-btn').innerHTML="<input type='checkbox' onclick='makeCanceledRecord("+id+");'>";
-           document.querySelector('#record' + id).querySelector('.done-btn').innerHTML="<input type='checkbox' onclick='makeDoneRecord("+id+");'>";
+           let doneBtn = document.querySelector('#record' + id).querySelector('.done-btn');
+           if (doneBtn) doneBtn.innerHTML="<input type='checkbox' onclick='makeDoneRecord("+id+");'>";
+           let status = document.querySelector('#record' + id).querySelector('.status');
+           if (status) status.innerHTML="В ожидании";
         },
     })
 }

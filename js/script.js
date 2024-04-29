@@ -367,7 +367,7 @@ if (document.getElementById('popup-form-reg')) document.getElementById('popup-fo
                 document.querySelector('#message-block-reg').innerHTML = res['message'];
                 document.querySelector('#message-block-reg').style.color = 'green';
                 if (res['status'] == 'success')
-                    setTimeout(() => location.href = 'lk.php', 2000);
+                    setTimeout(() => location.href = 'lk.php', 1500);
                 else {
                     document.querySelector('#message-block-reg').style.color = 'red';
                     document.querySelector('#phone_reg').style.borderColor = 'red';
@@ -402,7 +402,7 @@ if (document.getElementById('popup-form-log')) document.getElementById('popup-fo
                 document.querySelector('#message-block-log').innerHTML = res['message'];
                 if (res['status'] == 'success'){
                     document.querySelector('#message-block-reg').style.color = 'green';
-                    setTimeout(() => location.href = 'lk.php', 2000);
+                    setTimeout(() => location.href = 'lk.php', 1500);
                 }
                 else document.querySelector('#message-block-log').style.color = 'red';
             }
@@ -415,12 +415,31 @@ if (document.getElementById('popup-form-log')) document.getElementById('popup-fo
         return false;
     }
 })
-
+//редактирование профиля
+var formEditProfile = document.querySelector('#form-edit-profile');
+if (formEditProfile) formEditProfile.addEventListener('submit', checktruevalueEdit);
 function checktruevalueEdit() {
-    if ((checkInputText(document.getElementById('surname_edit')) && checkInputText(document.getElementById('name_edit')))) {
-        return true;
+    var surnameEdit = document.getElementById('surname_edit');
+    var nameEdit = document.getElementById('name_edit');
+    var phoneEdit = document.getElementById('phone_edit');
+    if ((checkInputText(surnameEdit) && checkInputText(nameEdit))) {
+        $.ajax({
+            url:"requests/save-edit-profile.php",
+            method:'post',
+            dataType:'json',
+            data:{surname_edit : surnameEdit.value, name_edit : nameEdit.value, phone_edit : phoneEdit.value}, 
+            success:function(res){
+                document.querySelector("#message-block-name").innerHTML = res['response'];
+                if (res['status'] == 'success')
+                setTimeout(() => location.href = 'edit-profile.php', 1500)
+            }
+        });
+        return false;
     }
-    else { alert("Проверьте введенные данные"); return false; }
+    else { 
+        document.querySelector("#message-block-name").innerHTML = "Проверьте введенные данные";
+        return false; 
+    }
 }
 
 if (document.getElementById('form-change-password')) document.getElementById('form-change-password').addEventListener('submit', function (event) {
@@ -431,7 +450,9 @@ if (document.getElementById('form-change-password')) document.getElementById('fo
     new_password.style.color = 'black';
     new_password1.style.color = 'black';
     event.preventDefault();
-    if (old_password.value == new_password.value) alert('Старый пароль не может совпадать с новым');
+    if (old_password.value == new_password.value)  document.querySelector('#message-block-password').innerHTML = 'Старый пароль не может совпадать с новым';
+    else if (passwordCheckcount_reg() == false) document.querySelector('#message-block-password').innerHTML = 'Пароль должен быть не менее 8 символов и содержать хотя бы 1 букву';
+    else if (new_password.value != new_password1.value) document.querySelector('#message-block-password').innerHTML = 'Пароли не совпадают';
     else {
         $.ajax({
             url: "requests/check-true-password.php",
@@ -439,15 +460,11 @@ if (document.getElementById('form-change-password')) document.getElementById('fo
             async: false,
             data: { password: old_password.value },
             success: function (res) {
-                if (res == false) { alert("Старый пароль неверный"); old_password.style.color = 'red' };
+                if (res == false) { document.querySelector('#message-block-password').innerHTML = "Неверный старый пароль"; old_password.style.color = 'red' };
                 if (res == true) {
                     if (new_password.value == new_password1.value) {
                         ajaxChangePassword(new_password.value);
-                    }
-                    else {
-                        alert('Пароли не совпадают');
-                        new_password.style.color = 'red';
-                        new_password1.style.color = 'red';
+                        
                     }
 
                 }
@@ -460,8 +477,8 @@ if (document.getElementById('form-change-password')) document.getElementById('fo
                 async: false,
                 data: { password: password },
                 success: function (result) {
-                    alert(result);
-                    location.href = 'edit-profile.php';
+                    document.querySelector('#message-block-password').innerHTML = result;
+                    setTimeout(() => location.href = 'edit-profile.php', 1500)
                 }
             })
         }
@@ -471,15 +488,6 @@ if (document.getElementById('form-change-password')) document.getElementById('fo
 function checkRecordForm() {
 
 }
-
-// function clear_reg_phone() {
-//     console.log(1);
-//     document.querySelector('#message-block-reg').innerHTML = '';
-//     document.querySelector('#phone_reg').style.borderColor = 'black';
-// }
-// if (document.querySelector("#phone_reg")) {
-//     document.querySelector("#phone_reg").oninput = clear_reg_phone();
-// }
 
 $("#phone_feedback").mask("+7(999)999-99-99", { autoclear: false });
 $("#tel").mask("+7(999)999-99-99", { autoclear: false });
@@ -604,7 +612,6 @@ function changeInputPhoto(input) {
 
 function add_service(form) {
     var dataForm = $(form).serialize();
-    console.log(dataForm);
     $.ajax({
         url: 'requests/save-add-service.php',
         method: 'post',

@@ -21,10 +21,38 @@ if ($_SESSION["user_role"] != 10) {
         if ($_SESSION["user_role"] == 10) {
         echo "<div class='lk-profile'>";
         echo "<H1 class='lk-title'>Панель администратора</H1>";
-        echo "<a class='profile-btn btn' href='requests/exit.php' >Выйти</a>";
+        echo "<a class='admin-exit-btn profile-btn btn ' href='requests/exit.php' >Выйти</a>";
         echo "</div>";
         echo "<div id='popup' class='admin-popup'></div>";
+
+    //     echo'  <div class="tab" id="tab-1">
+    //     <div class="tab-nav">
+    //         <button type="button" class="tab-btn tab-btn-active" data-target-id="0">Портфолио</button>
+    //         <button type="button" class="tab-btn" data-target-id="1">Услуги</button>
+    //         <button type="button" class="tab-btn" data-target-id="1">Акции</button>
+    //         <button type="button" class="tab-btn" data-target-id="1">Отзывы</button>
+    //     </div>
+    //     <div class="tab-content">
+    //         <div class="tab-pane tab-pane-show" data-id="0">
+    //             <div class="record-table table-visible" id="portfolio-table"></div>
+    //         </div>
+    //         <div class="tab-pane" data-id="1">
+    //             <div class="record-table table-visible" id="service-table"></div>
+    //         </div>
+    //         <div class="tab-pane" data-id="2">
+    //             <div class="record-table table-visible" id="promotions-table"></div>            
+    //         </div>
+    //         <div class="tab-pane" data-id="3">
+    //             <div class="record-table table-visible" id="users-table">
+    //                 <div class="search">Поиск <input type=text oninput="search_user(this.value);"></div>
+    //                 <div id="user-list"></div>";
+    //             </div>
+    //         </div>
+    //     </div>
+    // </div> ';
             echo "
+
+
                     <div class='admin-menu'>
                     <p class='lk-title label-checked' id='portfolio-table-label'>Портфолио</p>
                     <p class='lk-title' id='service-table-label'>Услуги</p>
