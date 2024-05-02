@@ -9,13 +9,18 @@
 .gallery {
     display: flex;
     flex-wrap: wrap;
-    margin: 2% 6% 5% 6%;
+    margin: 2% 3% 5% 3%;
+    background-color: #f3f1f0;
+    border-radius: 3px;
+    padding: 2%;
 }
 
 .gallery-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* border-radius: 3px; */
+    box-shadow: 0 0 10px var(--fourth-color);
 }
 
 .gallery div {
@@ -338,7 +343,8 @@ li span img {
 }
 
 .about-us__title {
-    font-size: 2em;
+    /* font-size: 2em; */
+    font-size: 3em;
     margin: auto;
     width: max-content;
     font-family: var(--title-font);
@@ -346,8 +352,11 @@ li span img {
 
 .portfolio__title {
     font-size: 5em;
-    margin: 4% 6% 0 5%;
+    margin: 4% 6% 0 6%;
     width: max-content;
+    text-align: center;
+    width: 88%;
+    border-bottom: 1px solid;
     font-family: var(--title-font);
 }
 
