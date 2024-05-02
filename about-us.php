@@ -79,11 +79,11 @@
 
         <div class="about-salon">
             <div class='about-salon__image-container'>
-                <img src="Resources/aphrodite-photo.jpg" class="about-salon__image" alt="о нас">
+                <img src="Resources/salon-photos/60-4.jpg" class="about-salon__image" alt="о нас">
             </div>
             <div class="about-salon__description">
                 <div class="about-us__title">О нас
-                    <div class='stars'>&#9733;&#9733;&#9733;</div>
+                    <div class='stars'>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                 </div>
                 <p>
                     Название нашего салона красоты выбрано не случайно – Афродита является символом женственности,
@@ -123,9 +123,9 @@
                     <div class="itcss" id='slider1'>
                         <div class="itcss__wrapper">
                             <div class="itcss__items">
+                                <img src='Resources/salon-photos/60-1.jpg' class='itcss__item'>
                                 <img src='Resources/salon-photos/60-2.jpg' class='itcss__item'>
-                                <img src='Resources/salon-photos/60-1.jpeg' class='itcss__item'>
-                                <img src='Resources/salon-photos/60-4.jpg' class='itcss__item'>
+                                <img src='Resources/salon-photos/60-3.jpg' class='itcss__item'>
                             </div>
                         </div>
                         <div class='control-container-prev'>
@@ -158,9 +158,9 @@
                     <div class="itcss" id='slider2'>
                         <div class="itcss__wrapper">
                             <div class="itcss__items">
-                                <img src='Resources/salon-photos/26-2-3.jpeg' class='itcss__item'>
-                                <img src='Resources/salon-photos/26-2-1.jpeg' class='itcss__item'>
-                                <img src='Resources/salon-photos/26-2-2.jpeg' class='itcss__item'>
+                                <img src='Resources/salon-photos/26-2-1.jpg' class='itcss__item'>
+                                <img src='Resources/salon-photos/26-2-2.jpg' class='itcss__item'>
+                                <img src='Resources/salon-photos/26-2-3.jpg' class='itcss__item'>
                             </div>
                         </div>
                         <div class='control-container-prev'>

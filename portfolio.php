@@ -13,7 +13,7 @@
 
     <div class="content-page">
         <div class="portfolio__title">Портфолио</div>
-        <hr>
+        <!-- <hr> -->
         <div class="gallery">
             <?php
             require_once ("connect_db.php");
