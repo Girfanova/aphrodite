@@ -45,8 +45,9 @@
             flex-wrap: wrap;
             justify-content: space-around; */
             padding: 2%;
-            border: 1px solid var(--third-color);
-            border-radius: 3px;
+            /* border: 1px solid var(--third-color); */
+            /* border-radius: 3px; */
+            box-shadow: 0 0 10px var(--fourth-color);
             /* min-width:435px; */
             /* width: 40%; */
             /* height: 100%; */

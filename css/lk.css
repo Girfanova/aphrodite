@@ -1,16 +1,21 @@
 .tab{
-    margin-top:3%;
+    margin-top:1%;
 }
 .tab-nav{
+    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 0% 0 1% 0;
+    box-shadow: 0 0 10px var(--fourth-color);
+    /* padding: 1%; */
 }
 .tab-btn{
     border:0;
     background-color: rgb(var(--second-color-rgb));
     cursor: pointer;
     width: auto;
-    margin: 1%;
+    /* margin: 1%; */
     padding: 1%;
     display: flex;
     align-items: center;
@@ -18,21 +23,14 @@
     font-family: var(--text-font);
     font-size: 1.2em;
 }
-.tab-btn-active {
-    pointer-events: none;
-    border-bottom:1px solid var(--third-color);
+
+  .tab-pane{
+    display: flex;
+    justify-content: center;
   }
   .tab-pane:not(.tab-pane-show) {
     display: none;
   }
-  .masters-container {
-    display: flex;
-    flex-wrap: nowrap;
-    border-radius: 3px;
-    box-shadow: 0 0 10px var(--fourth-color);
-    background-color: #f8f5f4;
-    font-size: 0.8em;
-}
 
 .masters-list {
     width: 30%;
@@ -48,7 +46,8 @@
     text-align: center;
     padding: 2%;
     border: #C3C9CD solid 1px;
-    background-color: #c3c9cd2f;
+    /* background-color: #f9f0e891; */
+    background-color:#f8f5f4;
 }
 .masters-list input[type=radio]:checked + label {
 	/* background: #f8f5f4; */
@@ -83,6 +82,7 @@
 }
 .schedule{
     border-spacing: 0;
+    font-size: 0.9em;
 }
 .schedule input {
     font-size: 1em;
@@ -98,4 +98,32 @@
     border: 1px solid #C3C9CD;
     text-align: center;
     padding: 1%;
+}
+
+.graph tr{
+    font-size: 0.8em;
+    text-align: center;
+}
+.graph-master{
+    border: 1px solid rgb(218, 218, 218);
+    margin: 5%;
+    padding: 2%;
+    border-radius: 2px;
+    text-align: center;
+    background-color: #f9f0e891;
+}
+.graph-master:nth-child(2n+1){
+    background-color: #e8f9f9a3;
+}
+.more-btn{
+    cursor: pointer;
+    width: 100%;
+    font-size: 0.7em;
+    text-align: right;
+}
+.check-category-container{
+    font-size: 1.5em;
+    display: flex;
+    align-items: baseline;
+    border-bottom: 1px var(--third-color) solid;
 }

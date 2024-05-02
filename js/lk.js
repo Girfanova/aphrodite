@@ -49,7 +49,7 @@ function do_filter() {
         success: function (data) {
             document.getElementById('record-list-table').innerHTML = data;
             if (document.querySelector('#more_btn')) {
-                document.querySelector('#more_btn').innerHTML = 'Загрузить еще';
+                document.querySelector('#more_btn').innerHTML = '+ Загрузить еще';
                 document.querySelector('#more_btn').addEventListener('click', get_more_records);
             }
         }
@@ -170,7 +170,7 @@ function get_info_master() {
             while (k < html.length) {
                 if (spec == html[k]['name']) {
                     document.querySelector('.form-body').insertAdjacentHTML('beforeend', `
-            <div>
+            <div class='check-category-container'>
             <input type='radio' value='${html[k]['id']}' name='changed-category' checked id='cat${html[k]['id']}'>
             <label for='cat${html[k]['id']}'>${html[k]['name']}</label>
             </div>
@@ -179,7 +179,7 @@ function get_info_master() {
                 }
                 else {
                     document.querySelector('.form-body').insertAdjacentHTML('beforeend', `
-            <div>
+            <div class='check-category-container'>
             <input type='radio' value='${html[k]['id']}' name='changed-category' id='cat${html[k]['id']}'>
             <label for='cat${html[k]['id']}'>${html[k]['name']}</label>
             </div>
@@ -263,5 +263,17 @@ function removeCanceledRecord(id){
            let status = document.querySelector('#record' + id).querySelector('.status');
            if (status) status.innerHTML="В ожидании";
         },
+    })
+}
+if (document.querySelector("#graph-btn")){
+    document.querySelector("#graph-btn").addEventListener("click", function(){
+        $.ajax({
+            url:'graph.php', 
+            method:'get',
+            dataType:'html',
+            success:function(res){
+                document.querySelector("#graph-container").innerHTML = res;
+            }
+        })
     })
 }

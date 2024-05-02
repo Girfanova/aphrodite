@@ -58,4 +58,4 @@ while ($stroka = mysqli_fetch_array($records)) {
 mysqli_close($link);
 
 if (mysqli_num_rows($records) == 0)
-    echo "<tr><td colspan=8 align='center'>Еще нет записей</td></tr>";
+    echo "<tr><td colspan=8 align='center'>Записей на ближайшее время нет</td></tr>";

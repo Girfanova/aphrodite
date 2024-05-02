@@ -592,6 +592,7 @@ if (contacts_label) contacts_label.addEventListener("click", function () {
         portfolio_table.style.display = "none";
     }
 })
+
 //обработка загрузки фото портфолио на страницу
 
 function changeInputPhoto(input) {
@@ -1103,21 +1104,16 @@ function service_edit(id) {
             <input type='text' id='service_name' name='service_name' value='${escapeHtml(service['name'])}' required>
             <label>Стоимость</label>
             <input type='text' id='service_price' name='service_price' value='${escapeHtml(service['price'])}' required>
+            <div style='margin:3%;'>
             <label>Для записи?</label>
-            <div class="input-box">
-                <div>
-                    <input type="radio" id="rec1" name="is_recording" value="1"/>
+                    <input type="radio" id="rec1" name="is_recording" value="1" required/>
                     <label for="rec1">Да</label>
-                </div>
-
-                <div>
                 <input type="radio" id="rec0" name="is_recording" value="0" />
                 <label for="rec0">Нет</label>
-                </div>
 
             </div>
             <label>Длительность</label>
-            <input type='number' id='service_duration' name='service_duration' value='${service['duration']}' required>мин.
+            <input type='number' id='service_duration' name='service_duration' value='${service['duration']}'>мин.
             <input type='text' id='service_id' name='service_id' style='visibility:hidden;' value='${service['id']}'>
             `);
             if (service['recording'] == 1) document.getElementById('rec1').checked = true;
@@ -1149,7 +1145,21 @@ function service_edit(id) {
             document.querySelector('#form').addEventListener('submit', saveEditService);
         }
     })
+
+// radio-кнопки для записи
+function durationRequired(radio){
+    if (radio.value == 1)
+    document.querySelector('#service_duration').required = true;
+else
+    document.querySelector('#service_duration').required = false;
 }
+var radioIsRec = document.querySelectorAll('input[type="radio"][name="is_recording"]');
+if (radioIsRec){
+    console.log(radioIsRec);
+    radioIsRec.forEach(radio => {
+        radio.addEventListener('change', () => durationRequired(radio));
+    });
+}}
 
 function service_add() {
     $.ajax({
@@ -1171,21 +1181,16 @@ function service_add() {
     <input type='text' id='service_name' name='service_name' required>
     <label>Стоимость</label>
     <input type='text' id='service_price' name='service_price' required>
+    <div style="margin:3%;">
     <label>Для записи?</label>
-    <div class="input-box">
-    <div>
-        <input type="radio" id="rec1" name="is_recording" value="1" />
+        <input type="radio" id="rec1" name="is_recording" value="1" required/>
         <label for="rec1">Да</label>
-    </div>
-
-    <div>
         <input type="radio" id="rec0" name="is_recording" value="0" />
         <label for="rec0">Нет</label>
-    </div>
 
 </div>
     <label>Длительность</label>
-    <input type='number' id='service_duration' name='service_duration' required>мин.
+    <input type='number' id='service_duration' name='service_duration'>мин.
     `);
             var k = 0;
             while (k < categories_name.length) {
@@ -1210,6 +1215,20 @@ function service_add() {
             }
         })
     }
+    // radio-кнопки для записи
+function durationRequired(radio){
+    if (radio.value == 1)
+    document.querySelector('#service_duration').required = true;
+else
+    document.querySelector('#service_duration').required = false;
+}
+var radioIsRec = document.querySelectorAll('input[type="radio"][name="is_recording"]');
+if (radioIsRec){
+    console.log(radioIsRec);
+    radioIsRec.forEach(radio => {
+        radio.addEventListener('change', () => durationRequired(radio));
+    });
+}
 }
 
 function service_delete(id, service_id) {
@@ -1234,5 +1253,6 @@ var password_old = document.querySelector('#old-password');
 var password_new = document.querySelector('#new-password');
 var password_new1 = document.querySelector('#new-password1');
 if (password_old) password_old.addEventListener('input',() => passwordCheckcount(password_old));
+
 
 

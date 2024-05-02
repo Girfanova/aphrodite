@@ -8,8 +8,8 @@ if (($_SESSION['user_role']) == 10)
 
 <head>
     <?php require_once ("head.html") ?>
-    <link rel="stylesheet" href="css/style-pages.css" type="text/css">
     <link rel="stylesheet" href="css/lk.css" type="text/css">
+    <link rel="stylesheet" href="css/style-pages.css" type="text/css">
 </head>
 
 <body>
@@ -53,9 +53,12 @@ if (($_SESSION['user_role']) == 10)
                         
                     );
                        
+                    echo " <div class='tab-nav'>
+                    <button type='button' class='tab-btn tab-btn-active' data-target-id='0'>Мои записи</button>                
+                    </div>
+                    ";
             echo "<div class='admin-menu'>
-                   <p class='lk-title  label-checked' id='record-table-label'>Мои записи</p>";
-            echo "<table class='record-table table-visible' id='record-table'>";
+            <table class='record-table table-visible' id='record-table'>";
             echo "<tr >
                     <th width=22%>Услуга</th>
                    <th width=14%>Мастер</th>
@@ -86,24 +89,48 @@ if (($_SESSION['user_role']) == 10)
                 $t = 1;
             }
             if (mysqli_num_rows($records_not_done) <= 0)
-                echo "<tr><td colspan=5>Еще нет записей</td></tr>";
+                echo "<tr><td colspan=5>Записей на ближайшее время нет</td></tr>";
             echo '</table>
             </div>';
             mysqli_close($link);
-        } elseif ($_SESSION['user_role'] == 3) {
+        } elseif ($_SESSION['user_role'] == 2) {
+            echo '
+            <div class="tab" id="tab-1">
+                <div class="tab-nav">
+                    <button type="button" class="tab-btn tab-btn-active" data-target-id="0">Записи</button>
+                    <button type="button" class="tab-btn" data-target-id="1">Мой график</button>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane tab-pane-show" data-id="0">';
+                    require('records-master-list.php');
+                    echo '</div>
+                    <div class="tab-pane" data-id="1">';
+                    
+                    require('my-graph.php');
+                    echo'</div>
+                </div>
+            </div>
+            ';
+        }
+        elseif ($_SESSION['user_role'] == 3) {
             echo '
             <div class="tab" id="tab-1">
                 <div class="tab-nav">
                     <button type="button" class="tab-btn tab-btn-active" data-target-id="0">Учет посещений</button>
                     <button type="button" class="tab-btn" data-target-id="1">Мастера</button>
+                    <button type="button" class="tab-btn" data-target-id="2" id="graph-btn">График</button>
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane tab-pane-show" data-id="0">';
                     require('records-list.php');
                     echo '</div>
+
                     <div class="tab-pane" data-id="1">';
-                    
                     require('masters.php');
+                    echo'</div>
+                    
+                    <div class="tab-pane" data-id="2" id="graph-container">';
+                    // require('graph.php');
                     echo'</div>
                 </div>
             </div>
@@ -115,6 +142,7 @@ if (($_SESSION['user_role']) == 10)
 
     <?php require_once ("footer.html") ?>
     <script language="JavaScript" type="text/javascript" src="js/lk.js"></script>
+    
 </body>
 
 </html>

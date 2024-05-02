@@ -10,7 +10,7 @@ if ($_SESSION["user_role"] != 10) {
 <head>
     <?php require_once ("head.html") ?>
     <link rel="stylesheet" href="css/style-pages.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/lk.css"> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
@@ -25,57 +25,30 @@ if ($_SESSION["user_role"] != 10) {
         echo "</div>";
         echo "<div id='popup' class='admin-popup'></div>";
 
-    //     echo'  <div class="tab" id="tab-1">
-    //     <div class="tab-nav">
-    //         <button type="button" class="tab-btn tab-btn-active" data-target-id="0">Портфолио</button>
-    //         <button type="button" class="tab-btn" data-target-id="1">Услуги</button>
-    //         <button type="button" class="tab-btn" data-target-id="1">Акции</button>
-    //         <button type="button" class="tab-btn" data-target-id="1">Отзывы</button>
-    //     </div>
-    //     <div class="tab-content">
-    //         <div class="tab-pane tab-pane-show" data-id="0">
-    //             <div class="record-table table-visible" id="portfolio-table"></div>
-    //         </div>
-    //         <div class="tab-pane" data-id="1">
-    //             <div class="record-table table-visible" id="service-table"></div>
-    //         </div>
-    //         <div class="tab-pane" data-id="2">
-    //             <div class="record-table table-visible" id="promotions-table"></div>            
-    //         </div>
-    //         <div class="tab-pane" data-id="3">
-    //             <div class="record-table table-visible" id="users-table">
-    //                 <div class="search">Поиск <input type=text oninput="search_user(this.value);"></div>
-    //                 <div id="user-list"></div>";
-    //             </div>
-    //         </div>
-    //     </div>
-    // </div> ';
+   
             echo "
-
-
-                    <div class='admin-menu'>
-                    <p class='lk-title label-checked' id='portfolio-table-label'>Портфолио</p>
-                    <p class='lk-title' id='service-table-label'>Услуги</p>
-                    <p class='lk-title' id='promotions-table-label'>Акции</p>
-                    <p class='lk-title' id='users-table-label'>Пользователи</p>
-                    </div>
-                    <div class='record-table table-visible' id='portfolio-table'>";
+                    <div class='tab-nav'>
+                        <p class='lk-title-tab label-checked' id='portfolio-table-label'>Портфолио</p>
+                        <p class='lk-title-tab' id='service-table-label'>Услуги</p>
+                        <p class='lk-title-tab' id='promotions-table-label'>Акции</p>
+                        <p class='lk-title-tab' id='users-table-label'>Пользователи</p>
+                    </div>";
+                    echo "
+                    <div class='record-table table-visible' id='portfolio-table'>";                     
             // require_once ('admin-portfolio.php');
             echo "
                     </div>";
-            echo "<div class='record-table' id='service-table'>";
-            // require_once ('admin-service.php');
-            echo "
-                    </div>";
+            echo "<div class='record-table' id='service-table'></div>";
             echo "<div class='record-table'id='promotions-table'>";
             // require_once ('admin-promotions.php');
             echo "
                     </div>";
             echo "<div class='record-table'id='users-table'>";
-            echo "<div class='search'>Поиск <input type=text oninput='search_user(this.value);'></div>";
+            echo "<div class='search'><input class='input-search' type=text oninput='search_user(this.value);' placeholder='Поиск'></div>";
             echo "<div id='user-list'></div>";
             // require_once('users-list.php');
             echo "
+                    </div>
                     </div>";
 
         }
@@ -133,7 +106,8 @@ $(document).ready(function () {
 
 });
 //не для внедр конец
-</script>    
+</script> 
+<!-- <script src='js/lk.js'></script>    -->
 </body>
 
 </html>

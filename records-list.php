@@ -17,7 +17,8 @@
             }
             echo "</select></div>";
             echo "<table class='record-table' id='record-table'>";
-            echo "<tr>
+            echo "<thead>
+            <tr>
                    <th width=14%>Клиент</th>
                    <th width=15%>Телефон клиента</th>
                    <th width=14%>Мастер</th>
@@ -26,11 +27,14 @@
                    <th width=7%>Время</th>
                    <th width=9%>Отменить</th>
                    <th width=9%>Выполнено</th>
-                   </tr>";
-                echo '<tbody id="record-list-table" width=100%></tbody>';
-                echo "<tr><td colspan=8 align='center'><span style='cursor:pointer;' id='more_btn'>Загрузить еще</span></td></tr>";
+                   </tr>
+                   </thead>";
+                echo '<tbody id="record-list-table" width=100%>
                 
-            echo '</table>';
+                </tbody>';
+                
+                echo '</table>';
+                echo "<span class='more-btn' id='more_btn'>+ Загрузить еще</span>";
 
             echo '</div>';
         }

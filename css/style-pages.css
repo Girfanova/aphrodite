@@ -35,6 +35,7 @@
     width:60%;
     border: 1px solid var(--third-color);
     /* box-shadow: 0px 0px 10px var(--third-color); */
+    box-shadow: 0 0 10px var(--fourth-color);
     border-radius: 3px;
 }
 .record-container a{
@@ -60,7 +61,9 @@
     /* border-radius: 10px; */
     /* border: 1px solid grey; */
 }
-
+.form-edit-portfolio img{
+    margin: auto;
+}
 .form-make-record .input{
     margin: 2% 0;
 }
@@ -548,12 +551,19 @@ li span img {
     display: inline-block;
     transition: all 0.5s ease;
 }
+.lk-title-tab {
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 1%;
+    display: inline-block;
+    transition: all 0.5s ease;
+}
 
 .lk-profile {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 4%
+    margin: 2% 0;
 }
 .form-admin{
     width: 30%;
@@ -571,12 +581,34 @@ li span img {
     font-size: 1em;
     padding: 1%;
 }
-.admin-menu {
+.tab-nav{
     width: 100%;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    margin: 2% 0 1% 0;
+    margin: 0% 0 1% 0;
+    box-shadow: 0 0 10px var(--fourth-color);
+    /* padding: 1%; */
+}
+.tab-btn-active {
+    pointer-events: none;
+    border-bottom:1px solid var(--third-color);
+  }
+.admin-menu {
+    width: 98%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 0% 0 1% 0;
+    box-shadow: 0 0 10px var(--fourth-color);
+    padding: 1%;
+}
+.masters-container {
+    display: flex;
+    flex-wrap: nowrap;
+    border-radius: 3px;
+    width: 80%;
+    font-size: 0.8em;
 }
 
 .admin-menu p:hover {
@@ -586,7 +618,9 @@ li span img {
 }
 
 .profile-table {
-    border: 1px solid var(--third-color);
+    /* border: 1px solid var(--third-color); */
+    box-shadow: 0 0 10px var(--fourth-color); 
+
     padding: 2%;
     width: 100%;
     max-width: 600px;
@@ -600,12 +634,13 @@ li span img {
 .record-table {
     box-shadow: 0 0 10px var(--fourth-color);
     border-spacing: 0;
-    margin: 1% 0 3% 0;
+    margin: 1% 0 2% 0;
     padding: 0%;
     width: 100%;
     font-size: 0.8em;
     display: none;
     overflow-x: auto;
+    background-color: rgb(var(--second-color-rgb));
 }
 .admin-menu .record-table{
     display: table;
@@ -625,7 +660,8 @@ li span img {
 }
 
 .label-checked {
-    border-bottom: 1px grey solid;
+    pointer-events: none;
+    border-bottom:1px solid var(--third-color);
 }
 
 .profile-table div {
@@ -641,9 +677,6 @@ li span img {
     padding: 0 0.5%;
 }
 
-.record-table th {
-}
-
 .record-table tr {
     text-align: left;
 
@@ -652,27 +685,31 @@ li span img {
     cursor: pointer;
 }
 
-.record-table tr:nth-child(2n+1) {
+.record-table tr:nth-child(odd) {
     background-color: #f8f5f4;
+}
+.record-table thead tr {
+    background-color: rgb(var(--second-color-rgb));
+
 }
 .admin-table{
     min-width: 98%;
     margin: 1%;
-    border-radius: 3px;
+    /* border-radius: 3px; */
     box-shadow: 0px 0px 5px #ededed;
     border: 1px solid var(--third-color);
-    border-radius: 8px;    
+    /* border-radius: 8px;     */
     border-spacing: 0;
 }
 .admin-table th:first-child{
-    border-top-left-radius: 8px; 
+    /* border-top-left-radius: 8px;  */
 }
 .admin-table th:last-child{
-    border-top-right-radius: 8px; 
+    /* border-top-right-radius: 8px;  */
 }
-.admin-table tr:hover{
-    /* background-color: #e7ebf48f;
-    color:#756353; */
+.admin-table tr:hover > td{
+    background-color: #e7ebf48f;
+    color:#756353;
 }
 .admin-table img{
     cursor: pointer;
@@ -680,10 +717,21 @@ li span img {
 .lk a {
     color: rgb(var(--first-color-rgb));
 }
-
+.form-edit-portfolio input, .form-edit-portfolio select{
+    padding:  0;
+    margin: 0 3% 2% 3%;
+    border: 12px rgb(var(--first-color-rgb));
+    border-bottom: 1px solid;
+    outline: none;
+    font-family: var(--text-font),sans-serif;
+    text-align: center;
+    /* letter-spacing: 2px; */
+    font-size: 1.4em;
+}
 .profile-btn {
     text-align: center;
-    background-color: rgb(var(--second-color-rgb));
+    /* background-color: var(--third-color); */
+    color: var(--third-color);
     padding: 4%;
     margin: 1%;
     display: block;
@@ -695,12 +743,18 @@ li span img {
     width: auto;
     padding: 1%;
 }
-.lk .btn:hover {
-    background-color: var(--third-color);
+.profile-btn:hover {
+    background-color: rgb(var(--first-color-rgb));
+    color: rgb(var(--second-color-rgb));
+    border-color: rgb(var(--second-color-rgb));
 }
 
 .lk h1 {
-    font-weight: normal;
+    /* font-weight: normal; */
+    padding: 0;
+    width:100%;
+    font-family: var(--first-title-font);
+    text-align: center;
     font-size: 2.5em;
     display: inline;
 }
@@ -766,7 +820,7 @@ li span img {
     -ms-flex-align: center;
     align-items: center;
     border: 1px solid #c7c7c7;
-    border-radius: 3px 0 0 3px;
+    /* border-radius: 3px 0 0 3px; */
     border-right: none;
     padding: 1% 3%;
 }
@@ -779,7 +833,7 @@ li span img {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 0 3px 3px 0;
+    /* border-radius: 0 3px 3px 0; */
     cursor: pointer;
 }
 
@@ -796,7 +850,7 @@ li span img {
     background-color: rgb(var(--second-color-rgb));
     padding: 1% 2%;
     margin: 0 0 0 5%;
-    border-radius: 3px;
+    /* border-radius: 3px; */
     opacity: 0;
     visibility: hidden;
     /* position: absolute; */
@@ -835,6 +889,7 @@ li span img {
     transition: all 0.5s ease;
     cursor: pointer;
     margin:1%;
+    font-size: 1em;
 }
 #promotion_picture:hover{
     border-color: rgb(var(--first-color-rgb));
@@ -885,7 +940,7 @@ li span img {
     padding: 1%;
     margin: 1%;
     border: var(--third-color) solid 1px;
-    border-radius: 3px;
+    /* border-radius: 3px; */
     display: inline-block;
     cursor: pointer;
 }
@@ -894,7 +949,22 @@ li span img {
 .lk-role {
     font-size: 0.9em;
 }
-
+.input-search{
+    border: 12px rgb(var(--first-color-rgb));
+    border-bottom: 1px solid;
+    outline: none;
+    font-family: var(--text-font), sans-serif;
+    font-size: 1em;
+    padding: 0 0.5%;
+    margin: 0 1%;
+}
+select{
+    border: 12px rgb(var(--first-color-rgb));
+    border-bottom: 1px solid;
+    outline: none;
+    font-family: var(--text-font), sans-serif;
+    font-size: 0.8em;
+}
 @media screen and (max-width:500px) {
     .lk h1 {
         font-size: 2em;

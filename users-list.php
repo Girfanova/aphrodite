@@ -1,6 +1,6 @@
 <?php 
             require_once('connect_db.php');     
-            if (isset($_GET['search']) and $_GET['search']!='') $users = mysqli_query($link,"SELECT users.id, surname, name, role_name, phone, role_id FROM users, roles WHERE users.role_id = roles.id and (surname LIKE '".$_GET['search']."%' or name LIKE '".$_GET['search']."%' or role_name LIKE '".$_GET['search']."%' or phone LIKE '".$_GET['search']."%') ORDER BY users.id");
+            if (isset($_GET['search']) and $_GET['search']!='') $users = mysqli_query($link,"SELECT users.id, surname, name, role_name, phone, role_id FROM users, roles WHERE users.role_id = roles.id and (surname LIKE '%".$_GET['search']."%' or name LIKE '%".$_GET['search']."%' or role_name LIKE '%".$_GET['search']."%' or phone LIKE '%".$_GET['search']."%') ORDER BY users.id");
             else $users = mysqli_query($link,"SELECT users.id, surname, name, role_name, role_id, phone FROM users, roles WHERE users.role_id = roles.id ORDER BY users.id");
             echo '<center><table class="admin-table">
             <tr>

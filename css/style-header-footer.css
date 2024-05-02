@@ -84,6 +84,8 @@ a:hover{
     padding:2%;
     width:60px;
     height:60px;
+    outline: 1px white solid;
+    outline-offset: -5px;
     border-radius:100%;
     margin:auto;
     text-align:center;
