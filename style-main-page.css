@@ -14,7 +14,7 @@
     display: flex;
     justify-content: right;
     background-size: cover;
-    background-image: url(Resources/backr-afr.jpg);
+    background-image: url(Resources/backr-afr-min.jpg);
     
     overflow: hidden;
 }
@@ -28,8 +28,8 @@
 .main_caption .afr{
     position: absolute;
     right: 0%;
-    top: 2%;
-    height: 110vh;
+    top: 5%;
+    height: 120vh;
     z-index: 1;
     -webkit-filter: drop-shadow(10px 10px 10px #544f4f);
     filter: drop-shadow(10px 10px 10px #544f4f); 

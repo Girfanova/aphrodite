@@ -46,10 +46,12 @@
 }
 
 .title {
-    font-family: var(--title-font);
+    font-family: var(--title-service-font);
     width: 80%;
     font-size: 8rem;
-    color: black;
+    /* color: black; */
+    color: rgba(0,0,0,0);
+    -webkit-text-stroke: rgb(var(--first-color-rgb)) 2px;
     padding: 0;
     top: 40%;
     left: 10%;

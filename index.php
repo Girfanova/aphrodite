@@ -111,7 +111,7 @@
 
                     <!--     <button class="record btn">Записаться</button>  -->
                 </div>
-                <img class="afr parallax-item" src="Resources/afr2.png" alt="афродита">
+                <img class="afr parallax-item" src="Resources/afr2-min.png" alt="афродита">
             </div>
         </div>
         <div class="marquee">
