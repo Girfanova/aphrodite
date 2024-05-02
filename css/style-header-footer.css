@@ -23,8 +23,9 @@ a:hover{
 }
 :root{
     --text-font: 'Montserrat', sans-serif;
-    --title-font: 'Rubik Mono One', sans-serif;
-    /* --title-font:'Playfair Display SC', serif; */
+    /* --title-font: 'Rubik Mono One', sans-serif; */
+    --title-font-service: 'Rubik Mono One', sans-serif;
+    --title-font:'Playfair Display SC', serif;
     --first-title-font: 'Playfair Display SC', serif;
 
 
