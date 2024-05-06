@@ -590,6 +590,11 @@ li span img {
     justify-content: space-between;
     margin: 2% 0;
 }
+@media screen and (max-width:1190px) {
+    .lk-profile{
+        flex-direction: column;
+    }
+}
 .form-admin{
     width: 30%;
     min-width: 300px;
