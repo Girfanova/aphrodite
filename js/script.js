@@ -401,7 +401,7 @@ if (document.getElementById('popup-form-log')) document.getElementById('popup-fo
             success: function (res) {
                 document.querySelector('#message-block-log').innerHTML = res['message'];
                 if (res['status'] == 'success'){
-                    document.querySelector('#message-block-reg').style.color = 'green';
+                    document.querySelector('#message-block-log').style.color = 'green';
                     setTimeout(() => location.href = 'lk.php', 1500);
                 }
                 else document.querySelector('#message-block-log').style.color = 'red';
@@ -421,23 +421,30 @@ if (formEditProfile) formEditProfile.addEventListener('submit', checktruevalueEd
 function checktruevalueEdit() {
     var surnameEdit = document.getElementById('surname_edit');
     var nameEdit = document.getElementById('name_edit');
-    var phoneEdit = document.getElementById('phone_edit');
+    // var phoneEdit = document.getElementById('phone_edit');
     if ((checkInputText(surnameEdit) && checkInputText(nameEdit))) {
         $.ajax({
             url:"requests/save-edit-profile.php",
             method:'post',
             dataType:'json',
-            data:{surname_edit : surnameEdit.value, name_edit : nameEdit.value, phone_edit : phoneEdit.value}, 
+            data:{surname_edit : surnameEdit.value, name_edit : nameEdit.value}, 
+            // data:{surname_edit : surnameEdit.value, name_edit : nameEdit.value, phone_edit : phoneEdit.value}, 
             success:function(res){
                 document.querySelector("#message-block-name").innerHTML = res['response'];
-                if (res['status'] == 'success')
-                setTimeout(() => location.href = 'edit-profile.php', 1500)
+                document.querySelector("#message-block-name").style.color = 'red';
+                
+                if (res['status'] == 'success'){
+                    document.querySelector("#message-block-name").style.color = 'green';
+                    setTimeout(() => location.href = 'edit-profile.php', 1500)
+
+                }
             }
         });
         return false;
     }
     else { 
         document.querySelector("#message-block-name").innerHTML = "Проверьте введенные данные";
+        document.querySelector("#message-block-name").style.color = 'red';
         return false; 
     }
 }
@@ -450,9 +457,9 @@ if (document.getElementById('form-change-password')) document.getElementById('fo
     new_password.style.color = 'black';
     new_password1.style.color = 'black';
     event.preventDefault();
-    if (old_password.value == new_password.value)  document.querySelector('#message-block-password').innerHTML = 'Старый пароль не может совпадать с новым';
-    else if (passwordCheckcount_reg() == false) document.querySelector('#message-block-password').innerHTML = 'Пароль должен быть не менее 8 символов и содержать хотя бы 1 букву';
-    else if (new_password.value != new_password1.value) document.querySelector('#message-block-password').innerHTML = 'Пароли не совпадают';
+    if (old_password.value == new_password.value)  {document.querySelector('#message-block-password').innerHTML = 'Старый пароль не может совпадать с новым'; document.querySelector('#message-block-password').style.color = 'red'}
+    else if (passwordCheckcount_reg() == false) {document.querySelector('#message-block-password').innerHTML = 'Пароль должен быть не менее 8 символов и содержать хотя бы 1 букву'; document.querySelector('#message-block-password').style.color = 'red'}
+    else if (new_password.value != new_password1.value) {document.querySelector('#message-block-password').innerHTML = 'Проверьте введенные данные'; document.querySelector('#message-block-password').style.color = 'red'}
     else {
         $.ajax({
             url: "requests/check-true-password.php",
@@ -460,7 +467,7 @@ if (document.getElementById('form-change-password')) document.getElementById('fo
             async: false,
             data: { password: old_password.value },
             success: function (res) {
-                if (res == false) { document.querySelector('#message-block-password').innerHTML = "Неверный старый пароль"; old_password.style.color = 'red' };
+                if (res == false) { document.querySelector('#message-block-password').innerHTML = "Неверный старый пароль"; old_password.style.color = 'red'; document.querySelector('#message-block-password').style.color = 'red' };
                 if (res == true) {
                     if (new_password.value == new_password1.value) {
                         ajaxChangePassword(new_password.value);
@@ -478,6 +485,7 @@ if (document.getElementById('form-change-password')) document.getElementById('fo
                 data: { password: password },
                 success: function (result) {
                     document.querySelector('#message-block-password').innerHTML = result;
+                    document.querySelector('#message-block-password').style.color = 'green';
                     setTimeout(() => location.href = 'edit-profile.php', 1500)
                 }
             })
@@ -644,7 +652,7 @@ $('#form-make-record').on("submit", function () {
             data: dataForm,
             method: 'post',
             success: function () {
-                alert("Успешная запись");
+                // alert("Успешная запись");
                 location.href = 'lk.php';
             }
         });
@@ -874,8 +882,9 @@ function add_photo() {
                         async: false,
                         dataType: 'json',
                         data: formData,
-                        success:
-                            alert("Загружено")
+                        success: function (res){
+                            alert("Фото с именем/ами" + res['picName'] + " \nуже были загружены");
+                        }
                     });
                     $.ajax({
                         url: "admin-portfolio.php",
@@ -978,7 +987,7 @@ function promotion_edit(id) {
                 var formData = new FormData();
                 var file = $("#promotion_picture")[0].files[0];
                 if (file != undefined) {
-                    var type = file.name.split('.')[1];
+                    var type = file.type.split('/')[1];
                     if (!type.match(/(png)|(jpeg)|(jpg)|(gif)$/i)) {
                         alert('Неверный тип файла - ' + file.name + '.\nЗагрузите png, jpeg, jpg, или gif.');
                         return false;
@@ -1030,12 +1039,13 @@ function promotion_add() {
     <input type='text' id='promotion_description' name='promotion_description' required>
     <label>Фон</label>                  
     <input type='file' id='promotion_picture' name='promotion_picture' required>`);
-    document.querySelector('#form').addEventListener('submit', saveAddPromotion)
+    document.querySelector('#form').addEventListener('submit', saveAddPromotion);
     function saveAddPromotion() {
-        var formData = new FormData();
+       var formData = new FormData();
         var file = $("#promotion_picture")[0].files[0];
         if (file != undefined) {
-            var type = file.name.split('.')[1];
+            var type = file.type.split('/')[1];
+            console.log(type);
             if (!type.match(/(png)|(jpeg)|(jpg)|(gif)$/i)) {
                 alert('Неверный тип файла - ' + file.name + '.\nЗагрузите png, jpeg, jpg, или gif.');
                 return false;

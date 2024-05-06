@@ -20,26 +20,31 @@
             <ul class="service-category">
                 <?php
                 require_once ("connect_db.php");
-                $service = mysqli_query($link, "SELECT services.id, service, price, category_id, category_name FROM services, categories WHERE category_id=5 and category_id=categories.id");
-
+                $service = mysqli_query($link, "SELECT services.id, service, price, category_id, category_name, is_recording FROM services, categories WHERE category_id=5 and category_id=categories.id");
                 while ($stroka = mysqli_fetch_array($service)) {
-                    if (isset($_SESSION['auth']))
-                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " <a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
-                else
-                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " <a href='#' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
-           }
+                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " ";
+                    if ($stroka['is_recording'] == 1) {
+                        if (isset($_SESSION['auth'])) 
+                        echo "<a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a>";
+                    else echo "<a href='#' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a>";
+                    }
+                    echo "</span></li>";    
+                }
                 ?>
             </ul>
 
             <div class="service-category__title">Уход за лицом</div>
             <ul class="service-category">
                 <?php
-                $service = mysqli_query($link, "SELECT services.id, service, price, category_id, category_name FROM services, categories WHERE category_id=6 and category_id=categories.id");
+                $service = mysqli_query($link, "SELECT is_recording, services.id, service, price, category_id, category_name FROM services, categories WHERE category_id=6 and category_id=categories.id");
                 while ($stroka = mysqli_fetch_array($service)) {
-                    if (isset($_SESSION['auth']))
-                        echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " <a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
-                    else
-                        echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " <a href='#' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
+                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " ";
+                    if ($stroka['is_recording'] == 1) {
+                        if (isset($_SESSION['auth'])) 
+                        echo "<a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a>";
+                    else echo "<a href='#' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a>";
+                    }
+                    echo "</span></li>";   
                 }
                 ?>
             </ul>
@@ -47,11 +52,15 @@
             <div class="service-category__title">Маски</div>
             <ul class="service-category">
                 <?php
-                $service = mysqli_query($link, "SELECT services.id, service, price, category_id, category_name FROM services, categories WHERE category_id=7 and category_id=categories.id");
+                $service = mysqli_query($link, "SELECT is_recording, services.id, service, price, category_id, category_name FROM services, categories WHERE category_id=7 and category_id=categories.id");
                 while ($stroka = mysqli_fetch_array($service)) {
-                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " " .
-                        //  <a href='make-record.php?id=".$stroka['id']."'><img title='Записаться' src='Resources/add.png'></img></a>
-                        " </span></li>";
+                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " ";
+                    if ($stroka['is_recording'] == 1) {
+                        if (isset($_SESSION['auth'])) 
+                        echo "<a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a>";
+                    else echo "<a href='#' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a>";
+                    }
+                    echo "</span></li>";   
                 }
                 ?>
             </ul>
@@ -59,11 +68,15 @@
             <div class="service-category__title">Пилинг кислотный</div>
             <ul class="service-category">
                 <?php
-                $service = mysqli_query($link, "SELECT services.id, service, price, category_id, category_name FROM services, categories WHERE category_id=8 and category_id=categories.id");
+                $service = mysqli_query($link, "SELECT is_recording, services.id, service, price, category_id, category_name FROM services, categories WHERE category_id=8 and category_id=categories.id");
                 while ($stroka = mysqli_fetch_array($service)) {
-                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " " .
-                        //<a href='make-record.php?id=".$stroka['id']."'><img title='Записаться' src='Resources/add.png'></img></a>
-                        "</span></li>";
+                    echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " ";
+                    if ($stroka['is_recording'] == 1) {
+                        if (isset($_SESSION['auth'])) 
+                        echo "<a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a>";
+                    else echo "<a href='#' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a>";
+                    }
+                    echo "</span></li>";   
                 }
                 mysqli_close($link);
                 ?>

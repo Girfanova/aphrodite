@@ -3,7 +3,8 @@ require_once ("connect_db.php");
 $id_master = $_GET['select'];
 $offset = $_GET['offset'];
 $today = getdate();
-$date = $today['year'] . '-' . $today['mon'] . '-' . $today['mday'];
+// $date = $today['year'] . '-' . $today['mon'] . '-' . $today['mday'];
+$date= date('Y-m-d');
 if ($id_master == '000') {
     $records = mysqli_query($link, "Select distinct
                     (select phone from users where users.id=user_id) as 'Телефон клиента', 
@@ -40,10 +41,10 @@ while ($stroka = mysqli_fetch_array($records)) {
         echo "<tr id='record". $stroka['id'] ."'>";
         echo "<td > {$stroka['Клиент']} </td>";
         echo "<td > {$stroka['Телефон клиента']} </td>";
-        echo "<td > {$stroka['Мастер']} </td>";
+        echo "<td class='master'> {$stroka['Мастер']} </td>";
         echo "<td > {$stroka['Услуга']} </td>";
-        echo "<td >" . date('d.m.Y', strtotime($stroka['Дата'])) . " </td>";
-        echo "<td > " . date('H.i', strtotime($stroka['Время'])) . "</td>";
+        echo "<td class='date'>" . date('d.m.Y', strtotime($stroka['Дата'])) . " </td>";
+        echo "<td class='time'> " . date('H.i', strtotime($stroka['Время'])) . "</td>";
         if ($stroka['canceled'] == 0 && $stroka['done'] == 0)
         echo "<td  align='center' class='canceled-btn'><input type='checkbox' onclick='makeCanceledRecord(" . $stroka['id'] . ");'></td>";
     elseif ($stroka['canceled'] == 1)
@@ -55,7 +56,11 @@ while ($stroka = mysqli_fetch_array($records)) {
     elseif ($stroka['done'] == 1)
         echo "<td  align='center' class='done-btn'><input type='checkbox' checked onclick='removeDoneRecord(" . $stroka['id'] . ");'></td>";
     else
-        echo "<td align=center class='done-btn'>&mdash;</td>";
+    echo "<td align=center class='done-btn'>&mdash;</td>";
+if (($stroka['Дата']) >= $date )
+echo "<td align=center><a class='re-record' onclick='recordEdit(".$stroka['id'].")'>Перенести</a></td>";
+else 
+echo "<td align=center>&mdash;</td>";
     echo "</tr>";
     }
     $k++;

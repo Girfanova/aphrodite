@@ -74,9 +74,14 @@
 // ?>
 
 <?php
+	$alredadyExist = array();
     $Array = array();
     $count = -1;
     foreach($_FILES as $Pictures) {
+		if (file_exists('../Resources/portfolio/' .$Pictures['name'])){
+			$alredadyExist[] = "\n" .$Pictures['name'];
+			continue;
+		}
         $count++;
 		// echo $Pictures['tmp_name'], '../Resources/portfolio/' . $Pictures['name'];
 		copy($Pictures['tmp_name'], '../Resources/portfolio/' . $Pictures['name']);
@@ -93,6 +98,9 @@
         $Array[$count] = $namePic;
     }
  
-    $json_data = array ('srcPart' => $Array, 'lengthArr' => $count, 'state' => "success");
-    echo json_encode($json_data);
+    // $json_data = array ('srcPart' => $Array, 'lengthArr' => $count, 'state' => "success");
+	if (count($alredadyExist)!=0){
+		$json_data = array('picName' => $alredadyExist, 'state' => 'response');
+		echo json_encode($json_data);
+	}
 ?>

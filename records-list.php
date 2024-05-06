@@ -19,14 +19,15 @@
             echo "<table class='record-table' id='record-table'>";
             echo "<thead>
             <tr>
-                   <th width=14%>Клиент</th>
-                   <th width=15%>Телефон клиента</th>
-                   <th width=14%>Мастер</th>
-                   <th width=22%>Услуга</th>
-                   <th width=10%>Дата</th>
-                   <th width=7%>Время</th>
-                   <th width=9%>Отменить</th>
-                   <th width=9%>Выполнено</th>
+                   <th>Клиент</th>
+                   <th>Телефон клиента</th>
+                   <th>Мастер</th>
+                   <th>Услуга</th>
+                   <th width=8%>Дата</th>
+                   <th>Вре&shy;мя</th>
+                   <th>От&shy;ме&shy;нить</th>
+                   <th>Вы&shy;пол&shy;не&shy;но</th>
+                   <th>Пере&shy;нести</th>
                    </tr>
                    </thead>";
                 echo '<tbody id="record-list-table" width=100%>

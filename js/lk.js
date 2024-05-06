@@ -23,7 +23,7 @@ document.addEventListener('click', (e) => {
     showTab(elTabBtn);
 });
 $(document).ready(function () {
-    if (document.querySelector('#schedule-master')){
+    if (document.querySelector('#schedule-master')) {
 
         select = document.getElementById('filter-select').value;
         $.ajax({
@@ -57,7 +57,7 @@ function do_filter() {
 }
 function get_more_records() {
     var table = document.querySelector('#record-table');
-    var offset = table.rows.length - 2;
+    var offset = table.rows.length - 1;
     var select = document.getElementById('filter-select').value;
     $.ajax({
         url: 'get-more-records.php',
@@ -107,26 +107,78 @@ function getSchedule() {
 }
 $("document").ready(function () {
     if (document.querySelector('#schedule-master'))
-    getSchedule();
+        getSchedule();
 })
 function show_master_schedule() {
     getSchedule();
 }
-$('#form-schedule').on("submit", function () {
-    var dataForm = $(this).serialize();
+function getOverrecord(event, recordsID) {
+    event.preventDefault();
     $.ajax({
-        url: 'requests/save-edit-schedule.php',         
-        method: 'post',            
+        method: 'post',
+        dataType: 'html',
+        data: { recordsID },
+        url: 'get-overrecord.php',
+        success: function (res) {
+            document.querySelector('#record-list-table').innerHTML = res;
+            showTab(document.querySelector('#rec-btn'));
+        }
+    })
+
+}
+$('#form-schedule').on("submit", function () {
+    var scheduleElements = document.querySelectorAll('.schedule-error');
+    console.log(scheduleElements);
+    scheduleElements.forEach(day => {
+        console.log(day);
+        day.classList.remove('schedule-error');
+    });
+    var scheduleInfo = document.querySelector('.schedule-info');
+    if (scheduleInfo) scheduleInfo.remove();
+    var dataForm = $(this).serialize();
+    var recDay = [];
+    $.ajax({
+        url: 'requests/check-before-save-edit-schedule.php',
+        method: 'post',
         async: false,
-        dataType: 'html',         
-        data: dataForm,    
-        success: function (res) {  
-            document.querySelector('#schedule-master').insertAdjacentHTML('beforeend',  `
-            <div style="width:100%; text-align:center;">${res}</div>
-            `)
-            setTimeout (() => getSchedule(), 1000); 
+        dataType: 'json',
+        data: dataForm,
+        success: function (res) {
+            if (res == 'success') changeSchedule();
+            else {
+
+
+                var masterSelected = document.querySelector('input[name="selected-master"]:checked').value;
+                var recordsID = [];
+                res.forEach(day => {
+                    document.getElementById(masterSelected + '-day' + day[0]).classList.add('schedule-error');
+                    recordsID.push(day[1]);
+                    recDay.push(day[0]);
+                    console.log(day[1]);
+                });
+                console.log(recordsID);
+                document.querySelector('#schedule-master').insertAdjacentHTML('beforeend', `
+            <div class='schedule-info'>Есть записи, не входящие в новый график мастера. <br>Измените график или <a class='schedule-info__link' onclick='getOverrecord(event, [${recordsID}]);' href='#'>перенесите записи</a></div>
+            `);
+            }
         }
     });
+    function changeSchedule() {
+        $.ajax({
+            url: 'requests/save-edit-schedule.php',
+            method: 'post',
+            async: false,
+            dataType: 'html',
+            data: dataForm,
+            success: function (res) {
+                document.querySelector('#schedule-master').insertAdjacentHTML('beforeend', `
+            <div style="width:100%; text-align:center;">${res}</div>
+            `)
+                setTimeout(() => getSchedule(), 1000);
+            }
+        });
+
+    }
 })
 $('#start-0').on('input', function () {
     console.log('hello');
@@ -211,69 +263,167 @@ function get_info_master() {
 }
 
 //услуга выполнена
-function makeDoneRecord(id){
+function makeDoneRecord(id) {
     $.ajax({
         method: 'post',
-        data:{id:id},
-        url:'requests/done-record.php',
-        success:function(){
-            document.querySelector('#record' + id).querySelector('.done-btn').innerHTML="<input type='checkbox' checked onclick='removeDoneRecord("+id+");'>";
-            document.querySelector('#record' + id).querySelector('.canceled-btn').innerHTML="&mdash;";
+        data: { id: id },
+        url: 'requests/done-record.php',
+        success: function () {
+            document.querySelector('#record' + id).querySelector('.done-btn').innerHTML = "<input type='checkbox' checked onclick='removeDoneRecord(" + id + ");'>";
+            document.querySelector('#record' + id).querySelector('.canceled-btn').innerHTML = "&mdash;";
         },
     })
 }
 
 //услуга выполнена (отмена)
-function removeDoneRecord(id){
+function removeDoneRecord(id) {
     $.ajax({
         method: 'post',
-        data:{id:id},
-        url:'requests/remove-done-record.php',
-        success:function(){
-           document.querySelector('#record' + id).querySelector('.done-btn').innerHTML="<input type='checkbox' onclick='makeDoneRecord("+id+");'>";
-           document.querySelector('#record' + id).querySelector('.canceled-btn').innerHTML="<input type='checkbox' onclick='makeCanceledRecord("+id+");'>";
+        data: { id: id },
+        url: 'requests/remove-done-record.php',
+        success: function () {
+            document.querySelector('#record' + id).querySelector('.done-btn').innerHTML = "<input type='checkbox' onclick='makeDoneRecord(" + id + ");'>";
+            document.querySelector('#record' + id).querySelector('.canceled-btn').innerHTML = "<input type='checkbox' onclick='makeCanceledRecord(" + id + ");'>";
         },
     })
 }
 //услуга отменена
-function makeCanceledRecord(id){
+function makeCanceledRecord(id) {
     $.ajax({
         method: 'post',
-        data:{id:id},
-        url:'requests/canceled-record.php',
-        success:function(){
-           document.querySelector('#record' + id).querySelector('.canceled-btn').innerHTML="<input type='checkbox' checked onclick='removeCanceledRecord("+id+");'>";
-           let doneBtn = document.querySelector('#record' + id).querySelector('.done-btn');
-           if (doneBtn) doneBtn.innerHTML="&mdash;";
-           let status = document.querySelector('#record' + id).querySelector('.status');
-           if (status) status.innerHTML="Отменено";
+        data: { id: id },
+        url: 'requests/canceled-record.php',
+        success: function () {
+            document.querySelector('#record' + id).querySelector('.canceled-btn').innerHTML = "<input type='checkbox' checked onclick='removeCanceledRecord(" + id + ");'>";
+            let doneBtn = document.querySelector('#record' + id).querySelector('.done-btn');
+            if (doneBtn) doneBtn.innerHTML = "&mdash;";
+            let status = document.querySelector('#record' + id).querySelector('.status');
+            if (status) status.innerHTML = "Отменено";
         },
     })
 }
 //услуга отменена (отмена)
-function removeCanceledRecord(id){
+function removeCanceledRecord(id) {
     $.ajax({
         method: 'post',
-        data:{id:id},
-        url:'requests/remove-canceled-record.php',
-        success:function(){
-           document.querySelector('#record' + id).querySelector('.canceled-btn').innerHTML="<input type='checkbox' onclick='makeCanceledRecord("+id+");'>";
-           let doneBtn = document.querySelector('#record' + id).querySelector('.done-btn');
-           if (doneBtn) doneBtn.innerHTML="<input type='checkbox' onclick='makeDoneRecord("+id+");'>";
-           let status = document.querySelector('#record' + id).querySelector('.status');
-           if (status) status.innerHTML="В ожидании";
+        data: { id: id },
+        url: 'requests/remove-canceled-record.php',
+        success: function () {
+            document.querySelector('#record' + id).querySelector('.canceled-btn').innerHTML = "<input type='checkbox' onclick='makeCanceledRecord(" + id + ");'>";
+            let doneBtn = document.querySelector('#record' + id).querySelector('.done-btn');
+            if (doneBtn) doneBtn.innerHTML = "<input type='checkbox' onclick='makeDoneRecord(" + id + ");'>";
+            let status = document.querySelector('#record' + id).querySelector('.status');
+            if (status) status.innerHTML = "В ожидании";
         },
     })
 }
-if (document.querySelector("#graph-btn")){
-    document.querySelector("#graph-btn").addEventListener("click", function(){
+if (document.querySelector("#graph-btn")) {
+    document.querySelector("#graph-btn").addEventListener("click", function () {
         $.ajax({
-            url:'graph.php', 
-            method:'get',
-            dataType:'html',
-            success:function(res){
+            url: 'graph.php',
+            method: 'get',
+            dataType: 'html',
+            success: function (res) {
                 document.querySelector("#graph-container").innerHTML = res;
             }
         })
+    })
+}
+function getTime(e, id) {
+    let date1 = new Date(e);
+    let day_of_week = date1.getDay();
+    let date = date1.toISOString().split('T')[0];
+    let masterSelectedForGetTime = document.getElementById('record-master').value;
+    console.log(id);
+    console.log(date);
+    console.log(masterSelectedForGetTime);
+    console.log(day_of_week);
+    $.ajax({
+        method: 'POST',
+        url: "requests/get-free-master-records.php",
+        async: false,
+        data: { day_of_week: day_of_week, date: date, service_id: id, master_id: masterSelectedForGetTime },
+        success: function (html) {
+            let times = JSON.parse(html);
+            document.getElementById('record-time').innerHTML = times;
+        }
+    });
+}
+function resetDateTimes(date, id) {
+    document.getElementById('record_date').value = date;
+    getTime(date, id);
+}
+function recordEdit(id) {
+    $.ajax({
+        method: 'post',
+        data: { id: id },
+        url: 'requests/get-edit-record.php',
+        type: 'json',
+        async: false,
+        success: function (res) {
+            openPopup();
+            var today = new Date();
+            var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000)).toISOString().slice(0, 10);
+            var lastDay = new Date(today.getTime() + (7 * 24 * 60 * 60 * 1000)).toISOString().slice(0, 10);
+            let record = JSON.parse(res);
+            console.log(res);
+            document.querySelector('.popup-title').innerHTML = 'Перенос записи';
+            document.querySelector('.form-body').insertAdjacentHTML('afterbegin', `
+            <label>Услуга</label>
+            <div>
+            <div class='input' name='record-name'>${record[0]['service']}</div>
+            </div>
+            <label>Клиент</label>
+            <div>
+            <div class='input' name='record-user'>${record[0]['user_name']}</div>
+            </div>
+            <label>Мастер</label>
+            <select onchange="resetDateTimes('${(record[0]['date_record'])}', ${record[0]['service_id']});" id='record-master' name='master_id'>
+            <option value='${(record[0]['master_id'])}'>${(record[0]['master_name'])}</option>
+            </select>
+            <label>Дата</label>
+            <input type='date' onchange='getTime(this.value, ${record[0]['service_id']})' min='${tomorrow}' max='${lastDay}' id='record_date' name='date_record' value='${(record[0]['date_record'])}' required>
+            <label>Время</label>
+            <select id='record-time' name='time_record'>
+            <option>${(record[0]['time_record']).slice(0, -3)}</option>
+            </select>
+            <input type='text' id='record_id' name='record_id' style='visibility:hidden;' value='${record[0]['id']}'>
+            `);
+            masters = record[1];
+            console.log(masters);
+            document.querySelector('#record-master').insertAdjacentHTML('beforeend', `
+                <option value='${masters['id']}'>${masters['master_name']}</option>
+                `);
+            getTime(record[0]['date_record'], record[0]['service_id']);
+            console.log(record[0]['date_record'], record[0]['service_id']);
+
+            function saveEditRecord() {
+                var date_record = document.querySelector('#record_date').value;
+                var isoDate = new Date(date_record);
+                var date_record = ('0' + isoDate.getDate()).slice(-2) + '.' + ('0' + (isoDate.getMonth() + 1)).slice(-2) + '.' + isoDate.getFullYear();
+                console.log(typeof date_record);
+                var time_record = document.querySelector('#record-time').value;
+                let id = document.querySelector('#record_id').value;
+                var dataForm = $(this).serialize();
+                if (time_record == 'Нет записи') alert('Выберете другого мастера или дату.');
+                else
+                $.ajax({
+                    method: 'post',
+                    dataType: 'html',
+                    url: 'requests/save-edit-record.php',
+                    async: false,
+                    data: dataForm,
+                    success: function (master) {
+                        closePopup();
+                        console.log(master);
+                        document.querySelector('#form').removeEventListener('submit', saveEditRecord);
+                        document.getElementById('record' + id).querySelector('.master').innerHTML = master;
+                        document.getElementById('record' + id).querySelector('.time').innerHTML = time_record;
+                        document.getElementById('record' + id).querySelector('.date').innerHTML = date_record;
+                    }
+                })
+            }
+            document.querySelector('#form').addEventListener('submit', saveEditRecord);
+        }
     })
 }

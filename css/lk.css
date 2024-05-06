@@ -31,7 +31,31 @@
   .tab-pane:not(.tab-pane-show) {
     display: none;
   }
+.re-record{
+    font-size: 0.8em;
+    cursor: pointer;
+}
+.re-record:hover{
+    color:var(--third-color);
+}
 
+.record-table tr:hover > td{
+    background-color: #e7ebf48f;
+    color:#756353;
+}
+  .schedule-info{
+    width: 100%;
+    text-align: center;
+  }
+  .schedule-info__link{
+    border-bottom: 1px solid var(--third-color);
+  }
+  .schedule-info a:hover{
+    color:var(--third-color);
+  }
+  .schedule-error{
+    background-color: rgba(255, 0, 0, 0.1);
+  }
 .masters-list {
     width: 30%;
     margin:1% 0 1% 1%;

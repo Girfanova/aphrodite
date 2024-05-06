@@ -30,13 +30,7 @@
             width: 100%;
             text-align: center;
         } */
-        .form-edit-profile{
-            width: 30%;
-        }
-        .form-change-password {
-            width: 50%;
-        }
-
+        
         .form-edit-profile,
         .form-change-password {
             /* width: 60%;
@@ -49,7 +43,7 @@
             /* border-radius: 3px; */
             box-shadow: 0 0 10px var(--fourth-color);
             /* min-width:435px; */
-            /* width: 40%; */
+            width: 40%;
             /* height: 100%; */
         }
         @media  screen and (max-width:435px) {
@@ -121,12 +115,12 @@
                     <div class="input-message" for="name_edit" id="name_edit_label"></div><br>
                 </div>
                 
-                <div class="label">Номер телефона</div>
+                <!-- <div class="label">Номер телефона</div>
                 <div class="input-box">
                     <input type="tel" id="phone_edit" name="phone_edit" class="input" value="<?php echo $phone; ?>"
                         placeholder="+7 (000) 000-00-00" required><br>
                     <div class="input-message" for="phone_edit" id="phone_edit_label"></div><br>
-                </div>
+                </div> -->
                 <div style='width:100%; text-align:center;' id='message-block-name'></div>
                 <input type="submit" value="Сохранить" class="btn form-submit-btn">
             </form>

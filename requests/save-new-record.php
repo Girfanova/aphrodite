@@ -8,7 +8,7 @@ if (!empty($_POST['date-record']) and !empty($_POST['record-time']) and !empty($
     $time = $_POST['record-time'] . ":00";
     $service = $_POST['service_id'];
     $master = $_POST['master_id'];
-
+ 
     $query = "SELECT * from services where id = '$service'";
     $result = mysqli_query($link, $query) or die(mysqli_error($link));
     $row = mysqli_fetch_assoc($result);

@@ -15,16 +15,18 @@ echo "
 echo '</div>';
 $schedule = mysqli_query($link, 'SELECT * from schedule where id_master=' . $_GET['id']. ' ORDER BY day_of_week = 0 ASC, day_of_week ASC');
 echo "<table class='schedule' >
+<thead>
  <tr>
      <th>День недели</th>
      <th>Начало рабочего дня</th>
      <th>Конец рабочего дня</th>
      <th>Не работает</th>
  </tr>
+ </thead>
  <tbody>";
 
 while ($row = mysqli_fetch_array($schedule)){
-    echo "<tr>";
+    echo "<tr id='".$_GET['id']."-day".$row["day_of_week"]."'>";
     switch ($row["day_of_week"]) {
         case "1":
             $day = 'ПН';

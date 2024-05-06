@@ -89,7 +89,7 @@ if (($_SESSION['user_role']) == 10)
                 $t = 1;
             }
             if (mysqli_num_rows($records_not_done) <= 0)
-                echo "<tr><td colspan=5>Записей на ближайшее время нет</td></tr>";
+                echo "<tr><td colspan=6>Записей на ближайшее время нет</td></tr>";
             echo '</table>
             </div>';
             mysqli_close($link);
@@ -116,7 +116,7 @@ if (($_SESSION['user_role']) == 10)
             echo '
             <div class="tab" id="tab-1">
                 <div class="tab-nav">
-                    <button type="button" class="tab-btn tab-btn-active" data-target-id="0">Учет посещений</button>
+                    <button type="button" class="tab-btn tab-btn-active" data-target-id="0" id="rec-btn">Учет посещений</button>
                     <button type="button" class="tab-btn" data-target-id="1">Мастера</button>
                     <button type="button" class="tab-btn" data-target-id="2" id="graph-btn">График</button>
                 </div>
