@@ -6,8 +6,8 @@ if (!empty($_POST['promotion_description']) and !empty($_POST['promotion_title']
     $picture = $_FILES['promotion_picture']['name'];
     
     require_once("connect_db.php");
-    $query = "INSERT INTO promotions SET title = '$title', description = '$description', picture = '$picture'";
-    mysqli_query($link, $query);
+    // $query = "INSERT INTO promotions SET title = '$title', description = '$description', picture = '$picture'";
+    // mysqli_query($link, $query);
     if ($picture) {
         function check_upload($file)
         {
@@ -27,7 +27,20 @@ if (!empty($_POST['promotion_description']) and !empty($_POST['promotion_title']
 
         function upload($file)
         {
-            copy($file['tmp_name'], 'Resources/promotions/' . $file['name']);
+            // copy($file['tmp_name'], 'Resources/promotions/' . $file['name']);
+            $i = 1;
+            $originalName = $file['name'];
+            $fileName = $originalName;
+            echo $fileName;
+            while (file_exists('Resources/promotions/' . $fileName)) {
+                $getM = explode(".", $fileName);
+                $extension = end($getM);
+                $fileName = basename($originalName, "." . $extension) . "_" . $i . "." . $extension;
+                $i++;
+            }
+            echo $fileName;
+            copy($file['tmp_name'], 'Resources/promotions/' . $fileName);
+            return $fileName;
 
         }
 
@@ -35,16 +48,17 @@ if (!empty($_POST['promotion_description']) and !empty($_POST['promotion_title']
             $image = $_FILES['promotion_picture'];
             $check = check_upload($image);
             if ($check === true) {
-                upload($image);
+                // upload($image);
+                $img = upload($image);
                 $getMime = explode('.', $image['name']);
 
                 $mime = strtolower(end($getMime)); //тип фала
                 $name = reset($getMime); //имя файла
+
+                $query = "INSERT INTO promotions SET title = '$title', description = '$description', picture = '$img'";
+                mysqli_query($link, $query);
             } else {
-                echo '<script language = "javascript">' .
-                'alert("'.$check.'");' .
-                'window.location.href="promotion-add.php"' .
-                '</script>';
+                echo $check;
             }
 
 

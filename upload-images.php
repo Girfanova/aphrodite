@@ -71,12 +71,16 @@
 // 	}
 
 // }
-
+$alredadyExist = array();
     $Array = array();
     $count = -1;
     //Загрузка файлов
     require("connect_db.php");
     foreach($_FILES as $Pictures) {
+        if (file_exists('Resources/portfolio/' .$Pictures['name'])){
+			$alredadyExist[] = "\n" .$Pictures['name'];
+			continue;
+		}
         $count++;
 		copy($Pictures['tmp_name'], 'Resources/portfolio/' . $Pictures['name']);
 		$name_file = $Pictures['name'];
@@ -87,4 +91,8 @@
     mysqli_close($link);
     // $json_data = array ('srcPart' => $Array, 'lengthArr' => $count);
     // echo json_encode($json_data);
+    if (count($alredadyExist)!=0){
+		$json_data = array('picName' => $alredadyExist, 'state' => 'response');
+		echo json_encode($json_data);
+	}
 ?>

@@ -779,8 +779,9 @@ function add_photo() {
                         async: false,
                         dataType: 'json',
                         data: formData,
-                        success:
-                            alert("Загружено")
+                        success: function (res){
+                            alert("Фото с именем/ами" + res['picName'] + " \nуже были загружены");
+                        }
                     });
                     $.ajax({
                         url: "admin-portfolio.php",
@@ -883,7 +884,7 @@ function promotion_edit(id) {
                 var formData = new FormData();
                 var file = $("#promotion_picture")[0].files[0];
                 if (file != undefined) {
-                    var type = file.name.split('.')[1];
+                    var type = file.type.split('/')[1];
                     if (!type.match(/(png)|(jpeg)|(jpg)|(gif)$/i)) {
                         alert('Неверный тип файла - ' + file.name + '.\nЗагрузите png, jpeg, jpg, или gif.');
                         return false;
@@ -940,7 +941,7 @@ function promotion_add() {
         var formData = new FormData();
         var file = $("#promotion_picture")[0].files[0];
         if (file != undefined) {
-            var type = file.name.split('.')[1];
+            var type = file.type.split('/')[1];
             if (!type.match(/(png)|(jpeg)|(jpg)|(gif)$/i)) {
                 alert('Неверный тип файла - ' + file.name + '.\nЗагрузите png, jpeg, jpg, или gif.');
                 return false;

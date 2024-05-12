@@ -27,7 +27,20 @@ if (!empty($_POST['promotion_title']) and !empty($_POST['promotion_description']
 
         function upload($file)
         {
-            copy($file['tmp_name'], 'Resources/promotions/' . $file['name']);
+            // copy($file['tmp_name'], 'Resources/promotions/' . $file['name']);
+            $i = 1;
+            $originalName = $file['name'];
+            $fileName = $originalName;
+            echo $fileName;
+            while (file_exists('Resources/promotions/' . $fileName)) {
+                $getM = explode(".", $fileName);
+                $extension = end($getM);
+                $fileName = basename($originalName, "." . $extension) . "_" . $i . "." . $extension;
+                $i++;
+            }
+            echo $fileName;
+            copy($file['tmp_name'], 'Resources/promotions/' . $fileName);
+            return $fileName;
 
         }
 
@@ -40,12 +53,13 @@ if (!empty($_POST['promotion_title']) and !empty($_POST['promotion_description']
             $image = $_FILES['promotion_picture'];
             $check = check_upload($image);
             if ($check === true) {
-                upload($image);
+                // upload($image);
+                $img = upload($image);
                 $getMime = explode('.', $image['name']);
 
                 $mime = strtolower(end($getMime)); //тип фала
                 $name = reset($getMime); //имя файла
-                $query = "UPDATE promotions set title='$title', description= '$description', picture= '$picture'  where id=$id";
+                $query = "UPDATE promotions set title='$title', description= '$description', picture= '$img'  where id=$id";
                 mysqli_query($link, $query) or die(mysqli_error($link));
                 echo '<script language = "javascript">' .
                     'alert("Файл загружен");' .
