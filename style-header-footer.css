@@ -270,9 +270,12 @@ nav li{
     color:#C3C9CD;
     transition: color 0.5s ease;
 }
+.menu_sub-list a{
+        border-bottom: 1px solid rgb(var(--first-color-rgb));
+        transition: all 0.5s ease;
+}
 .menu_sub-list a:hover{
-    color:#C3C9CD;
-    transition: color 0.5s ease;
+        border-color: rgb(var(--second-color-rgb));
 }
 .menu_sub-list{
     position: absolute;
