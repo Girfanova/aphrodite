@@ -312,12 +312,29 @@
     font-size: 0.8em;
     background:none;
 }
+.possibilities-container{
+    /* width: 96%; */
+    /* padding:2%; */
+    flex-wrap: wrap;
 
+    font-size: 1.8em;
+    margin: 8% 0 0 0;
+    display: flex;
+    justify-content: center;
+    background-color: var(--third-color);
+    box-shadow: 1px 1px 10px rgba(var(--second-color-rgb), 0.5);
+}
+.possibilities-photo{
+    width:50%;
+    min-width: 150px;
+    object-fit: cover;
+}
 .possibilities{
     border-radius: 0px;
-    padding: 1% 2%;
-    width: 60%;
-    height: 75%;
+    padding: 3% 10%;
+    width: 30%;
+    min-width: 150px;
+    /* height: 75%; */
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -326,9 +343,34 @@
     background-color: rgba(var(--second-color-rgb), 0.5);
     box-shadow: 1px 1px 10px rgba(var(--second-color-rgb), 0.5);
 }
+@media screen and (max-width:600px) {
+    .possibilities, .possibilities-photo{
+        width: 100%;
+    }
+    .possibilities-photo{
+        /* height: 10vh; */
+    }
+    .possibilities{
+        padding: 3% 10% 5% 10%;
+        font-size: 0.8em;
+    }
+    .possibilities-title{
+        padding: 2%;
+    }
+    .possibilities-container{
+        /* height: 30vh; */
+    }
+}
+.possibilities a{
+    color: rgba(var(--first-color-rgb),0.6);
+    text-decoration: underline;
+}
+.possibilities a:hover{
+    color: var(--third-color);
+}
 .possibilities-title{
     font-family: var(--first-title-font);
-    font-size: 1.4em;
+    font-size: 1.9em;
 }
 .pos{
     display: flex;
@@ -371,7 +413,7 @@
     width: 100px;
 }
 .services{
-    margin: 10% 5% 5% 5%;
+    margin: 7% 5% 5% 5%;
     position: relative;
 }
 .services__list{

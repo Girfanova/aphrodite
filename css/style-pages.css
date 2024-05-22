@@ -1002,3 +1002,13 @@ select{
         font-size: 2em;
     }
 }
+.policy{
+    padding:4%;
+    width:90%;
+    margin:8% auto 5%;
+    max-width: 1200px;
+    font-size: 1.4em;
+    box-shadow: 0px 0px 50px rgb(200, 200, 200);
+    border-radius: 10px;
+    text-align: justify;
+}

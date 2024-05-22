@@ -308,12 +308,18 @@ function removeCanceledRecord(id) {
         method: 'post',
         data: { id: id },
         url: 'requests/remove-canceled-record.php',
-        success: function () {
-            document.querySelector('#record' + id).querySelector('.canceled-btn').innerHTML = "<input type='checkbox' onclick='makeCanceledRecord(" + id + ");'>";
-            let doneBtn = document.querySelector('#record' + id).querySelector('.done-btn');
-            if (doneBtn) doneBtn.innerHTML = "<input type='checkbox' onclick='makeDoneRecord(" + id + ");'>";
-            let status = document.querySelector('#record' + id).querySelector('.status');
-            if (status) status.innerHTML = "В ожидании";
+        success: function (res) {
+            if (res==0){
+                alert('Это время уже заняли, запишитесь на другое');
+                document.querySelector('#record' + id).querySelector('.canceled-btn').innerHTML = "<input type='checkbox' checked onclick='removeCanceledRecord(" + id + ");'>";
+            }
+            else{
+                document.querySelector('#record' + id).querySelector('.canceled-btn').innerHTML = "<input type='checkbox' onclick='makeCanceledRecord(" + id + ");'>";
+                let doneBtn = document.querySelector('#record' + id).querySelector('.done-btn');
+                if (doneBtn) doneBtn.innerHTML = "<input type='checkbox' onclick='makeDoneRecord(" + id + ");'>";
+                let status = document.querySelector('#record' + id).querySelector('.status');
+                if (status) status.innerHTML = "В ожидании";
+            }
         },
     })
 }

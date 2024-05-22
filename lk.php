@@ -89,7 +89,7 @@ if (($_SESSION['user_role']) == 10)
                 $t = 1;
             }
             if (mysqli_num_rows($records_not_done) <= 0)
-                echo "<tr><td colspan=6>Записей на ближайшее время нет</td></tr>";
+                echo "<tr ><td align=center colspan=6>Записей на ближайшее время нет</td></tr>";
             echo '</table>
             </div>';
             mysqli_close($link);

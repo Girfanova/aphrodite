@@ -23,7 +23,7 @@
                         if (isset($_SESSION['auth']))
                         echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . " <a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
                     else
-                        echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . "<a href='#' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
+                        echo "<li class='service'><span>" . $stroka['service'] . "</span><span>" . $stroka['price'] . "<a href='javascript:void(0);' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a></span></li>";
                }
                      mysqli_close($link);
                 ?>

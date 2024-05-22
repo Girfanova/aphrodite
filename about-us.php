@@ -78,7 +78,7 @@
 
         <div class="about-salon">
             <div class='about-salon__image-container'>
-                <img src="Resources/salon-photos/60-4 (3).jpg" class="about-salon__image" alt="о нас">
+                <img src="Resources/salon-photos/60-4.jpg" class="about-salon__image" alt="о нас">
             </div>
             <div class="about-salon__description">
                 <div class="about-us__title">О нас

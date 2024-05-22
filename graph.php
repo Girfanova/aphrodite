@@ -76,6 +76,7 @@ foreach ($new_spec as $sp) {
             <td>" . $key . "</td>";
             for ($i = $weekday_n; $i <= 6; $i++) {
                 echo "<td>";
+                if (isset ($spec[$i]))
                 foreach ($spec[$i] as $master => $times) {
                     echo "<div class='graph-master'><b>$master</b><br><i>".substr($times[0],0,5)." - ".substr($times[1],0,5)."</i></div>";
                 }

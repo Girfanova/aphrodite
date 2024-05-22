@@ -182,6 +182,13 @@ a:hover{
     display: none;
     margin-top: 5%;
 }
+.popup a{
+    color: var(--third-color);
+    text-decoration: underline;
+}
+.popup a:hover{
+    color:rgba(var(--first-color-rgb), 0.6);
+}
 #message-block-reg{
     margin-top: 2%;
 }
@@ -575,7 +582,7 @@ footer .container{
         background-color: rgb(var(--first-color-rgb));
      }
     .popup{
-        /* background-color: var(--third-color); */
+        background-color: rgb(var(--second-color-rgb));
     }
 }
 @media screen and (max-width:1420px) {

@@ -158,6 +158,16 @@ if (popup) {
         })
     }
 }
+
+function openRegPopup() {
+    var popup = document.querySelector('.popup');
+    popup.classList.toggle("popup_open");
+    document.body.style.overflow = "hidden";
+    log_btn.classList.remove('popup-choice_checked');
+            reg_btn.classList.toggle('popup-choice_checked');
+            log_form.style.display = "none";
+            reg_form.style.display = "block";
+}
 function openPopup() {
     var popup = document.querySelector('.popup');
     popup.classList.toggle("popup_open");
@@ -366,8 +376,11 @@ if (document.getElementById('popup-form-reg')) document.getElementById('popup-fo
             success: function (res) {
                 document.querySelector('#message-block-reg').innerHTML = res['message'];
                 document.querySelector('#message-block-reg').style.color = 'green';
-                if (res['status'] == 'success')
+                if (res['status'] == 'success'){
                     setTimeout(() => location.href = 'lk.php', 1500);
+                    // setTimeout(() => location.reload(), 1500);
+                }
+                   
                 else {
                     document.querySelector('#message-block-reg').style.color = 'red';
                     document.querySelector('#phone_reg').style.borderColor = 'red';
@@ -403,6 +416,8 @@ if (document.getElementById('popup-form-log')) document.getElementById('popup-fo
                 if (res['status'] == 'success'){
                     document.querySelector('#message-block-log').style.color = 'green';
                     setTimeout(() => location.href = 'lk.php', 1500);
+                    // setTimeout(() => location.reload(), 1500);
+
                 }
                 else document.querySelector('#message-block-log').style.color = 'red';
             }
@@ -410,8 +425,8 @@ if (document.getElementById('popup-form-log')) document.getElementById('popup-fo
         return false;
     }
     else { 
-        document.querySelector("#message-block-reg").innerHTML = "Проверьте введенные данные";
-        document.querySelector('#message-block-reg').style.color = 'red';
+        document.querySelector("#message-block-log").innerHTML = "Проверьте введенные данные";
+        document.querySelector('#message-block-log').style.color = 'red';
         return false;
     }
 })

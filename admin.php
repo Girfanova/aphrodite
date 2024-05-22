@@ -87,7 +87,7 @@ function change_role(elem, id) {
                 url: "users-list.php",
                 cache: false,
                 success: function (php) {
-                    
+                    document.querySelector('.input-search').value = '';
                     $("#user-list").html(php);
                 }
             });

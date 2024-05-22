@@ -26,7 +26,7 @@
                     if ($stroka['is_recording'] == 1) {
                         if (isset($_SESSION['auth'])) 
                         echo "<a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a>";
-                    else echo "<a href='#' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a>";
+                    else echo "<a href='javascript:void(0);' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a>";
                     }
                     echo "</span></li>";    
                 }
@@ -42,7 +42,7 @@
                     if ($stroka['is_recording'] == 1) {
                         if (isset($_SESSION['auth'])) 
                         echo "<a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a>";
-                    else echo "<a href='#' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a>";
+                    else echo "<a href='javascript:void(0);' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a>";
                     }
                     echo "</span></li>";   
                 }
@@ -58,7 +58,7 @@
                     if ($stroka['is_recording'] == 1) {
                         if (isset($_SESSION['auth'])) 
                         echo "<a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a>";
-                    else echo "<a href='#' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a>";
+                    else echo "<a href='javascript:void(0);' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a>";
                     }
                     echo "</span></li>";   
                 }
@@ -74,7 +74,7 @@
                     if ($stroka['is_recording'] == 1) {
                         if (isset($_SESSION['auth'])) 
                         echo "<a href='make-record.php?id=" . $stroka['id'] . "'><img title='Записаться' src='Resources/add.png'></img></a>";
-                    else echo "<a href='#' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a>";
+                    else echo "<a href='javascript:void(0);' onclick='openPopup();'><img title='Записаться' src='Resources/add.png'></img></a>";
                     }
                     echo "</span></li>";   
                 }

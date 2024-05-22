@@ -40,8 +40,8 @@ else
             break;
     }
     echo "<td>" . $day . "</td>
-                <td  class='td'>" . $row['start_of_work'] . "</td>
-                <td class='td'>" . $row['end_of_work'] . "</td>";
+                <td  class='td'>" . mb_substr($row['start_of_work'], 0, 5) . "</td>
+                <td class='td'>" . mb_substr($row['end_of_work'], 0, 5) . "</td>";
     echo "</tr>";
 }
 echo " </tbody>

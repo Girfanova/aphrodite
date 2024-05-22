@@ -37,11 +37,11 @@ while ($data_count = mysqli_fetch_array($count)) {
 	foreach ($services_data as $service) {
 		if ($data_count['category_id'] == $service['category_id']) {
 
-			echo " 
-					<tr id='admin-service".$service['id']."' >";
 			if ($k == 0) {
+				$data_count['count']++;
 				echo "<td id='admin-category-service".$service['category_id']."'  rowspan=" . $data_count['count'] . ">" . $service['category_name'] . "</td>";
 			}
+			echo " <tr id='admin-service".$service['id']."' >";
 			echo "
 					<td class='service' >" . $service['service'] . "</td>
 					<td class='price'>" . $service['price'] . " </td>";

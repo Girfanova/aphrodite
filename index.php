@@ -222,6 +222,17 @@
                         data-slide="next">&#8250;</div>
                 </div>
             </div>
+            
+        </div>
+        <div class="possibilities-container">
+            <img src="Resources/possibility-photo.jpg" alt="" class="possibilities-photo">
+                    <div class="possibilities">
+                        <div class="possibilities-title">Онлайн-запись</div>
+                        <div>Записаться на услугу к мастеру просто и удобно! <br><a href="javascript:void(0);" onclick="openPopup();">Авторизуйтесь</a> или <a href="javascript:void(0);" onclick="openRegPopup();">зарегистрируйтесь</a> для записи и доступа к личному кабинету.</div>
+                        <!-- <div class='pos'><img src='Resources/add.png'><span class="pos1">Онлайн-запись</span></div>
+                        <div class='pos'><img src='Resources/account.png'><span class="pos2">Личный кабинет</span></div>
+                        <div class='pos'><img src='Resources/history.png'><span class="pos3">История посещений</span></div> -->
+                    </div>
         </div>
         <div class="services">
             <h2 class="services__title">Наши услуги</h2>
