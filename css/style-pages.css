@@ -642,7 +642,12 @@ li span img {
     padding: 0 10%;
     font-size: 0.8em;
 }
-
+@media screen and (max-width:810px) {
+    .masters-container {
+        padding: 0;
+        width: 100%;
+    }
+}
 .admin-menu p:hover {
     color: rgb(var(--first-color-rgb), 0.5);
     transition: all 0.5s ease;
@@ -652,7 +657,7 @@ li span img {
 .profile-table {
     /* border: 1px solid var(--third-color); */
     box-shadow: 0 0 10px var(--fourth-color); 
-
+    flex-wrap: wrap;
     padding: 2%;
     width: 100%;
     max-width: 600px;

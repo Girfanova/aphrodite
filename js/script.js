@@ -36,9 +36,8 @@ window.onload = function () {
             requestAnimationFrame(setMouseParallaxStyle);
         }
     }
-
-
 };
+
 var map = document.getElementById('map');
 var address1 = document.getElementById('address1');
 var address2 = document.getElementById('address2');

@@ -59,7 +59,6 @@
             <div class="input-box">
                 <select class="input" name='master-record' id='master-record' onchange="getdate();">
                     <?php
-                    echo "<script>console.log({$master})</script>";
                     foreach ($master_for_make_record as $key => $m) {
                         echo "<option value='{$m['id']}'>{$m['name']}</option>";
                     }
@@ -82,7 +81,12 @@
                     </select>
                 </div>
             </div>
-
+            <div class="label">Адрес</div>
+            <div class="input-box">
+                <div class="input" name='name'>
+                    Юрия Гагарина, 60
+                </div>
+            </div>
             <input name="master_id" id="master_id" hidden><br>
             <input name="service_id" id="service-record" hidden value=<?php echo $_GET['id']; ?>><br>
 

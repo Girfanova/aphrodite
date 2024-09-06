@@ -61,19 +61,22 @@ if (($_SESSION['user_role']) == 10)
             <table class='record-table table-visible' id='record-table'>";
             echo "<tr >
                     <th width=22%>Услуга</th>
-                   <th width=14%>Мастер</th>
-                   <th width=10%>Дата</th>
-                   <th width=7%>Время</th>
+                    <th width=10%>Дата</th>
+                    <th width=7%>Время</th>
+                    <th width=14%>Мастер</th>
+                    <th width=14%>Адрес</th>
                    <th width=9%>Отменить</th>
                    <th width=9%>Статус</th>
                    </tr>";
                 $today = date('Y-m-d');
+                $address = 'Юрия Гагарина, 60';
             while ($stroka = mysqli_fetch_array($records_not_done)) {
                 echo "<tr id='record".$stroka['id']."'>";
                 echo "<td> {$stroka['Услуга']} </td>";
-                echo "<td> {$stroka['Мастер']} </td>";
                 echo "<td>" . date('d.m.Y', strtotime($stroka['Дата'])) . " </td>";
                 echo "<td> " . date('H.i', strtotime($stroka['Время'])) . "</td>";
+                echo "<td> {$stroka['Мастер']} </td>";
+                echo "<td> $address </td>";
                 if ($stroka['canceled'] == 1) {
                     if ($stroka['Дата']<$today) echo "<td  align='center' class='canceled-btn'>&mdash;</td>";
                     else echo "<td  align='center' class='canceled-btn'><input type='checkbox' checked onclick='removeCanceledRecord(" . $stroka['id'] . ");'></td>";
@@ -89,7 +92,7 @@ if (($_SESSION['user_role']) == 10)
                 $t = 1;
             }
             if (mysqli_num_rows($records_not_done) <= 0)
-                echo "<tr ><td align=center colspan=6>Записей на ближайшее время нет</td></tr>";
+                echo "<tr ><td align=center colspan=7>Записей на ближайшее время нет</td></tr>";
             echo '</table>
             </div>';
             mysqli_close($link);

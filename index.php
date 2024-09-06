@@ -198,7 +198,6 @@
                             $promotions = mysqli_query($link, "SELECT * FROM promotions");
                             while ($row = mysqli_fetch_assoc($promotions)) {
                                 $path = "Resources/promotions/" . $row['picture'] . "";
-                                // echo "<script>console.log($path);</script>";
                                 echo "<div style='background-image:url(" . $path . "); ' class='itcss__item itcss__item1'>
                                 <div class='discount-text-container'>
                                 <div class='discount__text1'>" . $row['title'] . "</div>
@@ -228,10 +227,21 @@
             <img src="Resources/possibility-photo.jpg" alt="" class="possibilities-photo">
                     <div class="possibilities">
                         <div class="possibilities-title">Онлайн-запись</div>
-                        <div>Записаться на услугу к мастеру просто и удобно! <br><a href="javascript:void(0);" onclick="openPopup();">Авторизуйтесь</a> или <a href="javascript:void(0);" onclick="openRegPopup();">зарегистрируйтесь</a> для записи и доступа к личному кабинету.</div>
-                        <!-- <div class='pos'><img src='Resources/add.png'><span class="pos1">Онлайн-запись</span></div>
-                        <div class='pos'><img src='Resources/account.png'><span class="pos2">Личный кабинет</span></div>
-                        <div class='pos'><img src='Resources/history.png'><span class="pos3">История посещений</span></div> -->
+                        <div>Записаться на услугу к мастеру просто и удобно! <br>
+                        <a href="javascript:void(0);" 
+                        <?php 
+                        session_start(); 
+                        if(!isset($_SESSION['auth'])) echo 'onclick="openPopup();"'; 
+                        else echo 'onclick="alert(\'Вы уже авторизованы\');"'; 
+                        ?>>
+                        Авторизуйтесь</a> или <a href="javascript:void(0);"
+                        <?php 
+                        session_start(); 
+                        if(!isset($_SESSION['auth'])) echo 'onclick="openRegPopup();"'; 
+                        else echo 'onclick="alert(\'Вы уже авторизованы\');"'; 
+                        ?>> 
+                        зарегистрируйтесь</a> для записи и доступа к личному кабинету.</div>
+                        
                     </div>
         </div>
         <div class="services">

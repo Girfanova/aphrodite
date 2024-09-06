@@ -2,7 +2,7 @@
 
 require_once ("connect_db.php");
 
-if (!empty (!empty ($_POST['phone_log']) and !empty ($_POST['password_log']))) {
+if  (!empty ($_POST['phone_log']) and !empty ($_POST['password_log'])) {
     $phone = $_POST['phone_log'];
     $password = $_POST['password_log'];
     $query = "SELECT * FROM users WHERE phone = '$phone'";

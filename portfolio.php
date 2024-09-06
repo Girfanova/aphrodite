@@ -24,9 +24,7 @@
                 $photo_name = $photo['name'];
                 $photo_desc = $photo['description'];
                 foreach ($gallery_photo_arr as $gallery_photo) {
-                    if ($gallery_photo_arr[0] == $gallery_photo)
-                        continue;
-                    if ($gallery_photo_arr[1] == $gallery_photo)
+                    if (($gallery_photo_arr[0] == $gallery_photo) or ($gallery_photo_arr[1] == $gallery_photo))
                         continue;
                     if ($photo_name == $gallery_photo){
                         echo "<div class='portfolio-image' onclick='openModal();currentSlide($count);'><img class='gallery-photo hover-shadow' title='$photo_desc' src='Resources/portfolio/$gallery_photo'><img></div>";
